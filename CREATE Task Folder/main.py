@@ -18,6 +18,7 @@ class RPG:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Project Bootleg")
         self.template = Template(self)
+        
 
     def run_game(self):
         """Start the main loop for the game"""
@@ -25,9 +26,6 @@ class RPG:
             self._check_events()
             self.template.update()
             self._update_screen()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
 
     def _check_events(self):
         for event in pygame.event.get():
