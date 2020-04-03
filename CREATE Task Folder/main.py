@@ -1,9 +1,11 @@
+"""main file, contains the main class"""
+
 import sys
 
 import pygame
 
 from settings import Settings
-from Adding_Images_Template import Template
+from template import Template
 
 
 class RPG:

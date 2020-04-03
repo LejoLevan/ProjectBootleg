@@ -1,3 +1,5 @@
+"""this is a template file that you reference when you want to add images"""
+
 import pygame
 
 class Template:
@@ -7,12 +9,12 @@ class Template:
         self.settings = rpg.settings
         self.screen_rect = rpg.screen.get_rect()
 
-        self.image = pygame.image.load('Capture (1).png')
+        self.image = pygame.image.load('CREATE Task Folder\Images\Capture (1).png')#pylint: disable = anomalous-backslash-in-string
         self.rect = self.image.get_rect()
 
         self.rect.midbottom = self.screen_rect.midbottom
 
-        self.x = float(self.rect.x)
+        self.x = float(self.rect.x)#pylint: disable = invalid-name
 
         # Movement Flags
         self.moving_right = False
@@ -27,5 +29,5 @@ class Template:
         self.rect.x = self.x
 
     def blitme(self):
-        """Draw the ship at its current location"""
+        """Draw the template at its current location"""
         self.screen.blit(self.image, self.rect)
