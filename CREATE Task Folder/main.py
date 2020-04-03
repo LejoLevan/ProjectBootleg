@@ -18,7 +18,7 @@ class RPG:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Project Bootleg")
         self.template = Template(self)
-        
+
 
     def run_game(self):
         """Start the main loop for the game"""
