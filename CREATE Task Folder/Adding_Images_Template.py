@@ -7,7 +7,7 @@ class Template:
         self.settings = rpg.settings
         self.screen_rect = rpg.screen.get_rect()
 
-        self.image = pygame.image.load('images/Capture(1).png')
+        self.image = pygame.image.load('Capture (1).png')
         self.rect = self.image.get_rect()
 
         self.rect.midbottom = self.screen_rect.midbottom

@@ -5,6 +5,7 @@ import pygame
 from settings import Settings
 from Adding_Images_Template import Template
 
+
 class RPG:
     """Overall class to mangage game assets and behavior."""
     def __init__(self):
