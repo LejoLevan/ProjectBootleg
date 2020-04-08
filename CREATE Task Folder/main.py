@@ -4,8 +4,10 @@ import sys
 
 import pygame
 
+from button import Button
 from settings import Settings
-from template import Template
+from template import Template #Y'all can probably ignore this entire class 
+
 
 
 class RPG:
@@ -18,23 +20,36 @@ class RPG:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Project Bootleg")
         self.template = Template(self)
+        self.game_active = False
+        self.play_button = Button(self, "Play")
+        
 
 
     def run_game(self):
         """Start the main loop for the game"""
         while True:
             self._check_events()
-            self.template.update()
+            
+            if self.game_active:
+                self.template.update()
+            
             self._update_screen()
 
     def _check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mous_pos = pygame.mouse.get_pos()
+                self._check_mouseclick(mous_pos)
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+
+    def _check_mouseclick(self, mous_pos):
+        if self.play_button.rect.collidepoint(mous_pos) and not self.game_active:
+            self.game_active = True
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -53,6 +68,8 @@ class RPG:
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.template.blitme()
+        if not self.game_active:
+            self.play_button.draw_button()
         pygame.display.flip()
 
 if __name__ == '__main__':
