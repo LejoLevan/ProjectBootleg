@@ -6,7 +6,7 @@ import pygame
 
 from button import Button
 from settings import Settings
-from template import Template #Y'all can probably ignore this entire class 
+from template import Template #Y'all can probably ignore this entire class (I still need for stuff)
 
 
 
