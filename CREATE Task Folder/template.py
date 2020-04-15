@@ -9,7 +9,7 @@ class Template:
         self.settings = rpg.settings
         self.screen_rect = rpg.screen.get_rect()
 
-        self.image = pygame.image.load('CREATE Task Folder\Images\Capture (1).png')#pylint: disable = anomalous-backslash-in-string
+        self.image = pygame.image.load('CREATE Task Folder\Image Assets\Capture (1).png')#pylint: disable = anomalous-backslash-in-string
         self.rect = self.image.get_rect()
 
         self.rect.midbottom = self.screen_rect.midbottom
