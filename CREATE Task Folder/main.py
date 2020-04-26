@@ -6,9 +6,8 @@ import pygame
 
 from button import Button
 from settings import Settings
-from template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-
-
+from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
+#from Quest_System.main_class_quest import QuestChecker (example of importing a file from a dif folder)
 
 class RPG:
     """Overall class to mangage game assets and behavior."""
@@ -75,5 +74,6 @@ class RPG:
 if __name__ == '__main__':
     BOOTLEG = RPG()
     BOOTLEG.run_game()
+
 
 #hi

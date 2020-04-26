@@ -13,9 +13,9 @@ class QuestChecker:
         if questname in self.ongoing_quests:
             self.ongoing_quests.remove(questname)
         self.completed_quests.append(questname)
-   
     def combatquestsUpdate(self):
         #methods to check combat quests go here (ex. self.randomquest.check())
     
     def questsUpdate(self):
         #methods to check regular quest go here
+ 
