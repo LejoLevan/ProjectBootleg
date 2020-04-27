@@ -15,6 +15,11 @@
     "python.testing.unittestEnabled": true,
     "cSpell.words": [
         "blitme",
-        "keyup"
-    ]
+        "keyup",
+        "maxhp",
+        "mous"
+    ],
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "off",
+    "debug.allowBreakpointsEverywhere": true
 }

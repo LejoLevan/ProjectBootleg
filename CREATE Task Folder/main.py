@@ -4,6 +4,7 @@ import sys
 
 import pygame
 
+from player import character
 from button import Button
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
@@ -21,17 +22,14 @@ class RPG:
         self.template = Template(self)
         self.game_active = False
         self.play_button = Button(self, "Play")
+      
         
-
-
     def run_game(self):
         """Start the main loop for the game"""
         while True:
             self._check_events()
-            
             if self.game_active:
                 self.template.update()
-            
             self._update_screen()
 
     def _check_events(self):
@@ -74,6 +72,5 @@ class RPG:
 if __name__ == '__main__':
     BOOTLEG = RPG()
     BOOTLEG.run_game()
+    player = character()
 
-
-#hi
