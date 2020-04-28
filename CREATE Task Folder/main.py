@@ -22,6 +22,7 @@ class RPG:
         self.template = Template(self)
         self.game_active = False
         self.play_button = Button(self, "Play")
+        self.player = character()
       
         
     def run_game(self):
@@ -30,6 +31,7 @@ class RPG:
             self._check_events()
             if self.game_active:
                 self.template.update()
+                self.player.update()
             self._update_screen()
 
     def _check_events(self):
@@ -72,5 +74,3 @@ class RPG:
 if __name__ == '__main__':
     BOOTLEG = RPG()
     BOOTLEG.run_game()
-    player = character()
-

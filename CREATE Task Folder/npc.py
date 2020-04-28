@@ -18,9 +18,6 @@ def beginnerShop():
     shop = vendor("Jack","beginnerShop")
     shop.inventory.append("wooden sword", "bone knife", "wooden bow", "tree stick", "rusty hatchet", "Rusty Great Sword")
 #Add crit when we find out stuff
-
-
-
 class ally:
     def __init__(self, name, hp, maxhp, physical_attack, magic_attack, stamina, stamina_max, mana, mana_max, physical_defense, magic_defense, fire_resist, poison_resist,
      level, exp, exp_cap, crit_percent, crit_mult, luck):

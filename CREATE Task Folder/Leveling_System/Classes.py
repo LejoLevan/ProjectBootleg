@@ -1,72 +1,65 @@
-import pygame
-from main import player
-from player import character
-from Leveling import level
-from Leveling import NextLevel
-
-player = character()
-
-
 class Classes:
-    def __init__(self, name, money):
-        self.name = name
+    def __init__(self, player):
+        self.profession = player.profession
+        self.level = player.level
 
-def Squire():
-    if(player.profession == "Squire" and player.level == 0):
-        squire = Classes("Squire")
-    if (player.level == 3):
-        squire = Classes("Knight")
-    if (player.level == 10):
-        squire = Classes("Templar")
-    if (player.level == 20):
-        squire = Classes("Holy Paladin")
+    def Squire(self):
+        if (self.profession == "Squire" and self.level == 3):
+            self.profession = "Knight"
+        elif (self.profession == "Squire" and self.level == 10):
+            self.profession = "Templar"
+        elif (self.profession == "Squire" and self.level == 20):
+            self.profession = "Holy Paladin"
 
-def Thief():
-    if(player.profession == "Thief" and player.level == 0):
-        Thief = Classes("Thief")
-    if (player.level == 3):
-        Thief = Classes("Scoundrel")
-    if (player.level == 10):
-        Thief = Classes("Rogue")
-    if (player.level == 20):
-        Thief = Classes("Assassin")
+    def Thief(self):
+        if (self.profession == "Thief" and self.level == 3):
+            self.profession = "Scoundrel"
+        if (self.profession == "Thief" and self.level == 10):
+            self.profession = "Rogue"
+        if (self.profession == "Thief" and self.level == 20):
+            self.profession = "Assassin"
 
-def apprentice():
-    if(player.profession == "Apprentice" and player.level == 0):
-        apprentice = Classes("Apprentice")
-    if(player.level==3):
-        apprentice = Classes("Warlock")
-    if(player.level==10):
-        apprentice = Classes("Wizard")
-    if(player.level==20):
-        apprentice = Classes("Head Mage")
+    def Apprentice(self):
+        if (self.profession == "Apprentice" and self.level == 3):
+            self.profession = "Warlock"
+        if (self.profession == "Apprentice" and self.level == 10):
+            self.profession = "Wizard"
+        if (self.profession == "Apprentice" and self.level == 20):
+            self.profession = "Head Mage"
+        
+    def Commoner(self):
+        if (self.profession == "Commoner" and self.level == 3):
+            self.profession = "Soldier"
+        if (self.profession == "Commoner" and self.level == 10):
+            self.profession = "Noble"
+        if (self.profession == "Commoner" and self.level == 20):
+            self.profession = "Great Lord"
+
+    def Warrior(self):
+        if (self.profession == "Warrior" and self.level == 0):
+            self.profession = "Warrior"
+        if (self.profession == "Warrior" and self.level == 3):
+            self.profession = "Berserker"
+        if (self.profession == "Warrior" and self.level == 10):
+            self.profession = "Gladiator"
+        if (self.profession == "Warrior" and self.level == 20):
+            self.profession = "Slayer"
+
+    def Archer(self):
+        if (self.profession == "Archer" and self.level == 0):
+           self.profession = "Archer"
+        if (self.profession == "Archer" and self.level == 3):
+            self.profession = "Hunter"
+        if (self.profession == "Archer" and self.level == 10):
+            self.profession = "Marksman"
+        if (self.profession == "Archer" and self.level == 20):
+            self.profession = "Ranger"
     
-def Commoner(): 
-    Commoner = Classes("Commoner")
-    if (player.level == 3):
-        Commoner = Classes("noble")
-    if(player.level==10):
-        apprentice = Classes("Military leader")
-    if(player.level==20):
-        apprentice = Classes("Shroud")
-        accuracy = 10000000000000
-
-def warrior():
-    if(player.profession == "Warrior" and player.level == 0):
-        warrior = Classes("Warrior")
-    if(player.level == 3):
-        warrior = Classes("Berserker")
-    if(player.level == 10):
-        warrior = Classes("Gladiator")
-    if(player.level == 20):
-        warrior = Classes("Slayer")
-
-def archer():
-    if(player.profession == "Archer" and player.level == 0):
-        archer = Classes("Archer")
-    if(player.level == 3):
-        archer = Classes("Hunter")
-    if(player.level == 10):
-        archer = Classes("Marksman")
-    if(player.level == 20):
-        archer = Classes("Ranger")
+    def updateClass(self):
+        Classes.Archer(self)
+        Classes.Warrior(self)
+        Classes.Commoner(self)
+        Classes.Apprentice(self)
+        Classes.Thief(self)
+        Classes.Squire(self)
+        return (self.profession)

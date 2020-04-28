@@ -1,14 +1,15 @@
 """This is obviously the class that sets up the player
 """
 
-class character:
+from Leveling_System.Classes import Classes
 
+class character:
     def __init__(self):
         #Info stats
         self.name = ""
 
         #class stats
-        self.profession = ""
+        self.profession = "Commoner"
 
         #hp stats
         self.maxhp = 10
@@ -86,10 +87,13 @@ class character:
         self.exp_cap = 100
 
         #chance stats
-        self.crit_percent = 10
+        self.crit_chance = 10
         self.crit_mult = 1.5
         self.luck = 10
         
         self.equipped_skills = []
         self.skills = []
+    
+    def update(self):
+        self.profession = Classes(self)
 
