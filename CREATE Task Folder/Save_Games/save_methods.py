@@ -27,7 +27,7 @@ def playerSave(player):
         'stamina': player.stamina,
         'maxStamina': player.stamina_max,
         'mana': player.mana,
-        'mana_max': player.mana_max,
+        'maxMana': player.mana_max,
 
         'physicalDefense': player.physical_defense,
         'magicDefense': player.magic_defense,
@@ -53,6 +53,16 @@ def playerSave(player):
     with open('player_logs.txt', 'w') as outfile:
         json.dump(playerData, outfile)
 
+def playerLoad():
+    with open('player_logs.txt', 'r') as outfile:
+        playerData = json.loads(outfile)
+    return playerData
+
+def questLoad():
+    with open('quest_logs.txt', 'r') as outfile:
+        questData = json.loads(outfile)
+    return questData
+
 def questSave(quest):
     """Function that will save data
     about quests
@@ -64,7 +74,7 @@ def questSave(quest):
     questData = {}
     questData['quests'] = []
     questData['quests'].append({
-        'ongoing_quests': quest.ongoing_quests,
+        'ongoingQuests': quest.ongoing_quests,
         'completedQuests': quest.completed_quests
     })
     with open('quest_logs.txt', 'w') as outfile:

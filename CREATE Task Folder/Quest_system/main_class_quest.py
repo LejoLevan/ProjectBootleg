@@ -1,8 +1,8 @@
 class QuestChecker:
     """Complies all quests trackers and keeps track on status on quests"""
-    def __init__(self, ongoing_quests, completed_quests):
-        self.ongoing_quests = [ongoing_quests]
-        self.completed_quests = [completed_quests]
+    def __init__(self, data):
+        self.ongoing_quests = data['ongoingQuests']
+        self.completed_quests = data['completedQuests']
     
     def appendongoing(self, questname):
         """Method to make a quest ongoing"""

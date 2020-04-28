@@ -4,6 +4,7 @@ import sys
 
 import pygame
 
+from Save_Games.save_methods import playerLoad
 from player import character
 from button import Button
 from settings import Settings
@@ -19,12 +20,13 @@ class RPG:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Project Bootleg")
+
         self.template = Template(self)
         self.game_active = False
         self.play_button = Button(self, "Play")
         self.player = character()
-      
-        
+
+  
     def run_game(self):
         """Start the main loop for the game"""
         while True:
