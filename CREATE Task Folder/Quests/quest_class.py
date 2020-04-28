@@ -1,6 +1,10 @@
 class QuestChecker:
     """Complies all quests trackers and keeps track on status on quests"""
-    def __init__(self, data):
+    def __init__(self):
+        self.ongoing_quests = []
+        self.completed_quests = []
+
+    def loadQuest(self, data):
         self.ongoing_quests = data['ongoingQuests']
         self.completed_quests = data['completedQuests']
     
@@ -13,9 +17,10 @@ class QuestChecker:
         if questname in self.ongoing_quests:
             self.ongoing_quests.remove(questname)
         self.completed_quests.append(questname)
-    def combatquestsUpdate(self):
+   
+    #def combatquestsUpdate(self):
         #methods to check combat quests go here (ex. self.randomquest.check())
     
-    def questsUpdate(self):
+    #def questsUpdate(self):
         #methods to check regular quest go here
  

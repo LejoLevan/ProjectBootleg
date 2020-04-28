@@ -4,12 +4,13 @@ import sys
 
 import pygame
 
-from Save_Games.save_methods import playerLoad
+from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
+from Quests.quest_class import QuestChecker
 from player import character
 from button import Button
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-#from Quest_System.main_class_quest import QuestChecker (example of importing a file from a dif folder)
+
 
 class RPG:
     """Overall class to mangage game assets and behavior."""
@@ -25,8 +26,16 @@ class RPG:
         self.game_active = False
         self.play_button = Button(self, "Play")
         self.player = character()
+        self.quests = QuestChecker()
 
-  
+    def loadData(self):
+        self.player.loadStats(playerLoad())
+        self.quests.loadQuest(questLoad())
+    
+    def saveData(self):
+        playerSave(self.player)
+        questSave (self.quests)
+        
     def run_game(self):
         """Start the main loop for the game"""
         while True:

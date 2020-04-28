@@ -1,6 +1,4 @@
-import pygame
-from player import character
-from Leveling_System import Classes
+
 
 def level(player):
     print("Level:",player.level)
