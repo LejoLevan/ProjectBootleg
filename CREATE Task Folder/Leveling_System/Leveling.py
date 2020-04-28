@@ -1,11 +1,10 @@
 import pygame
-from main import player
+from player import character
+from Leveling_System import Classes
 
-player.Level = player.level
-player.exp = 0
-player.exp_cap = 50
+player = character()
 
-def level(player.exp, player.level, player.exp_cap):
+def level(player.exp, player.level,player.exp_cap, player.previousLevel):
     print("Level:",player.level)
     print("Current Experience:",player.exp+"/"+player.exp_cap)
     print("Experience Until Next Level:",player.exp_cap-player.exp)
@@ -17,29 +16,18 @@ def NextLevel(player.exp, player.level, player.exp_cap):
         print("You are now level:", player.level)
         player.exp_cap += 100
         print("The new exp cap is now:", player.exp_cap)
+        player.previousLevel = player.previousLevel + 1
+        upgradeStats(player)
     if (player.level == 20):
         player.level = 20
         print("You are now max level:")
         player.exp_cap = player.exp
 
-    def upgradeStats(player):
+def statpercents(player):
+    if player.profession = melee_crit:
         
-            #hp stats
-            self.maxhp + 10
-            self.hp + 10
+    if
 
-            #attack stats
-            self.physical_attack + 10
-            self.magic_attack + 10
-
-            #consume stats
-            self.stamina + 10
-            self.mana + 10
-
-            #defense stats
-            self.physical_defense + 10
-            self.magic_defense + 10
-
-            #resistance stats
-            self.fire_resist + 5
-            self.posion_resist + 5
+def upgradeStats(player):
+    if (player.profession == "Thief"):
+        
