@@ -46,12 +46,12 @@ def mainMenuGUI(rpg):
     rpg.logo.prep()
 
 
-def choiceButton():
-    rpg.choice.width = rpg.settings.screen_height*
-
-
-#def GUIUpdate():
-
-
-#def generalGUI():
-    
+def choiceButton(rpg,ypos,xpos):
+    rpg.choice.width = 600
+    rpg.choice.height = 80
+    rpg.choice.text_color(255,255,255)
+    rpg.choice.font = pygame.font.SysFont('arial',20)
+    rpg.choice.border = 1
+    rpg.choice.top = (rpg.settings.screen_height*.5) - (rpg.choice.height/2) + ypos
+    rpg.choice.left = (rpg.settings.screen_width*.5) - (rpg.choice.width/2) + xpos
+    rpg.choice.prep()
