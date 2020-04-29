@@ -52,6 +52,8 @@ class character:
 
         self.gold = 10
 
+        self.combat = False
+
     def loadStats(self, stats):
         #Info stats
         self.name = stats['name']

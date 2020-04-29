@@ -5,6 +5,10 @@ class vendor:
         self.inventory = []
         self.forge = []
 
+    def sell(self, item):
+        
+
+
 def blacksmith1():
     blacksmith = vendor("Bob", "blacksmith")
     blacksmith.inventory.append("") #put items 
@@ -57,7 +61,6 @@ class ally:
         #skills
         self.equipped_skills = []
         self.skills = []
-
 
 
         def allyGainHealth(self,x):

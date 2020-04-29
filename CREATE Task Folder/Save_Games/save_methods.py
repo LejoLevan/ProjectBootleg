@@ -88,7 +88,7 @@ def allySave (ally):
         'name': ally.name,
         'profession': ally.profession,
 
-        'maxHP': ally.maxhp, 
+        'maxHP': ally.maxhp,
         'hp': ally.hp,
 
         'physicalAttack': ally.physical_attack,

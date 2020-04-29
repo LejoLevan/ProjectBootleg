@@ -4,10 +4,11 @@ import sys
 
 import pygame
 
+from button import Button
+from gui import mainMenuGUI
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
-from button import Button
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
 
@@ -24,9 +25,11 @@ class RPG:
 
         self.template = Template(self)
         self.game_active = False
-        self.play_button = Button(self, "Play")
         self.player = character()
         self.quests = QuestChecker()
+        
+        self.startButton = Button(self, "Start Game")
+        mainMenuGUI(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -58,7 +61,7 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
-        if self.play_button.rect.collidepoint(mous_pos) and not self.game_active:
+        if self.startButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
 
     def _check_keydown_events(self, event):
@@ -77,9 +80,9 @@ class RPG:
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
-        self.template.blitme()
         if not self.game_active:
-            self.play_button.draw_button()
+            self.template.blitme()
+            self.startButton.draw_button()
         pygame.display.flip()
 
 if __name__ == '__main__':
