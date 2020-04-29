@@ -1,15 +1,17 @@
 import pygame
 
 def mainMenuGUI(rpg):
-    #Button stuff
-    rpg.startButton.width = 420
-    rpg.startButton.height = 69
-    rpg.startButton.text_color = (255, 255, 255)
-    rpg.startButton.font = pygame.font.SysFont('arial', 20)
-    rpg.startButton.border = 1
-    rpg.startButton.prep()
+    #LoadButton Settings
+    rpg.loadButton.width = 420
+    rpg.loadButton.height = 69
+    rpg.loadButton.text_color = (255, 255, 255)
+    rpg.loadButton.font = pygame.font.SysFont('arial', 20)
+    rpg.loadButton.border = 1
+    rpg.loadButton.top = (rpg.settings.screen_height*.5) - (rpg.loadButton.height/2) + 75
+    rpg.loadButton.left = (rpg.settings.screen_width*.5) - (rpg.loadButton.width/2)
+    rpg.loadButton.prep()
 
-    #Square stuff
+    #OuterBorder
     rpg.borderSquare.width = rpg.settings.screen_width
     rpg.borderSquare.height = rpg.settings.screen_height
     rpg.borderSquare.top = 0
@@ -18,8 +20,33 @@ def mainMenuGUI(rpg):
     rpg.borderSquare.border = 1
     rpg.borderSquare.prep()
     
+    #New game button
+    rpg.newGameButton.width = 420
+    rpg.newGameButton.height = 69
+    rpg.newGameButton.text_color = (255,255,255)
+    rpg.newGameButton.font = pygame.font.SysFont('arial', 20)
+    rpg.newGameButton.border = 1
+    rpg.newGameButton.top = (rpg.settings.screen_height*.5) - (rpg.newGameButton.height/2) 
+    rpg.newGameButton.left = (rpg.settings.screen_width*.5) - (rpg.newGameButton.width/2)
+    rpg.newGameButton.prep()
     
-    
+    #Quit Button
+    rpg.quitButton.width = 420
+    rpg.quitButton.height = 69
+    rpg.quitButton.text_color = (255,255,255)
+    rpg.quitButton.font = pygame.font.SysFont('arial', 20)
+    rpg.quitButton.border = 1
+    rpg.quitButton.top = (rpg.settings.screen_height*.5) - (rpg.quitButton.height/2) + 150
+    rpg.quitButton.left = (rpg.settings.screen_width*.5) - (rpg.quitButton.width/2)
+    rpg.quitButton.prep()
+
+    #Project Logo
+    rpg.logo.top = (rpg.settings.screen_height*.5) - (rpg.logo.height/2) - 200
+    rpg.logo.left = (rpg.settings.screen_width*.5) - (rpg.logo.width/2)
+    rpg.logo.prep()
+
+
+#def mainMenuButton
 
 
 #def GUIUpdate():

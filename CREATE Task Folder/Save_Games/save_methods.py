@@ -50,11 +50,11 @@ def playerSave(player):
 
         'gold': player.gold
     })
-    with open('player_logs.txt', 'w') as outfile:
+    with open('CREATE Task Folder\rSave_Games\rplayer_logs.txt', 'r') as outfile:
         json.dump(playerData, outfile)
 
 def playerLoad():
-    with open('player_logs.txt', 'r') as outfile:
+    with open('CREATE Task Folder\rSave_Gamesr\rplayer_logs.txt', 'r') as outfile:
         playerData = json.loads(outfile)
     return playerData
 

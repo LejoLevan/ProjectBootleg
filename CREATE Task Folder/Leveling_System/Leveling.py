@@ -21,4 +21,3 @@ def NextLevel(player):
 
 def upgradeStats(player):
     if (player.profession == "Thief"):
-        

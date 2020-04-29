@@ -6,6 +6,7 @@ import pygame
 
 from GUI_Components.button import Button
 from GUI_Components.square import square
+from GUI_Components.image import image
 from gui import mainMenuGUI
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
@@ -29,10 +30,12 @@ class RPG:
         self.player = character()
         self.quests = QuestChecker()
         
-        self.startButton = Button(self, "Load", True)
+        self.loadButton = Button(self, "Load", True)
+        self.newGameButton = Button(self,"New Game",True)
+        self.quitButton = Button(self,"Quit",True)
         self.borderSquare = square(self)
-        self.newGame = Button(self, "New Game", True)
-        self.exitButton = Button(self,"Quit",True)
+        self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
+
         mainMenuGUI(self)
 
     def loadData(self):
@@ -65,8 +68,14 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
-        if self.startButton.rect.collidepoint(mous_pos) and not self.game_active:
+        if self.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
+            self.loadData()
+        if self.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
+            self.game_active = True
+        if self.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
+            sys.exit()
+
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -85,8 +94,11 @@ class RPG:
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         if not self.game_active:
-            self.startButton.draw_button()
+            self.loadButton.draw_button()
             self.borderSquare.drawSquare()
+            self.newGameButton.draw_button()
+            self.quitButton.draw_button()
+            self.logo.blitme()
         else:
             self.template.blitme()
         pygame.display.flip()

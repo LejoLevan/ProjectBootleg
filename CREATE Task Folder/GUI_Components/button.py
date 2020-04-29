@@ -6,7 +6,6 @@ class Button:
     def __init__(self, rpg, msg, border):
         """Initialize button attributes."""
         self.screen = rpg.screen
-        self.screen_rect = self.screen.get_rect()
 
         #Set the dimensions and properties of the button
         self.border = border
@@ -17,9 +16,7 @@ class Button:
         self.msg = msg
         self.top = 0
         self.left = 0
-        
-        self.rect = pygame.Rect(self.top, self.left, self.width, self.height)
-        self.rect.center = self.screen_rect.center
+        self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
         self._prep_msg()
     
@@ -28,8 +25,7 @@ class Button:
         self._prep_msg()
 
     def prepRect(self):
-        self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.center = self.screen_rect.center
+        self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
     def _prep_msg(self):
         """Turn msg into a rendered image and center text on the button."""
@@ -43,4 +39,5 @@ class Button:
         self.screen.blit(self.msg_image, self.msg_image_rect)
         if self.border == True:
             pygame.draw.rect(self.screen, self.text_color, self.rect, 1)
+    
     

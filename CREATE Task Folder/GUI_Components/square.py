@@ -10,9 +10,10 @@ class square:
         self.square_color = (255, 255, 255)
         self.border = 0
 
-        self.rect = pygame.Rect(0, 0, self.width, self.height)
+        self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
+    
     def prep(self):
-        self.rect = pygame.Rect(0, 0, self.width, self.height)
+        self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
     def drawSquare(self):
         pygame.draw.rect(self.screen, self.square_color, self.rect, self.border)
