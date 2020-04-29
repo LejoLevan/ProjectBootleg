@@ -6,6 +6,7 @@ def mainMenuGUI(rpg):
     rpg.startButton.height = 69
     rpg.startButton.text_color = (255, 255, 255)
     rpg.startButton.font = pygame.font.SysFont('arial', 20)
+    rpg.startButton.border = 1
     rpg.startButton.prep()
 
     #Square stuff

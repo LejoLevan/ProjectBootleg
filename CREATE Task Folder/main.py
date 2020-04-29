@@ -29,8 +29,10 @@ class RPG:
         self.player = character()
         self.quests = QuestChecker()
         
-        self.startButton = Button(self, "Start Game")
+        self.startButton = Button(self, "Load", True)
         self.borderSquare = square(self)
+        self.newGame = Button(self, "New Game", True)
+        self.exitButton = Button(self,"Quit",True)
         mainMenuGUI(self)
 
     def loadData(self):
