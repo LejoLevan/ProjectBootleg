@@ -23,7 +23,7 @@ def mainMenuGUI(rpg):
     #New game button
     rpg.newGameButton.width = 420
     rpg.newGameButton.height = 69
-    rpg.newGameButton.text_color = (255,255,255)
+    rpg.newGameButton.text_color = (255, 255, 255)
     rpg.newGameButton.font = pygame.font.SysFont('arial', 20)
     rpg.newGameButton.border = 1
     rpg.newGameButton.top = (rpg.settings.screen_height*.5) - (rpg.newGameButton.height/2) 
@@ -46,9 +46,12 @@ def mainMenuGUI(rpg):
     rpg.logo.prep()
 
 
-#def mainMenuButton
+def choiceButton():
+    rpg.choice.width = rpg.settings.screen_height*
 
 
 #def GUIUpdate():
 
 
+#def generalGUI():
+    

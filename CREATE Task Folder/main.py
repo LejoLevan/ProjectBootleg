@@ -35,6 +35,7 @@ class RPG:
         self.quitButton = Button(self,"Quit",True)
         self.borderSquare = square(self)
         self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
+        self.choice = Button(self,"",True)
 
         mainMenuGUI(self)
 

@@ -11,9 +11,7 @@ def playerSave(player):
         player  -- player will take a variable that refers to the
         character class
     """
-    playerData = {}
-    playerData['player'] = []
-    playerData['player'].append({
+    playerData = {
         'name': player.name,
         'profession': player.profession,
 
@@ -49,13 +47,13 @@ def playerSave(player):
         'skills': player.skills,
 
         'gold': player.gold
-    })
-    with open('CREATE Task Folder\rSave_Games\rplayer_logs.txt', 'r') as outfile:
-        json.dump(playerData, outfile)
+    }
+    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'w') as outfile:
+        json.dump(playerData, outfile, indent=4)
 
 def playerLoad():
-    with open('CREATE Task Folder\rSave_Gamesr\rplayer_logs.txt', 'r') as outfile:
-        playerData = json.loads(outfile)
+    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'r') as outfile:
+        playerData = json.load(outfile)
     return playerData
 
 def questLoad():
@@ -71,12 +69,10 @@ def questSave(quest):
         quest  -- quest will take a variable that refers to the Quest
         Checker class
     """
-    questData = {}
-    questData['quests'] = []
-    questData['quests'].append({
+    questData = {
         'ongoingQuests': quest.ongoing_quests,
         'completedQuests': quest.completed_quests
-    })
+    }
     with open('quest_logs.txt', 'w') as outfile:
         json.dump(questData, outfile)
 

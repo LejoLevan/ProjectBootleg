@@ -5,7 +5,7 @@ from save_methods import playerSave, playerLoad
 class character:
     def __init__(self):
         #Info stats
-        self.name = ""
+        self.name = "fat"
 
         #class stats
         self.profession = "Commoner"
@@ -104,3 +104,4 @@ if __name__ == '__main__':
     player = character()
     playerSave(player)
     player.loadStats(playerLoad())
+    

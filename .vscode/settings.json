@@ -10,9 +10,9 @@
         "-p",
         "*test.py"
     ],
-    "python.testing.pytestEnabled": false,
+    "python.testing.pytestEnabled": true,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true,
+    "python.testing.unittestEnabled": false,
     "cSpell.words": [
         "arial",
         "blitme",
@@ -22,5 +22,8 @@
     ],
     "extensions.ignoreRecommendations": true,
     "files.autoSave": "off",
-    "debug.allowBreakpointsEverywhere": true
+    "debug.allowBreakpointsEverywhere": true,
+    "python.testing.pytestArgs": [
+        "CREATE Task Folder"
+    ]
 }
