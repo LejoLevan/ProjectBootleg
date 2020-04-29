@@ -1,7 +1,5 @@
 import pygame
 
-from button import Button
-
 def mainMenuGUI(rpg):
     #Button stuff
     rpg.startButton.width = 420
@@ -11,12 +9,14 @@ def mainMenuGUI(rpg):
     rpg.startButton.prep()
 
     #Square stuff
-    width = rpg.settings.screen_width
-    height = rpg.settings.screen_height
-    top = 0
-    left = 0
-    color = (255, 255, 255)
-    rect = pygame.Rect(left, top, width, height)
+    rpg.borderSquare.width = rpg.settings.screen_width
+    rpg.borderSquare.height = rpg.settings.screen_height
+    rpg.borderSquare.top = 0
+    rpg.borderSquare.left = 0
+    rpg.borderSquare.color = (255, 255, 255)
+    rpg.borderSquare.border = 1
+    rpg.borderSquare.prep()
+    
     
     
 

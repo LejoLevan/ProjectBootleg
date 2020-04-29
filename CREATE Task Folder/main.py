@@ -4,7 +4,8 @@ import sys
 
 import pygame
 
-from button import Button
+from GUI_Components.button import Button
+from GUI_Components.square import square
 from gui import mainMenuGUI
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
@@ -29,6 +30,7 @@ class RPG:
         self.quests = QuestChecker()
         
         self.startButton = Button(self, "Start Game")
+        self.borderSquare = square(self)
         mainMenuGUI(self)
 
     def loadData(self):
@@ -81,8 +83,10 @@ class RPG:
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         if not self.game_active:
-            self.template.blitme()
             self.startButton.draw_button()
+            self.borderSquare.drawSquare()
+        else:
+            self.template.blitme()
         pygame.display.flip()
 
 if __name__ == '__main__':
