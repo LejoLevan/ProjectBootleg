@@ -9,7 +9,6 @@ def mainMenuGUI(rpg):
     rpg.loadButton.border = 1
     rpg.loadButton.top = (rpg.settings.screen_height*.5) - (rpg.loadButton.height/2) + 75
     rpg.loadButton.left = (rpg.settings.screen_width*.5) - (rpg.loadButton.width/2)
-    rpg.loadButton.prep()
 
     #OuterBorder
     rpg.borderSquare.width = rpg.settings.screen_width
@@ -28,7 +27,6 @@ def mainMenuGUI(rpg):
     rpg.newGameButton.border = 1
     rpg.newGameButton.top = (rpg.settings.screen_height*.5) - (rpg.newGameButton.height/2) 
     rpg.newGameButton.left = (rpg.settings.screen_width*.5) - (rpg.newGameButton.width/2)
-    rpg.newGameButton.prep()
     
     #Quit Button
     rpg.quitButton.width = 420
@@ -38,7 +36,6 @@ def mainMenuGUI(rpg):
     rpg.quitButton.border = 1
     rpg.quitButton.top = (rpg.settings.screen_height*.5) - (rpg.quitButton.height/2) + 150
     rpg.quitButton.left = (rpg.settings.screen_width*.5) - (rpg.quitButton.width/2)
-    rpg.quitButton.prep()
 
     #Project Logo
     rpg.logo.top = (rpg.settings.screen_height*.5) - (rpg.logo.height/2) - 200

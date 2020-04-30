@@ -31,11 +31,11 @@ class RPG:
         self.quests = QuestChecker()
         
         self.loadButton = Button(self, "Load", True)
-        self.newGameButton = Button(self,"New Game",True)
-        self.quitButton = Button(self,"Quit",True)
+        self.newGameButton = Button(self,"New Game", True)
+        self.quitButton = Button(self,"Quit", True)
         self.borderSquare = square(self)
         self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
-        self.choice = Button(self,"",True)
+        self.choice = Button(self,"", True)
 
         mainMenuGUI(self)
 
@@ -51,6 +51,10 @@ class RPG:
         """Start the main loop for the game"""
         while True:
             self._check_events()
+            if not self.game_active:
+                self.loadButton.update()
+                self.newGameButton.update()
+                self.quitButton.update()
             if self.game_active:
                 self.template.update()
                 self.player.update()
