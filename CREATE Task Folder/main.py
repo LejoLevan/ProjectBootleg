@@ -7,7 +7,7 @@ import pygame
 from GUI_Components.button import Button
 from GUI_Components.square import square
 from GUI_Components.image import image
-from gui import mainMenuGUI
+from gui import mainMenu
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -30,18 +30,18 @@ class RPG:
         self.player = character()
         self.quests = QuestChecker()
         
-        self.loadButton = Button(self, "Load")
-        self.newGameButton = Button(self, "New Game")
-        self.quitButton = Button(self, "Quit")
-        self.borderSquare = square(self)
-        self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
+        #self.loadButton = Button(self, "Load")
+        #self.newGameButton = Button(self, "New Game")
+        #self.quitButton = Button(self, "Quit")
+        #self.borderSquare = square(self)
+        #self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
         self.choice1 = Button(self, "asd")
         self.choice2 = Button(self, "asd")
         self.choice3 = Button(self, "asd")
         self.choice4 = Button(self, "asd")
         self.choice5 = Button(self, "asd")
         self.choice6 = Button(self, "asd")
-        mainMenuGUI(self)
+        self.mainMenu = mainMenu(self)
         createChoiceButton(self)
 
         self.saveData()
@@ -58,11 +58,11 @@ class RPG:
         """Start the main loop for the game"""
         while True:
             self._check_events()
-            if not self.game_active:
-                self.loadButton.update()
-                self.newGameButton.update()
-                self.quitButton.update()
-                self.logo.update()
+            #if not self.game_active:
+                #self.loadButton.update()
+                #self.newGameButton.update()
+                #self.quitButton.update()
+                #self.logo.update()
             if self.game_active:
                 self.template.update()
                 self.player.update()
@@ -87,12 +87,12 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
-        if self.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
+        if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.loadData()
-        if self.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
+        if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
-        if self.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
+        if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
 
 
@@ -113,13 +113,13 @@ class RPG:
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         if not self.game_active:
-            self.loadButton.draw_button()
-            self.borderSquare.drawSquare()
-            self.newGameButton.draw_button()
-            self.quitButton.draw_button()
-            self.logo.blitme()
+            #self.loadButton.draw_button()
+            #self.borderSquare.drawSquare()
+            #self.newGameButton.draw_button()
+            #self.quitButton.draw_button()
+            #self.logo.blitme()
+            self.mainMenu.mainMenuDraw()
         else:
-
             self.template.blitme()
             self.choice1.draw_button()
             self.choice2.draw_button()

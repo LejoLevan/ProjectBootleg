@@ -1,8 +1,8 @@
 {
     "ongoingQuests": [
-        "f"
+        ""
     ],
     "completedQuests": [
-        "f"
+        ""
     ]
 }
