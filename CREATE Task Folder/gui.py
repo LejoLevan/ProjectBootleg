@@ -20,7 +20,7 @@ class mainMenu():
         
         #New game button
         self.newGameButton = Button(rpg, "New Game")
-        self.newGameButton.startDefault(rpg, 0 , 0)
+        self.newGameButton.startDefault(rpg, 0, 0)
         
         #Quit Button
         self.quitButton = Button(rpg, "Quit")
@@ -31,26 +31,48 @@ class mainMenu():
         self.logo.top = (rpg.settings.screen_height*.5) - (self.logo.height/2) - 200
         self.logo.left = (rpg.settings.screen_width*.5) - (self.logo.width/2)
 
-    def mainMenuDraw(self):
-        self.loadButton.update()
+    def draw(self):
         self.loadButton.draw_button()
 
-        self.newGameButton.update()
         self.newGameButton.draw_button()
 
-        self.quitButton.update()
         self.quitButton.draw_button()
 
-        self.logo.update()
         self.logo.blitme()
 
-        self.borderSquare.prep()
         self.borderSquare.drawSquare()
 
-def createChoiceButton(rpg):
-    rpg.choice1.choiceDefault(rpg, -375, 0)
-    rpg.choice2.choiceDefault(rpg, -300, 0)
-    rpg.choice3.choiceDefault(rpg, -225, 0)
-    rpg.choice4.choiceDefault(rpg, -150, 0)
-    rpg.choice5.choiceDefault(rpg, -75, 0)
-    rpg.choice6.choiceDefault(rpg, 0, 0)
+class choiceButtons():
+    def __init__(self, rpg):
+        self.choice1 = Button(rpg, "asd")
+        self.choice1.choiceDefault(rpg, -375, 0)
+        
+        self.choice2 = Button(rpg, "asd")
+        self.choice2.choiceDefault(rpg, -300, 0)
+        
+        self.choice3 = Button(rpg, "asd")
+        self.choice3.choiceDefault(rpg, -225, 0)
+        
+        self.choice4 = Button(rpg, "asd")
+        self.choice4.choiceDefault(rpg, -150, 0)
+        
+        self.choice5 = Button(rpg, "asd")
+        self.choice5.choiceDefault(rpg, -75, 0)
+        
+        self.choice6 = Button(rpg, "asd")
+        self.choice6.choiceDefault(rpg, 0, 0)
+
+    def draw(self):
+        self.choice1.draw_button()
+
+        self.choice2.draw_button()
+
+        self.choice3.draw_button()
+
+        self.choice4.draw_button()
+
+        self.choice5.draw_button()
+
+        self.choice6.draw_button()
+        
+

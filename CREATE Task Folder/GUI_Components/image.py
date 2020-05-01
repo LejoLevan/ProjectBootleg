@@ -14,10 +14,8 @@ class image:
 
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
-    def update(self):
+    def blitme(self):
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
-
-    def blitme(self):
         """Draw the template at its current location"""
         self.screen.blit(self.image, self.rect)

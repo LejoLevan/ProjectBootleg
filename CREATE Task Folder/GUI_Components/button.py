@@ -45,18 +45,15 @@ class Button:
         self.msg_image = self.font.render(self.msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
-    
-    def update(self):
+
+    def draw_button(self):
+        """Draws button"""
         if (self.clickable == True):
             if self.rect.collidepoint(pygame.mouse.get_pos()):
                 self.button_color = (200, 200, 200)
             else:
                 self.button_color = (0, 0, 0)
         self.prep()
-            
-
-    def draw_button(self):
-        """Draws button"""
         if self.border == True:
             pygame.draw.rect(self.screen, self.text_color, self.rect, 3)
         self.screen.fill(self.button_color, self.rect)

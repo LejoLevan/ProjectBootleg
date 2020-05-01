@@ -7,13 +7,13 @@ import pygame
 from GUI_Components.button import Button
 from GUI_Components.square import square
 from GUI_Components.image import image
-from gui import mainMenu
+from gui import mainMenu, choiceButtons
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-from gui import createChoiceButton
+
 
 class RPG:
     """Overall class to mangage game assets and behavior."""
@@ -30,19 +30,8 @@ class RPG:
         self.player = character()
         self.quests = QuestChecker()
         
-        #self.loadButton = Button(self, "Load")
-        #self.newGameButton = Button(self, "New Game")
-        #self.quitButton = Button(self, "Quit")
-        #self.borderSquare = square(self)
-        #self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
-        self.choice1 = Button(self, "asd")
-        self.choice2 = Button(self, "asd")
-        self.choice3 = Button(self, "asd")
-        self.choice4 = Button(self, "asd")
-        self.choice5 = Button(self, "asd")
-        self.choice6 = Button(self, "asd")
         self.mainMenu = mainMenu(self)
-        createChoiceButton(self)
+        self.choiceButtons = choiceButtons(self)
 
         self.saveData()
 
@@ -58,20 +47,9 @@ class RPG:
         """Start the main loop for the game"""
         while True:
             self._check_events()
-            #if not self.game_active:
-                #self.loadButton.update()
-                #self.newGameButton.update()
-                #self.quitButton.update()
-                #self.logo.update()
             if self.game_active:
                 self.template.update()
                 self.player.update()
-                self.choice1.update()
-                self.choice2.update()
-                self.choice3.update()
-                self.choice4.update()
-                self.choice5.update()
-                self.choice6.update()
             self._update_screen()
 
     def _check_events(self):
@@ -113,20 +91,10 @@ class RPG:
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         if not self.game_active:
-            #self.loadButton.draw_button()
-            #self.borderSquare.drawSquare()
-            #self.newGameButton.draw_button()
-            #self.quitButton.draw_button()
-            #self.logo.blitme()
-            self.mainMenu.mainMenuDraw()
+            self.mainMenu.draw()
         else:
             self.template.blitme()
-            self.choice1.draw_button()
-            self.choice2.draw_button()
-            self.choice3.draw_button()
-            self.choice4.draw_button()
-            self.choice5.draw_button()
-            self.choice6.draw_button()
+            self.choiceButtons.draw()
         pygame.display.flip()
 
 if __name__ == '__main__':
