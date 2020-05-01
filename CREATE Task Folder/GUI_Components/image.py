@@ -14,7 +14,7 @@ class image:
 
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
-    def prep(self):
+    def update(self):
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 

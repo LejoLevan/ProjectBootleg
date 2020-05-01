@@ -8,34 +8,34 @@ class Button:
         self.screen = rpg.screen
 
         #Set the dimensions and properties of the button
-        self.border = True
+        self.border = False
         self.clickable = False
         self.width, self.height = 200, 50
         self.button_color = (0, 0, 0)
         self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont(None, 48)
         self.msg = msg
-        self.top = (rpg.settings.screen_height) - (self.height/2)
-        self.left = (rpg.settings.screen_width) - (self.width/2)
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2)
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2)
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
         self._prep_msg()
 
-    def startDefault (self, topDif, leftDif):
+    def startDefault (self, rpg, topDif, leftDif):
         self.border = True
         self.clickable = True
-        self.width, self.height = 800, 70
+        self.width, self.height = 420, 69
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = self.top + topDif
-        self.left = self.top + leftDif
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
-    def choiceDefault(self, topDif, leftDif):
+    def choiceDefault(self, rpg, topDif, leftDif):
         self.border = True
         self.clickable = True
         self.width, self.height = 800, 70
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = self.top + topDif
-        self.left = self.top + leftDif
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
     
     def prep(self):
@@ -63,7 +63,7 @@ class Button:
     def draw_button(self):
         """Draws button"""
         if self.border == True:
-            pygame.draw.rect(self.screen, self.text_color, self.rect, 1)
+            pygame.draw.rect(self.screen, self.text_color, self.rect, 3)
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
     

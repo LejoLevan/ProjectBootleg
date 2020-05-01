@@ -84,7 +84,6 @@ class character:
         self.posion_resist = stats['posionResist']
 
         #level stats
-        self.previous_level = stats['previousLevel']
         self.level = stats['level']
         self.exp = stats['exp']
         self.exp_cap = stats['expCap']

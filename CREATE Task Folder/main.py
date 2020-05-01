@@ -44,6 +44,8 @@ class RPG:
         mainMenuGUI(self)
         createChoiceButton(self)
 
+        self.saveData()
+
     def loadData(self):
         self.player.loadStats(playerLoad())
         self.quests.loadQuest(questLoad())
@@ -60,6 +62,7 @@ class RPG:
                 self.loadButton.update()
                 self.newGameButton.update()
                 self.quitButton.update()
+                self.logo.update()
             if self.game_active:
                 self.template.update()
                 self.player.update()

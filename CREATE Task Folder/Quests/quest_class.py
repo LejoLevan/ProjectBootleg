@@ -1,8 +1,8 @@
 class QuestChecker:
     """Complies all quests trackers and keeps track on status on quests"""
     def __init__(self):
-        self.ongoing_quests = []
-        self.completed_quests = []
+        self.ongoing_quests = [""]
+        self.completed_quests = [""]
 
     def loadQuest(self, data):
         self.ongoing_quests = data['ongoingQuests']
