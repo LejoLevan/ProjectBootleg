@@ -12,33 +12,32 @@ class character:
         self.profession = "Commoner"
 
         #hp stats
-        self.maxhp = 10
-        self.hp = 10
+        self.maxhp = 100
+        self.hp = 100
 
         #attack stats
-        self.physical_attack = 10
-        self.magic_attack = 10
-        self.speed = 10
+        self.physical_attack = 5
+        self.magic_attack = 5
+        self.speed = 5
 
         #consume stats
-        self.stamina = 10
-        self.stamina_max = 10
-        self.mana = 10
-        self.mana_max = 10
+        self.stamina = 100
+        self.stamina_max = 100
+        self.mana = 100
+        self.mana_max = 100
 
         #defense stats
-        self.physical_defense = 10
-        self.magic_defense = 10
+        self.physical_defense = 5
+        self.magic_defense = 5
 
         #resistance stats
-        self.fire_resist = 5
-        self.posion_resist = 5
+        self.fire_resist = 2
+        self.posion_resist = 2
 
         #level stats
-        self.previous_level = -1
         self.level = 0
         self.exp = 0
-        self.exp_cap = 100
+        self.exp_cap = 15
 
         #chance stats
         self.accuracy = 10

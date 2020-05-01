@@ -21,10 +21,11 @@ def alchemist1():
 def beginnerShop():
     shop = vendor("Jack","beginnerShop")
     shop.inventory.append("wooden sword", "bone knife", "wooden bow", "tree stick", "rusty hatchet", "Rusty Great Sword")
-#Add crit when we find out stuff
+
+
 class ally:
-    def __init__(self, name, hp, maxhp, physical_attack, magic_attack, stamina, stamina_max, mana, mana_max, physical_defense, magic_defense, fire_resist, poison_resist,
-     level, exp, exp_cap, crit_percent, crit_mult, luck):
+    def __init__(self, name, hp, maxhp, physical_attack, magic_attack, speed, stamina, stamina_max, mana, mana_max, physical_defense, magic_defense, fire_resist, poison_resist,
+     level, exp, exp_cap, accuracy, crit_percent, crit_mult, luck):
         #hp stats
         self.name = name 
         self.maxhp = maxhp
@@ -33,6 +34,7 @@ class ally:
         #attack stats
         self.physical_attack = physical_attack
         self.magic_attack = magic_attack
+        self.speed = speed
 
         #consume stats
         self.stamina = stamina
@@ -54,6 +56,7 @@ class ally:
         self.exp_cap = exp_cap
 
         #chance stats
+        self.accuracy = accuracy
         self.crit_chance = crit_percent
         self.crit_mult = crit_mult
         self.luck = luck
@@ -62,6 +65,7 @@ class ally:
         self.equipped_skills = []
         self.skills = []
 
+        #def updateAlly():
 
         def allyGainHealth(self,x):
             self.hp = self.hp + x
@@ -76,5 +80,6 @@ class ally:
             return self.maxhp
 
 
-
+def allyPhillip():
+    phillip = ally("Phillip", 150, 150, 5, 1, 5, 100, 100, 30, 30, 3, 3, 5, 5, 1, 0, 15, 10, 5, 1.2, 5)
 

@@ -33,7 +33,6 @@ def playerSave(player):
         'fireResist': player.fire_resist,
         'posionResist': player.posion_resist,
 
-        'previousLevel': player.previous_level,
         'level': player.level,
         'exp': player.exp,
         'expCap': player.exp_cap,
@@ -77,18 +76,55 @@ def questSave(quest):
         json.dump(questData, outfile)
 
 
-def allySave (ally):
-    allyData = {}
-    allyData['ally'] = []
-    allyData['ally'].append({
-        'name': ally.name,
-        'profession': ally.profession,
 
-        'maxHP': ally.maxhp,
-        'hp': ally.hp,
 
-        'physicalAttack': ally.physical_attack,
-        'magicAttack': ally.magic_attack,
+def allySave(ally):
+    """Function that will save data about
+    the ally
 
-        'stamina': ally.stamina
-    })
+    Arguments:
+        ally  -- ally will take a variable that refers to the
+        character class
+    """
+    allyData = {
+        ally.name, 'name': ally.name,
+
+        ally.name, 'maxHP': ally.maxhp,
+        ally.name, 'hp': ally.hp,
+
+        ally.name, 'physicalAttack': ally.physical_attack,
+        ally.name, 'magicAttack': ally.magic_attack,
+        ally.name, 'speed': ally.speed,
+
+        ally.name, 'stamina': ally.stamina,
+        ally.name, 'maxStamina': ally.stamina_max,
+        ally.name, 'mana': ally.mana,
+        ally.name, 'maxMana': ally.mana_max,
+
+        ally.name, 'physicalDefense': ally.physical_defense,
+        ally.name, 'magicDefense': ally.magic_defense,
+
+        ally.name, 'fireResist': ally.fire_resist,
+        ally.name, 'posionResist': ally.posion_resist,
+
+        ally.name, 'level': ally.level,
+        ally.name, 'exp': ally.exp,
+        ally.name, 'expCap': ally.exp_cap,
+
+        ally.name, 'accuracy': ally.accuracy,
+        ally.name, 'criticalChance': ally.crit_chance,
+        ally.name, 'criticalMultiplier': ally.crit_mult,
+        ally.name, 'luck': ally.luck,
+
+        ally.name, 'equippedSkills': ally.equipped_skills,
+        ally.name, 'skills': ally.skills,
+
+    }
+    with open('\CREATE Task Folder\Save_Games\ally_logs.txt', 'a') as outfile:
+        json.dump(allyData, outfile, indent=4)
+
+def allyLoad():
+    with open('\CREATE Task Folder\Save_Games\ally_logs.txt', 'r') as outfile:
+        allyData = json.load(outfile)
+    return allyData
+

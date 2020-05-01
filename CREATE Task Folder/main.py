@@ -13,7 +13,7 @@ from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-
+from gui import createChoiceButton
 
 class RPG:
     """Overall class to mangage game assets and behavior."""
@@ -30,14 +30,19 @@ class RPG:
         self.player = character()
         self.quests = QuestChecker()
         
-        self.loadButton = Button(self, "Load", True)
-        self.newGameButton = Button(self,"New Game", True)
-        self.quitButton = Button(self,"Quit", True)
+        self.loadButton = Button(self, "Load")
+        self.newGameButton = Button(self, "New Game")
+        self.quitButton = Button(self, "Quit")
         self.borderSquare = square(self)
         self.logo = image(self, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
-        self.choice = Button(self,"", True)
-
+        self.choice1 = Button(self, "asd")
+        self.choice2 = Button(self, "asd")
+        self.choice3 = Button(self, "asd")
+        self.choice4 = Button(self, "asd")
+        self.choice5 = Button(self, "asd")
+        self.choice6 = Button(self, "asd")
         mainMenuGUI(self)
+        createChoiceButton(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -58,6 +63,12 @@ class RPG:
             if self.game_active:
                 self.template.update()
                 self.player.update()
+                self.choice1.update()
+                self.choice2.update()
+                self.choice3.update()
+                self.choice4.update()
+                self.choice5.update()
+                self.choice6.update()
             self._update_screen()
 
     def _check_events(self):
@@ -105,7 +116,14 @@ class RPG:
             self.quitButton.draw_button()
             self.logo.blitme()
         else:
+
             self.template.blitme()
+            self.choice1.draw_button()
+            self.choice2.draw_button()
+            self.choice3.draw_button()
+            self.choice4.draw_button()
+            self.choice5.draw_button()
+            self.choice6.draw_button()
         pygame.display.flip()
 
 if __name__ == '__main__':
