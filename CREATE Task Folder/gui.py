@@ -16,7 +16,6 @@ class mainMenu():
         self.borderSquare.left = 0
         self.borderSquare.color = (255, 255, 255)
         self.borderSquare.border = 1
-        self.borderSquare.prep()
         
         #New game button
         self.newGameButton = Button(rpg, "New Game")
@@ -40,7 +39,7 @@ class mainMenu():
 
         self.logo.draw()
 
-        self.borderSquare.drawSquare()
+        self.borderSquare.draw()
 
 class choiceButtons():
     def __init__(self, rpg):
