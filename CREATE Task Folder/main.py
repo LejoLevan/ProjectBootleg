@@ -4,9 +4,6 @@ import sys
 
 import pygame
 
-from GUI_Components.button import Button
-from GUI_Components.square import square
-from GUI_Components.image import image
 from gui import mainMenu, choiceButtons
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker

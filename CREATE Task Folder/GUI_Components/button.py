@@ -46,7 +46,7 @@ class Button:
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
 
-    def draw_button(self):
+    def draw(self):
         """Draws button"""
         if (self.clickable == True):
             if self.rect.collidepoint(pygame.mouse.get_pos()):

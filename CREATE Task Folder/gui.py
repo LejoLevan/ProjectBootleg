@@ -32,13 +32,13 @@ class mainMenu():
         self.logo.left = (rpg.settings.screen_width*.5) - (self.logo.width/2)
 
     def draw(self):
-        self.loadButton.draw_button()
+        self.loadButton.draw()
 
-        self.newGameButton.draw_button()
+        self.newGameButton.draw()
 
-        self.quitButton.draw_button()
+        self.quitButton.draw()
 
-        self.logo.blitme()
+        self.logo.draw()
 
         self.borderSquare.drawSquare()
 
@@ -63,16 +63,16 @@ class choiceButtons():
         self.choice6.choiceDefault(rpg, 0, 0)
 
     def draw(self):
-        self.choice1.draw_button()
+        self.choice1.draw()
 
-        self.choice2.draw_button()
+        self.choice2.draw()
 
-        self.choice3.draw_button()
+        self.choice3.draw()
 
-        self.choice4.draw_button()
+        self.choice4.draw()
 
-        self.choice5.draw_button()
+        self.choice5.draw()
 
-        self.choice6.draw_button()
+        self.choice6.draw()
         
 

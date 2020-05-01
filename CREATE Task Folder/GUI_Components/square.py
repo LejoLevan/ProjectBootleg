@@ -12,9 +12,7 @@ class square:
 
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
     
-    def prep(self):
+    def draw(self):
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
-
-    def drawSquare(self):
         pygame.draw.rect(self.screen, self.square_color, self.rect, self.border)
     
