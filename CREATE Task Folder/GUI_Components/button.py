@@ -32,14 +32,14 @@ class Button:
         self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
         self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
-    def statDefault(self, rpg, topDif, leftDif, statName, stats):
+    def statDefault(self, rpg, topDif, leftDif, msg):
         self.width, self.height = 400, 69
         self.font = pygame.font.SysFont('arial', 20)
         self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
-        self.left = (self.height/2) + leftDif
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
         self.clickable = False
         self.border = True
-        self.msg = statName+":", stats
+        self.msg = msg
     
     def notifacationDefault(self, rpg, topDif, leftDif):
         self.width, self.height = self.font.size(self.msg)
