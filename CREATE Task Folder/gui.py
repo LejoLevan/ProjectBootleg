@@ -74,7 +74,7 @@ class choiceButtons():
 
         self.choice6.draw()
         
-    def editChoices(self,choice1Text,choice2Text,choice3Text,choice4Text,choice5Text,choice6Text):
+    def editChoices(self, choice1Text, choice2Text, choice3Text, choice4Text, choice5Text, choice6Text):
         self.choice1.msg = choice1Text
         self.choice2.msg = choice2Text
         self.choice3.msg = choice3Text
@@ -84,34 +84,47 @@ class choiceButtons():
 
 class statSheet():
     def __init__(self, rpg):
-        self.hpStat = Button(rpg, "")
-        self.hpStat.statDefault(rpg, -375, 0, "HP: {}/{}".format(rpg.player.hp, rpg.player.maxhp))
-        self.stamStat = Button(rpg, "")
-        self.stamStat.statDefault(rpg, -300, 0, "Stamina: {}/{}".format(rpg.player.stamina, rpg.player.stamina_max))
-        self.manaStat = Button(rpg, "")
-        self.manaStat.statDefault(rpg, -225, 0, "Mana: {}/{}".format(rpg.player.mana, rpg.player.mana_max))
-        self.speedStat = Button(rpg, "")
-        self.speedStat.statDefault(rpg, -150, 0, "Speed: {}".format(rpg.player.speed))
-        self.physAtckStat = Button(rpg, "")
-        self.physAtckStat.statDefault(rpg, -75, 0, "Physical Attack: {}".format(rpg.player.physical_attack))
-        self.magicAtckStat = Button(rpg, "")
-        self.magicAtckStat.statDefault(rpg, 0, 0, "Magic Attack: {}".format(rpg.player.magic_attack))
-        self.physDefStat = Button(rpg, "")
-        self.physDefStat.statDefault(rpg, -375, -200, "Physical Defense: {}".format(rpg.player.physical_defense))
-        self.magicDefStat = Button(rpg, "")
-        self.magicDefStat.statDefault(rpg, -300, -200, "Magic Defense: {}".format(rpg.player.magic_defense))
-        self.fireResist = Button(rpg, "")
-        self.fireResist.statDefault(rpg, -225, -200, "Fire Resistance: {}".format(rpg.player.fire_resist))
-        self.poisonResist = Button(rpg, "")
-        self.poisonResist.statDefault(rpg, -150, -200, "Poison Resistance: {}".format(rpg.player.poison_resist))
-        self.accuracyStat = Button(rpg, "")
-        self.accuracyStat.statDefault(rpg, -75, -200, "Accuracy: {}".format(rpg.player.accuracy))
-        self.critStat = Button(rpg, "")
-        self.critStat.statDefault(rpg, 0, -200, "Crit Chance: {}".format(rpg.player.crit_chance))
-        self.critMult = Button(rpg, "")
-        self.critMult.statDefault(rpg, -375, -400, "Crit Multiplier: {}".format(rpg.player.crit_mult))
-        self.luckStat = Button(rpg, "")
-        self.luckStat.statDefault(rpg, -300, -400, "Luck: {}".format(rpg.player.luck))
+        self.hpStat = Button(rpg,  "HP: {}/{}".format(rpg.player.hp, rpg.player.maxhp))
+        self.hpStat.statDefault(rpg, -375, 0)
+
+        self.stamStat = Button(rpg, "Stamina: {}/{}".format(rpg.player.stamina, rpg.player.stamina_max))
+        self.stamStat.statDefault(rpg, -300, 0)
+
+        self.manaStat = Button(rpg, "Mana: {}/{}".format(rpg.player.mana, rpg.player.mana_max))
+        self.manaStat.statDefault(rpg, -225, 0)
+
+        self.speedStat = Button(rpg, "Speed: {}".format(rpg.player.speed))
+        self.speedStat.statDefault(rpg, -150, 0)
+
+        self.physAtckStat = Button(rpg, "Physical Attack: {}".format(rpg.player.physical_attack))
+        self.physAtckStat.statDefault(rpg, -75, 0)
+
+        self.magicAtckStat = Button(rpg,  "Magic Attack: {}".format(rpg.player.magic_attack))
+        self.magicAtckStat.statDefault(rpg, 0, 0)
+        
+        self.physDefStat = Button(rpg, "Physical Defense: {}".format(rpg.player.physical_defense))
+        self.physDefStat.statDefault(rpg, -375, -200)
+
+        self.magicDefStat = Button(rpg, "Magic Defense: {}".format(rpg.player.magic_defense))
+        self.magicDefStat.statDefault(rpg, -300, -200)
+
+        self.fireResist = Button(rpg, "Fire Resistance: {}".format(rpg.player.fire_resist))
+        self.fireResist.statDefault(rpg, -225, -200)
+
+        self.poisonResist = Button(rpg, "Poison Resistance: {}".format(rpg.player.poison_resist))
+        self.poisonResist.statDefault(rpg, -150, -200)
+
+        self.accuracyStat = Button(rpg, "Accuracy: {}".format(rpg.player.accuracy))
+        self.accuracyStat.statDefault(rpg, -75, -200)
+        
+        self.critStat = Button(rpg, "Crit Chance: {}".format(rpg.player.crit_chance))
+        self.critStat.statDefault(rpg, 0, -200)
+
+        self.critMult = Button(rpg, "Crit Multiplier: {}".format(rpg.player.crit_mult))
+        self.critMult.statDefault(rpg, -375, -400)
+
+        self.luckStat = Button(rpg, "Luck: {}".format(rpg.player.luck))
+        self.luckStat.statDefault(rpg, -300, -400)
         
 
     def showStats(self):

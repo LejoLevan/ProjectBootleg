@@ -33,6 +33,9 @@ class character:
         #resistance stats
         self.fire_resist = 2
         self.poison_resist = 2
+        self.water_resist = 2
+        self.earth_resist = 2
+        self.wind_resist = 2
 
         #level stats
         self.level = 0
@@ -40,7 +43,8 @@ class character:
         self.exp_cap = 15
 
         #chance stats
-        self.accuracy = 10
+        self.accuracy = 100
+        self.evasion = 15
         self.crit_chance = 10
         self.crit_mult = 1.5
         self.luck = 10
@@ -50,7 +54,11 @@ class character:
         self.skills = []
 
         #misc stats
-        self.inventory = []
+        self.total_inventory = 0
+        self.weapon_inventory = []
+        self.armor_inventory = []
+        self.buff_inventory = []
+        self.quest_inventory = []
         self.gold = 10
 
         #flags
@@ -86,6 +94,9 @@ class character:
         #resistance stats
         self.fire_resist = stats['fireResist']
         self.poison_resist = stats['poisonResist']
+        self.wind_resist = stats['windResist']
+        self.water_resist = stats['waterResist']
+        self.earth_resist = stats['earthResist']
 
         #level stats
         self.level = stats['level']
@@ -94,6 +105,7 @@ class character:
 
         #chance stats
         self.accuracy = stats['accuracy']
+        self.evasion = stats['evasion']
         self.crit_chance = stats['criticalChance']
         self.crit_mult = stats['criticalMultiplier']
         self.luck = stats['luck']
@@ -104,12 +116,16 @@ class character:
 
         #misc Stats
         self.gold = stats['gold']
-        self.inventory = stats['invetory']
+        self.weapon_inventory = stats['weaponInventory']
+        self.armor_inventory = stats['armorInventory']
+        self.buff_inventory = stats['buffInventory']
+        self.quest_inventory = stats['questInventory']
 
     def update(self):
         self.profession = Classes.updateClass(self)
         self.checkBag()
 
     def checkBag(self):
-        if len(self.inventory) == 100:
+        self.total_inventory = len(self.weapon_inventory) + len(self.armor_inventory) + len(self.buff_inventory)
+        if self.total_inventory == 100:
             self.bagCap = True

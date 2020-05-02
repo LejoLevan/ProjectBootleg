@@ -31,8 +31,6 @@ class RPG:
         self.statSheet = statSheet(self)
         self.choiceButtons = choiceButtons(self)
 
-        self.saveData()
-
     def loadData(self):
         self.player.loadStats(playerLoad())
         self.quests.loadQuest(questLoad())

@@ -32,12 +32,16 @@ def playerSave(player):
 
         'fireResist': player.fire_resist,
         'posionResist': player.poison_resist,
+        'windResist': player.wind_resist,
+        'waterResist': player.water_resist,
+        'earthResist': player.earth_resist,
 
         'level': player.level,
         'exp': player.exp,
         'expCap': player.exp_cap,
 
         'accuracy': player.accuracy,
+        'evasion': player.evasion,
         'criticalChance': player.crit_chance,
         'criticalMultiplier': player.crit_mult,
         'luck': player.luck,
@@ -45,7 +49,10 @@ def playerSave(player):
         'equippedSkills': player.equipped_skills,
         'skills': player.skills,
 
-        'inventory': player.inventory,
+        'weaponInventory': player.weapon_inventory,
+        'armorInventory': player.armor_inventory,
+        'buffInventory': player.buff_inventory,
+        'questInventory': player.quest_inventory,
         'gold': player.gold
     }
     with open('CREATE Task Folder\Save_Games\player_logs.txt', 'w') as outfile:
