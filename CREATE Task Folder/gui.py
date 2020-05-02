@@ -26,7 +26,7 @@ class mainMenu():
         self.quitButton.startDefault(rpg, 150, 0)
 
         #Project Logo
-        self.logo = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png')#pylint: disable = anomalous-backslash-in-string
+        self.logo = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\ProjectLogo.png', "")#pylint: disable = anomalous-backslash-in-string
         self.logo.top = (rpg.settings.screen_height*.5) - (self.logo.height/2) - 200
         self.logo.left = (rpg.settings.screen_width*.5) - (self.logo.width/2)
 
