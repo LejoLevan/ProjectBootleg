@@ -114,6 +114,17 @@ class statSheet():
         self.poisonResist = Button(rpg, "Poison Resistance: {}".format(rpg.player.poison_resist))
         self.poisonResist.statDefault(rpg, -150, -200)
 
+        self.waterResist = Button(rpg, "Water Resistance: {}".format(rpg.player.water_resist))
+        self.waterResist.statDefault(rpg, 0, 0)
+
+        self.earthResist = Button(rpg, "Earth Resistance: {}".format(rpg.player.earth_reist))
+        self.earthResist.statDefault(rpg, 0, 0)
+
+        self.windResist = Button(rpg, "Wind Resistance: {}".format(rpg.player.wind_resist))
+        self.windResist.statDefault(rpg, 0 , 0)
+
+        self.evasion = Button(rpg, "Evasion: {}".format(rpg.player.evasion))
+
         self.accuracyStat = Button(rpg, "Accuracy: {}".format(rpg.player.accuracy))
         self.accuracyStat.statDefault(rpg, -75, -200)
         
