@@ -31,7 +31,7 @@ def playerSave(player):
         'magicDefense': player.magic_defense,
 
         'fireResist': player.fire_resist,
-        'posionResist': player.posion_resist,
+        'posionResist': player.poison_resist,
 
         'level': player.level,
         'exp': player.exp,
@@ -45,6 +45,7 @@ def playerSave(player):
         'equippedSkills': player.equipped_skills,
         'skills': player.skills,
 
+        'inventory': player.inventory,
         'gold': player.gold
     }
     with open('CREATE Task Folder\Save_Games\player_logs.txt', 'w') as outfile:

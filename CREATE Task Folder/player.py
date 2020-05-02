@@ -7,7 +7,7 @@ class character:
     def __init__(self):
         #Info stats
         self.name = ""
-
+        
         #class stats
         self.profession = "Commoner"
 
@@ -32,7 +32,7 @@ class character:
 
         #resistance stats
         self.fire_resist = 2
-        self.posion_resist = 2
+        self.poison_resist = 2
 
         #level stats
         self.level = 0
@@ -49,8 +49,12 @@ class character:
         self.equipped_skills = []
         self.skills = []
 
+        #misc stats
+        self.inventory = []
         self.gold = 10
 
+        #flags
+        self.bagCap = False
         self.combat = False
 
     def loadStats(self, stats):
@@ -81,7 +85,7 @@ class character:
 
         #resistance stats
         self.fire_resist = stats['fireResist']
-        self.posion_resist = stats['posionResist']
+        self.poison_resist = stats['poisonResist']
 
         #level stats
         self.level = stats['level']
@@ -94,10 +98,18 @@ class character:
         self.crit_mult = stats['criticalMultiplier']
         self.luck = stats['luck']
 
+        #skills stats
         self.equipped_skills = stats['equippedSkills']
         self.skills = stats['skills']
 
+        #misc Stats
         self.gold = stats['gold']
+        self.inventory = stats['invetory']
 
     def update(self):
         self.profession = Classes.updateClass(self)
+        self.checkBag()
+
+    def checkBag(self):
+        if len(self.inventory) == 100:
+            self.bagCap = True

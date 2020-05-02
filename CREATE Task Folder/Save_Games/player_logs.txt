@@ -23,5 +23,6 @@
     "luck": 10,
     "equippedSkills": [],
     "skills": [],
+    "inventory": [],
     "gold": 10
 }

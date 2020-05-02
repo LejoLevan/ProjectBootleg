@@ -32,12 +32,29 @@ class Button:
         self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
         self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
+    def statDefault(self, rpg, topDif, leftDif, statName, stats):
+        self.width, self.height = 400, 69
+        self.font = pygame.font.SysFont('arial', 20)
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (self.height/2) + leftDif
+        self.clickable = False
+        self.border = True
+        self.msg = statName+":", stats
+    
+    def notifacationDefault(self, rpg, topDif, leftDif):
+        self.width, self.height = self.font.size(self.msg)
+        self.font = pygame.font.SysFont('arial', 20)
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (rpg.settings.screen_width*.5) - (self.height/2) + leftDif
+        self.clickable = False
     
     def prep(self):
         self.prepRect()
         self._prep_msg()
 
     def prepRect(self):
+        if self.border == True:
+            pygame.draw.rect(self.screen, self.text_color, self.rect, 3)
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
     def _prep_msg(self):
@@ -54,8 +71,6 @@ class Button:
             else:
                 self.button_color = (0, 0, 0)
         self.prep()
-        if self.border == True:
-            pygame.draw.rect(self.screen, self.text_color, self.rect, 3)
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
     
