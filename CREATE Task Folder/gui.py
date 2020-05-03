@@ -44,22 +44,22 @@ class mainMenu():
 class choiceButtons():
     def __init__(self, rpg):
         self.choice1 = Button(rpg, "")
-        self.choice1.choiceDefault(rpg, -375, 0)
+        self.choice1.choiceDefault(rpg, rpg.settings.screen_height/2 -415, +rpg.settings.screen_width/2 -405)
         
         self.choice2 = Button(rpg, "")
-        self.choice2.choiceDefault(rpg, -300, 0)
+        self.choice2.choiceDefault(rpg, rpg.settings.screen_height/2 -340, +rpg.settings.screen_width/2 -405)
         
         self.choice3 = Button(rpg, "")
-        self.choice3.choiceDefault(rpg, -225, 0)
+        self.choice3.choiceDefault(rpg, rpg.settings.screen_height/2 -265, +rpg.settings.screen_width/2 -405)
         
         self.choice4 = Button(rpg, "")
-        self.choice4.choiceDefault(rpg, -150, 0)
+        self.choice4.choiceDefault(rpg, rpg.settings.screen_height/2 -190, +rpg.settings.screen_width/2 -405)
         
         self.choice5 = Button(rpg, "")
-        self.choice5.choiceDefault(rpg, -75, 0)
+        self.choice5.choiceDefault(rpg, rpg.settings.screen_height/2 -115, +rpg.settings.screen_width/2 -405)
         
         self.choice6 = Button(rpg, "")
-        self.choice6.choiceDefault(rpg, 0, 0)
+        self.choice6.choiceDefault(rpg, rpg.settings.screen_height/2 -40, +rpg.settings.screen_width/2 -405)
 
     def draw(self):
         self.choice1.draw()
@@ -84,44 +84,44 @@ class choiceButtons():
 
 class statSheet():
     def __init__(self, rpg):
-        self.hpStat = Button(rpg,  "HP: {}/{}".format(rpg.player.hp, rpg.player.maxhp))
-        self.hpStat.statDefault(rpg, -375, 0)
+        self.hpStat = Button(rpg, "HP: {}/{}".format(rpg.player.hp, rpg.player.maxhp))
+        self.hpStat.statDefault(rpg, rpg.settings.screen_height/2 -415, -rpg.settings.screen_width)
 
         self.stamStat = Button(rpg, "Stamina: {}/{}".format(rpg.player.stamina, rpg.player.stamina_max))
-        self.stamStat.statDefault(rpg, -300, 0)
+        self.stamStat.statDefault(rpg, rpg.settings.screen_height/2 -340, -rpg.settings.screen_width)
 
         self.manaStat = Button(rpg, "Mana: {}/{}".format(rpg.player.mana, rpg.player.mana_max))
-        self.manaStat.statDefault(rpg, -225, 0)
+        self.manaStat.statDefault(rpg, rpg.settings.screen_height/2 -265, -rpg.settings.screen_width)
 
         self.speedStat = Button(rpg, "Speed: {}".format(rpg.player.speed))
-        self.speedStat.statDefault(rpg, -150, 0)
+        self.speedStat.statDefault(rpg, rpg.settings.screen_height/2 -190, -rpg.settings.screen_width)
 
         self.physAtckStat = Button(rpg, "Physical Attack: {}".format(rpg.player.physical_attack))
-        self.physAtckStat.statDefault(rpg, -75, 0)
+        self.physAtckStat.statDefault(rpg, rpg.settings.screen_height/2 -115, -rpg.settings.screen_width)
 
         self.magicAtckStat = Button(rpg,  "Magic Attack: {}".format(rpg.player.magic_attack))
-        self.magicAtckStat.statDefault(rpg, 0, 0)
+        self.magicAtckStat.statDefault(rpg, rpg.settings.screen_height/2 -40, -rpg.settings.screen_width)
         
         self.physDefStat = Button(rpg, "Physical Defense: {}".format(rpg.player.physical_defense))
-        self.physDefStat.statDefault(rpg, -375, -200)
+        self.physDefStat.statDefault(rpg, rpg.settings.screen_height/2 -415, -200)
 
         self.magicDefStat = Button(rpg, "Magic Defense: {}".format(rpg.player.magic_defense))
-        self.magicDefStat.statDefault(rpg, -300, -200)
+        self.magicDefStat.statDefault(rpg, rpg.settings.screen_height/2 -340, -200)
 
         self.fireResist = Button(rpg, "Fire Resistance: {}".format(rpg.player.fire_resist))
-        self.fireResist.statDefault(rpg, -225, -200)
+        self.fireResist.statDefault(rpg, rpg.settings.screen_height/2 -265, -200)
 
         self.poisonResist = Button(rpg, "Poison Resistance: {}".format(rpg.player.poison_resist))
-        self.poisonResist.statDefault(rpg, -150, -200)
+        self.poisonResist.statDefault(rpg, rpg.settings.screen_height/2 -190, -200)
 
         self.waterResist = Button(rpg, "Water Resistance: {}".format(rpg.player.water_resist))
-        self.waterResist.statDefault(rpg, 0, 0)
+        self.waterResist.statDefault(rpg, rpg.settings.screen_height/2 -115, 0)
 
-        self.earthResist = Button(rpg, "Earth Resistance: {}".format(rpg.player.earth_reist))
-        self.earthResist.statDefault(rpg, 0, 0)
+        self.earthResist = Button(rpg, "Earth Resistance: {}".format(rpg.player.earth_resist))
+        self.earthResist.statDefault(rpg, rpg.settings.screen_height/2 -40, 0)
 
         self.windResist = Button(rpg, "Wind Resistance: {}".format(rpg.player.wind_resist))
-        self.windResist.statDefault(rpg, 0 , 0)
+        self.windResist.statDefault(rpg, 0, 0)
 
         self.evasion = Button(rpg, "Evasion: {}".format(rpg.player.evasion))
 
@@ -149,6 +149,10 @@ class statSheet():
         self.magicDefStat.draw()
         self.fireResist.draw()
         self.poisonResist.draw()
+        self.waterResist.draw()
+        self.earthResist.draw()
+        self.windResist.draw()
+        self.evasion.draw()
         self.accuracyStat.draw()
         self.critStat.draw()
         self.critMult.draw()
