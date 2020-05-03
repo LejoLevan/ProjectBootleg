@@ -27,7 +27,7 @@ class Button:
         self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
     def choiceDefault(self, rpg, topDif):
-        self.width, self.height = 800, 70
+        self.width, self.height = 550, 70
         self.font = pygame.font.SysFont('arial', 20)
         self.left = rpg.settings.screen_width - self.width
         self.top = (rpg.settings.screen_height - self.height) + topDif
