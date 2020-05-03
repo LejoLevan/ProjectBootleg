@@ -17,7 +17,7 @@ class RPG:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height), flags=pygame.SCALED and pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode([self.settings.screen_width, self.settings.screen_height], flags=pygame.SCALED and pygame.FULLSCREEN)
         pygame.display.set_caption("Project Bootleg")
 
         self.template = Template(self)
