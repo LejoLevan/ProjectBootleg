@@ -26,22 +26,20 @@ class Button:
         self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
         self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
-    def choiceDefault(self, rpg, topDif, leftDif):
-        self.width, self.height = 800, 70
+    def choiceDefault(self, rpg, topDif):
+        self.width, self.height = 650, 70
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
-        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
-
+        self.left = rpg.settings.screen_width - self.width
+        self.top = (rpg.settings.screen_height - self.height) + topDif
 
     def statDefault(self, rpg, topDif, leftDif):
         self.width, self.height = 400, 69
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
-        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
+        self.top = rpg.settings.screen_height + topDif
+        self.left = 0 + leftDif
         self.clickable = False
         self.border = True
         
-    
     def notifacationDefault(self, rpg, topDif, leftDif):
         self.width, self.height = self.font.size(self.msg)
         self.font = pygame.font.SysFont('arial', 20)

@@ -4,7 +4,7 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet
+from gui import mainMenu, choiceButtons, statSheet, outerBorder
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -28,6 +28,7 @@ class RPG:
         self.quests = QuestChecker()
         
         self.mainMenu = mainMenu(self)
+        self.outerBorder = outerBorder(self)
         self.statSheet = statSheet(self)
         self.choiceButtons = choiceButtons(self)
 
@@ -92,6 +93,7 @@ class RPG:
             self.template.blitme()
             self.choiceButtons.draw()
             self.statSheet.showStats()
+        self.outerBorder.draw()
         pygame.display.flip()
 
 if __name__ == '__main__':
