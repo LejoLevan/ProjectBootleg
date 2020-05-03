@@ -4,7 +4,7 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, bagButton
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -31,7 +31,7 @@ class RPG:
         self.borders = borders(self)
         self.statSheet = statSheet(self)
         self.choiceButtons = choiceButtons(self)
-        self.bagButton = bagButton(self)
+        self.swapButton = swapButton(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -93,7 +93,7 @@ class RPG:
             self.borders.borderSquare.draw()
         else:
             self.template.blitme()
-            self.bagButton.draw()
+            self.swapButton.draw()
             self.choiceButtons.draw()
             self.statSheet.showStats()
             self.borders.draw()

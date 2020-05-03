@@ -168,13 +168,15 @@ class borders:
         self.mapSquare.draw()
         self.textSquare.draw()
 
-class bagButton:
+class swapButton:
     def __init__(self, rpg):
-        self.bagButton = Button(rpg, "Bag")
+        self.bagButton = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\Bag.png', "Player Inventory")
         self.bagButton.width = (rpg.settings.screen_width - 1600)
         self.bagButton.height = 210
         self.bagButton.top = (rpg.settings.screen_height) - self.bagButton.height
         self.bagButton.left = 1050
+        self.bagButton.border = True
+        self.bagButton.clickable = True
 
     def draw(self):
         self.bagButton.draw()

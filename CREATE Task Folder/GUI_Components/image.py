@@ -15,6 +15,7 @@ class image:
         self.button_color = (0, 0, 0)
         self.text_color = (255, 255, 255)
         self.border = False
+        self.clickable = False
 
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
 
@@ -37,8 +38,14 @@ class image:
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
     def draw(self):
+        if (self.clickable == True):
+            if self.rect.collidepoint(pygame.mouse.get_pos()):
+                self.button_color = (200, 200, 200)
+            else:
+                self.button_color = (0, 0, 0)
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.prep()
+        self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.image, self.rect)
         if self.msg != "":
             self.screen.blit(self.msg_image, self.msg_image_rect)
