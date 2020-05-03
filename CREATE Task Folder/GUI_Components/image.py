@@ -2,8 +2,6 @@ import pygame
 class image:
     def __init__(self, rpg, path, msg):
         self.screen = rpg.screen
-        self.settings = rpg.settings
-        self.screen_rect = rpg.screen.get_rect()
 
         self.image = pygame.image.load(path)
 
