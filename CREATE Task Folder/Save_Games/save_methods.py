@@ -31,7 +31,7 @@ def playerSave(player):
         'magicDefense': player.magic_defense,
 
         'fireResist': player.fire_resist,
-        'posionResist': player.poison_resist,
+        'poisonResist': player.poison_resist,
         'windResist': player.wind_resist,
         'waterResist': player.water_resist,
         'earthResist': player.earth_resist,
@@ -55,16 +55,16 @@ def playerSave(player):
         'questInventory': player.quest_inventory,
         'gold': player.gold
     }
-    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'w') as outfile:
+    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'w') as outfile:#pylint: disable = anomalous-backslash-in-string
         json.dump(playerData, outfile, indent=4)
 
 def playerLoad():
-    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'r') as outfile:
+    with open('CREATE Task Folder\Save_Games\player_logs.txt', 'r') as outfile:#pylint: disable = anomalous-backslash-in-string
         playerData = json.load(outfile)
     return playerData
 
 def questLoad():
-    with open('CREATE Task Folder\Save_Games\quest_logs.txt', 'r') as outfile:
+    with open('CREATE Task Folder\Save_Games\quest_logs.txt', 'r') as outfile:#pylint: disable = anomalous-backslash-in-string
         questData = json.load(outfile)
     return questData
 
@@ -80,5 +80,5 @@ def questSave(quest):
         'ongoingQuests': quest.ongoing_quests,
         'completedQuests': quest.completed_quests
     }
-    with open('CREATE Task Folder\Save_Games\quest_logs.txt', 'w') as outfile:
+    with open('CREATE Task Folder\Save_Games\quest_logs.txt', 'w') as outfile:#pylint: disable = anomalous-backslash-in-string
         json.dump(questData, outfile, indent=4)

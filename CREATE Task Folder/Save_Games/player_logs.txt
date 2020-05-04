@@ -13,7 +13,7 @@
     "physicalDefense": 5,
     "magicDefense": 5,
     "fireResist": 2,
-    "posionResist": 2,
+    "poisonResist": 2,
     "windResist": 2,
     "waterResist": 2,
     "earthResist": 2,

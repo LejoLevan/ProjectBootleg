@@ -93,10 +93,10 @@ class character:
 
         #resistance stats
         self.fire_resist = stats['fireResist']
-        self.poison_resist = stats['poisonResist']
         self.wind_resist = stats['windResist']
         self.water_resist = stats['waterResist']
         self.earth_resist = stats['earthResist']
+        self.poison_resist = stats['poisonResist']
 
         #level stats
         self.level = stats['level']

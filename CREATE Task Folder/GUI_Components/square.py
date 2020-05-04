@@ -5,8 +5,8 @@ class square:
         self.screen = rpg.screen
         self.screen_rect = self.screen.get_rect()
 
-        self.width = 1920
-        self.height = 1080
+        self.width = rpg.settings.screen_width
+        self.height = rpg.settings.screen_height
         self.left, self.top = 0, 0
         self.square_color = (255, 255, 255)
         self.border = 1

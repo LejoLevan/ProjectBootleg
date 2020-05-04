@@ -15,36 +15,36 @@ class Button:
         self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont('arial', 20)
         self.msg = msg
-        self.top = 540 - (self.height/2)
-        self.left = 960 - (self.width/2)
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2)
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2)
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
 
         self._prep_msg()
 
-    def startDefault (self, topDif, leftDif):
+    def startDefault (self, rpg, topDif, leftDif):
         self.width, self.height = 430, 70
-        self.top = 540 - (self.height/2) + topDif
-        self.left = 960 - (self.width/2) + leftDif
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (rpg.settings.screen_width*.5) - (self.width/2) + leftDif
 
-    def choiceDefault(self, topDif):
+    def choiceDefault(self, rpg, topDif):
         self.width, self.height = 550, 70
         self.font = pygame.font.SysFont('arial', 20)
-        self.left = 1920 - self.width
-        self.top = (1080 - self.height) + topDif
+        self.left = rpg.settings.screen_width - self.width
+        self.top = (rpg.settings.screen_height - self.height) + topDif
 
-    def statDefault(self, topDif, leftDif):
+    def statDefault(self, rpg, topDif, leftDif):
         self.width, self.height = 350, 70
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = 1080 + topDif
+        self.top = rpg.settings.screen_height + topDif
         self.left = 0 + leftDif
         self.clickable = False
         self.border = True
         
-    def notifacationDefault(self, topDif, leftDif):
+    def notifacationDefault(self, rpg, topDif, leftDif):
         self.width, self.height = self.font.size(self.msg)
         self.font = pygame.font.SysFont('arial', 20)
-        self.top = 540 - (self.height/2) + topDif
-        self.left = 960 - (self.height/2) + leftDif
+        self.top = (rpg.settings.screen_height*.5) - (self.height/2) + topDif
+        self.left = (rpg.settings.screen_width*.5) - (self.height/2) + leftDif
         self.clickable = False
     
     def prep(self):
