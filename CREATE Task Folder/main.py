@@ -4,7 +4,7 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, swapButton
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -32,6 +32,7 @@ class RPG:
         self.statSheet = statSheet(self)
         self.choiceButtons = choiceButtons(self)
         self.swapButton = swapButton(self)
+        self.profilePic = profilePic(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -70,6 +71,9 @@ class RPG:
             self.game_active = True
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
+        if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
+            self.swapButton.swap()
+            
 
 
     def _check_keydown_events(self, event):
@@ -94,6 +98,7 @@ class RPG:
         else:
             self.template.blitme()
             self.swapButton.draw()
+            self.profilePic.draw()
             self.choiceButtons.draw()
             self.statSheet.showStats()
             self.borders.draw()

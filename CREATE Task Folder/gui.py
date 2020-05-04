@@ -1,3 +1,5 @@
+import pygame
+
 from GUI_Components.button import Button
 from GUI_Components.square import square
 from GUI_Components.image import image
@@ -170,13 +172,44 @@ class borders:
 
 class swapButton:
     def __init__(self, rpg):
-        self.bagButton = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\Bag.png', "Player Inventory")#pylint: disable = anomalous-backslash-in-string
-        self.bagButton.width = (rpg.settings.screen_width - 1600)
-        self.bagButton.height = 210
-        self.bagButton.top = (rpg.settings.screen_height) - self.bagButton.height
-        self.bagButton.left = 1050
-        self.bagButton.border = True
-        self.bagButton.clickable = True
+        self.swapButton = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\Bag.png', "Player Inventory")#pylint: disable = anomalous-backslash-in-string
+        self.swapButton.width = (rpg.settings.screen_width - 1600)
+        self.swapButton.height = 210
+        self.swapButton.top = (rpg.settings.screen_height) - self.swapButton.height
+        self.swapButton.left = 1050
+        self.swapButton.border = True
+        self.swapButton.clickable = True
+
+    def swap(self):
+        if self.swapButton.msg == "Player Inventory":
+            self.stats()
+        elif self.swapButton.msg == "Stat Sheet":
+            self.inventory()
+
+    def stats(self):
+        self.swapButton.image = pygame.image.load('CREATE Task Folder\Image Assets\GUI_images\Stat Sheet.gif')#pylint: disable = anomalous-backslash-in-string
+        self.swapButton.msg = "Stat Sheet"
+
+    def inventory(self):
+        self.swapButton.image = pygame.image.load('CREATE Task Folder\Image Assets\GUI_images\Bag.png')#pylint: disable = anomalous-backslash-in-string
+        self.swapButton.msg = "Player Inventory"
 
     def draw(self):
-        self.bagButton.draw()
+        self.swapButton.draw()
+
+class profilePic:
+    def __init__(self, rpg):
+        self.profilePic = image(rpg, 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png', rpg.player.profession)#pylint: disable = anomalous-backslash-in-string
+        self.profilePic.font.set_bold(True)
+        self.profilePic.width = (rpg.settings.screen_width - 1600)
+        self.profilePic.height = 210
+        self.profilePic.top = (rpg.settings.screen_height) - (self.profilePic.height*2)
+        self.profilePic.left = 1050
+        self.profilePic.border = True
+        self.profilePic.textMidBottom = True
+    
+    def swapImage(self, path):
+        self.profilePic.image = pygame.image.load(path)
+    
+    def draw(self):
+        self.profilePic.draw()

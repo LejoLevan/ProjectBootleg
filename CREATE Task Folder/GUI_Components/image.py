@@ -14,17 +14,19 @@ class image:
         self.text_color = (255, 255, 255)
         self.border = False
         self.clickable = False
+        self.textMidBottom = False
 
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
-
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
         self._prep_msg()
 
     def _prep_msg(self):
         """Turn msg into a rendered image and center text on the button."""
-        self.msg_image = self.font.render(self.msg, True, self.text_color, self.button_color)
+        self.msg_image = self.font.render(self.msg, True, self.text_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
+        if self.textMidBottom == True:
+            self.msg_image_rect.midbottom = self.rect.midbottom
     
     def prep(self):
         self.prepRect()
