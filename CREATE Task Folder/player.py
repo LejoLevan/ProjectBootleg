@@ -55,7 +55,7 @@ class character:
 
         #misc stats
         self.total_inventory = 0
-        self.weapon_inventory = []
+        self.weapon_inventory = ["a","f", "f", "f"]
         self.armor_inventory = []
         self.buff_inventory = []
         self.quest_inventory = []
@@ -124,6 +124,7 @@ class character:
     def update(self):
         self.profession = Classes.updateClass(self)
         self.checkBag()
+
 
     def checkBag(self):
         self.total_inventory = len(self.weapon_inventory) + len(self.armor_inventory) + len(self.buff_inventory)

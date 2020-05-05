@@ -4,7 +4,7 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, Inventory
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -33,6 +33,7 @@ class RPG:
         self.choiceButtons = choiceButtons(self)
         self.swapButton = swapButton(self)
         self.profilePic = profilePic(self)
+        self.Inventory = Inventory(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -71,11 +72,11 @@ class RPG:
             self.game_active = True
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
-        if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
-            self.swapButton.swap()
+        if self.game_active:
+            self.swapButton.mouseEvents(mous_pos)
+            self.Inventory.mouseEvents(mous_pos)
+        
             
-
-
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.template.moving_right = True
@@ -100,7 +101,10 @@ class RPG:
             self.swapButton.draw()
             self.profilePic.draw()
             self.choiceButtons.draw()
-            self.statSheet.showStats()
+            if self.swapButton.inventoryShow == True:
+                self.Inventory.draw()
+            else:
+                self.statSheet.showStats()
             self.borders.draw()
         pygame.display.flip()
 
