@@ -242,8 +242,15 @@ class Inventory:
         self.downArrow.border = True
         self.downArrow.clickable = True
 
+        self.weapon_inventory = rpg.player.weapon_inventory
+        self.armor_inventory = rpg.player.armor_inventory
+        self.buff_inventory = rpg.player.buff_inventory
+        self.misc_inventory = rpg.player.misc_inventory
+        self.quest_inventory = rpg.player.quest_inventory
+
         self.set = 0
-        self.list = rpg.player.weapon_inventory
+        self.list = self.weapon_inventory
+        self.msgList = []
         
         self.box1 = Button(rpg, self.getMsg(self.set + 1))
         self.box1.inventoryDefault(rpg, -360, 0)
@@ -308,15 +315,12 @@ class Inventory:
             while msgThere == False:
                 msg = self.list[number - 1]
                 if msg not in self.msgList:
-                    for msg in self.list:
-                        stack = stack + 1
+                    stack = stack + self.list.count(msg)
                     self.msgList.append(msg)
                     msgThere = True
-                    print("hi")
+                    return ("{} x{}".format(msg, stack))
                 else:
                     number = number + 1
-                    print("Bye")
-            return ("{} x{}".format(message, stack))
         except Exception:
             return("")
     
@@ -329,9 +333,24 @@ class Inventory:
             self.set = self.set - 18
             if self.set < 0:
                 self.set = 0
+        if self.weaponTag.rect.collidepoint(mous_pos):
+            self.list = self.weapon_inventory
+            self.set = 0
+        if self.armorTag.rect.collidepoint(mous_pos):
+            self.list = self.armor_inventory
+            self.set = 0
+        if self.buffTag.rect.collidepoint(mous_pos):
+            self.list = self.buff_inventory
+            self.set = 0
+        if self.miscTag.rect.collidepoint(mous_pos):
+            self.list = self.misc_inventory
+            self.set = 0
+        if self.questTag.rect.collidepoint(mous_pos):
+            self.list = self.quest_inventory
+            self.set = 0
 
-    def update(self):
-        #self.msgList = []
+    def update(self, rpg):
+        self.msgList = []
         self.box1.msg = self.getMsg(self.set + 1)
         self.box2.msg = self.getMsg(self.set + 2)
         self.box3.msg = self.getMsg(self.set + 3)
@@ -351,8 +370,14 @@ class Inventory:
         self.box17.msg = self.getMsg(self.set + 17)
         self.box18.msg = self.getMsg(self.set + 18)
 
-    def draw(self):
-        #self.update()
+        self.weapon_inventory = rpg.player.weapon_inventory
+        self.armor_inventory = rpg.player.armor_inventory
+        self.buff_inventory = rpg.player.buff_inventory
+        self.misc_inventory = rpg.player.misc_inventory
+        self.quest_inventory = rpg.player.quest_inventory
+
+    def draw(self, rpg):
+        self.update(rpg)
 
         self.upArrow.draw()
         self.downArrow.draw()

@@ -55,9 +55,10 @@ class character:
 
         #misc stats
         self.total_inventory = 0
-        self.weapon_inventory = ["a","f", "f", "f"]
+        self.weapon_inventory = ["a","f", "f", "f", "t"]
         self.armor_inventory = []
         self.buff_inventory = []
+        self.misc_inventory = []
         self.quest_inventory = []
         self.gold = 10
 
@@ -119,6 +120,7 @@ class character:
         self.weapon_inventory = stats['weaponInventory']
         self.armor_inventory = stats['armorInventory']
         self.buff_inventory = stats['buffInventory']
+        self.misc_inventory = stats['miscInventory']
         self.quest_inventory = stats['questInventory']
 
     def update(self):

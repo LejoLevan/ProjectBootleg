@@ -102,7 +102,7 @@ class RPG:
             self.profilePic.draw()
             self.choiceButtons.draw()
             if self.swapButton.inventoryShow == True:
-                self.Inventory.draw()
+                self.Inventory.draw(self)
             else:
                 self.statSheet.showStats()
             self.borders.draw()
