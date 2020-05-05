@@ -325,11 +325,11 @@ class Inventory:
             return("")
     
     def mouseEvents(self, mous_pos):
-        if self.upArrow.rect.collidepoint(mous_pos):
+        if self.downArrow.rect.collidepoint(mous_pos):
             self.set = self.set + 18
             if self.set > 90:
                 self.set = 0
-        if self.downArrow.rect.collidepoint(mous_pos):
+        if self.upArrow.rect.collidepoint(mous_pos):
             self.set = self.set - 18
             if self.set < 0:
                 self.set = 0
