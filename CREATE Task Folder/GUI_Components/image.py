@@ -20,6 +20,14 @@ class image:
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
         self._prep_msg()
 
+    def tagDefault(self, rpg, leftDif):
+        self.width, self.height = 180, 60
+        self.font = pygame.font.SysFont('arial', 15)
+        self.top = rpg.settings.screen_height - 420
+        self.left = 0 + leftDif
+        self.border = True
+        self.clickable = True
+
     def _prep_msg(self):
         """Turn msg into a rendered image and center text on the button."""
         self.msg_image = self.font.render(self.msg, True, self.text_color)

@@ -4,7 +4,11 @@ import sys
 
 import pygame
 
+<<<<<<< HEAD
 from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole
+=======
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, Inventory
+>>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -33,7 +37,11 @@ class RPG:
         self.choiceButtons = choiceButtons(self)
         self.swapButton = swapButton(self)
         self.profilePic = profilePic(self)
+<<<<<<< HEAD
         self.playerConsole = playerConsole(self)
+=======
+        self.Inventory = Inventory(self)
+>>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -72,14 +80,19 @@ class RPG:
             self.game_active = True
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
+<<<<<<< HEAD
         if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
             self.swapButton.swap()
         if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
             self.playerConsole.newSlot = 1
             self.playerConsole.showNextText("Hi", "")
+=======
+        if self.game_active:
+            self.swapButton.mouseEvents(mous_pos)
+            self.Inventory.mouseEvents(mous_pos)
+        
+>>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
             
-
-
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.template.moving_right = True
@@ -104,8 +117,15 @@ class RPG:
             self.swapButton.draw()
             self.profilePic.draw()
             self.choiceButtons.draw()
+<<<<<<< HEAD
             self.statSheet.showStats()
             self.playerConsole.drawConsole()
+=======
+            if self.swapButton.inventoryShow == True:
+                self.Inventory.draw(self)
+            else:
+                self.statSheet.showStats()
+>>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
             self.borders.draw()
         pygame.display.flip()
 

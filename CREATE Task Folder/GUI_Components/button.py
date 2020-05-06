@@ -38,8 +38,13 @@ class Button:
         self.top = rpg.settings.screen_height + topDif
         self.left = 0 + leftDif
         self.clickable = False
-        self.border = True
-        
+
+    def inventoryDefault(self, rpg, topDif, leftDif):
+        self.width, self.height = 333.33, 60
+        self.font = pygame.font.SysFont('arial', 15)
+        self.top = rpg.settings.screen_height + topDif
+        self.left = 0 + leftDif
+
     def notifacationDefault(self, rpg, topDif, leftDif):
         self.width, self.height = self.font.size(self.msg)
         self.font = pygame.font.SysFont('arial', 20)
@@ -71,6 +76,7 @@ class Button:
                 self.button_color = (0, 0, 0)
         self.prep()
         self.screen.fill(self.button_color, self.rect)
+<<<<<<< HEAD
         self.screen.blit(self.msg_image, self.msg_image_rect)
     
     def consoleTextDefault(self, rpg, topDif):
@@ -86,3 +92,8 @@ class Button:
         self.left = rpg.settings.screen_width - self.width
         self.top = 0 + topDif
         self.clickable = False
+=======
+        if self.msg != "":
+            self.screen.blit(self.msg_image, self.msg_image_rect)
+    
+>>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
