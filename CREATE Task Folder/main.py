@@ -71,13 +71,16 @@ class RPG:
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
+            self.playerConsole.resetConsole()
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
             self.swapButton.swap()
         if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
             self.playerConsole.newSlot = 1
-            self.playerConsole.showNextText("Hi", "")
+            self.playerConsole.showNextText("", "")
+            self.playerConsole.newSlot = 0
+            self.playerConsole.updateConsole()
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(mous_pos)

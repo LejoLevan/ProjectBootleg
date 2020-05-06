@@ -234,41 +234,43 @@ class playerConsole:
         self.slot5Taken = 0
         self.prevSlot = ""
         self.prevSlotPart2 = ""
-        self.slot1 = Button(rpg,"")
-        self.slot1.consoleTextDefault(rpg, 0)
-        self.slot1innera = Button(rpg,"")
-        self.slot1innera.innerConsoleTextDefault(rpg, 0)
-        self.slot1innerb = Button(rpg,"")
-        self.slot1innerb.innerConsoleTextDefault(rpg, 62.5)
-        self.slot2 = Button(rpg,"")
-        self.slot2.consoleTextDefault(rpg, 125)
-        self.slot2innera = Button(rpg,"")
-        self.slot2innera.innerConsoleTextDefault(rpg, 125)
-        self.slot2innerb = Button(rpg, "")
-        self.slot2innerb.innerConsoleTextDefault(rpg, 187.5)
+        self.slot5 = Button(rpg,"")
+        self.slot5.consoleTextDefault(rpg, 0)
+        self.slot5innera = Button(rpg,"")
+        self.slot5innera.innerConsoleTextDefault(rpg, 0)
+        self.slot5innerb = Button(rpg,"")
+        self.slot5innerb.innerConsoleTextDefault(rpg, 62.5)
+        self.slot4 = Button(rpg,"")
+        self.slot4.consoleTextDefault(rpg, 125)
+        self.slot4innera = Button(rpg,"")
+        self.slot4innera.innerConsoleTextDefault(rpg, 125)
+        self.slot4innerb = Button(rpg, "")
+        self.slot4innerb.innerConsoleTextDefault(rpg, 187.5)
         self.slot3 = Button(rpg,"")
         self.slot3.consoleTextDefault(rpg, 250)
         self.slot3innera = Button(rpg, "")
         self.slot3innera.innerConsoleTextDefault(rpg, 250)
         self.slot3innerb = Button(rpg, "")
         self.slot3innerb.innerConsoleTextDefault(rpg, 312.5)
-        self.slot4 = Button(rpg, "")
-        self.slot4.consoleTextDefault(rpg, 375)
-        self.slot4innera = Button(rpg, "")
-        self.slot4innera.innerConsoleTextDefault(rpg, 437.5)
-        self.slot4innerb = Button(rpg, "")
-        self.slot4innerb.innerConsoleTextDefault(rpg, 500)  
-        self.slot5 = Button(rpg, "")
-        self.slot5.consoleTextDefault(rpg, 500)
-        self.slot5innera = Button(rpg, "")
-        self.slot5innera.innerConsoleTextDefault(rpg, 562.5)
+        self.slot2 = Button(rpg, "")
+        self.slot2.consoleTextDefault(rpg, 375)
+        self.slot2innera = Button(rpg, "")
+        self.slot2innera.innerConsoleTextDefault(rpg, 375)
+        self.slot2innerb = Button(rpg, "")
+        self.slot2innerb.innerConsoleTextDefault(rpg, 437.5)  
+        self.slot1 = Button(rpg, "")
+        self.slot1.consoleTextDefault(rpg, 500)
+        self.slot1innera = Button(rpg, "")
+        self.slot1innera.innerConsoleTextDefault(rpg, 500)
+        self.slot1innerb = Button(rpg, "")
+        self.slot1innerb.innerConsoleTextDefault(rpg, 562.5)
 
     def drawConsole(self):
         self.slot1.draw()
         self.slot1innera.draw()
         self.slot1innerb.draw()
         self.slot2.draw()
-        self.slot2innera.draw()
+        self.slot2innera.draw()      
         self.slot2innerb.draw()
         self.slot3.draw()
         self.slot3innera.draw()
@@ -278,7 +280,8 @@ class playerConsole:
         self.slot4innerb.draw()
         self.slot5.draw()
         self.slot5innera.draw()
-
+        self.slot5innerb.draw() 
+       
     def showNextText(self, nextText, nextTextPart2):
         if(self.newSlot == 1 and self.slot1Taken == 0):
             self.slot1innera.msg = nextText
@@ -309,8 +312,9 @@ class playerConsole:
             self.slot1innera.msg = nextText
             self.slot1innerb.msg = nextTextPart2
             self.slot4Taken = 1
-        elif(self.newSlot == 1 and self.slot4Taken == 1 and self.slot5Taken == 0):
+        elif(self.newSlot == 1 and self.slot4Taken == 1):
             self.slot5innera.msg = self.slot4innera.msg
+            self.slot5innerb.msg = self.slot4innerb.msg
             self.slot5Taken = 1
             self.slot4innera.msg = self.slot3innera.msg
             self.slot4innerb.msg = self.slot3innerb.msg
@@ -322,6 +326,7 @@ class playerConsole:
             self.slot1innerb.msg = nextTextPart2
         elif(self.newSlot == 1 and self.slot5Taken == 1):
             self.slot5innera.msg = self.slot4innera.msg
+            self.slot5innerb.msg = self.slot4innerb.msg
             self.slot4innera.msg = self.slot3innera.msg
             self.slot4innerb.msg = self.slot3innerb.msg
             self.slot3innera.msg = self.slot2innera.msg
@@ -329,6 +334,37 @@ class playerConsole:
             self.slot2innera.msg = self.slot1innera.msg
             self.slot2innerb.msg = self.slot1innerb.msg
             self.slot1innera.msg = nextText
+
+    def updateConsole(self):
+        self.slot1innera.msg = self.slot1innera.msg
+        self.slot1innerb.msg = self.slot1innerb.msg
+        self.slot2innera.msg = self.slot2innera.msg
+        self.slot2innerb.msg = self.slot2innerb.msg
+        self.slot3innera.msg = self.slot3innera.msg
+        self.slot3innerb.msg = self.slot3innerb.msg
+        self.slot4innera.msg = self.slot4innera.msg
+        self.slot4innerb.msg = self.slot4innerb.msg
+        self.slot5innera.msg = self.slot5innera.msg
+        self.slot5innerb.msg = self.slot5innerb.msg
+
+    def resetConsole(self):
+        self.newSlot = 0
+        self.slot1Taken = 0
+        self.slot2Taken = 0
+        self.slot3Taken = 0
+        self.slot4Taken = 0
+        self.slot5Taken = 0
+        self.slot1innera.msg = ""
+        self.slot1innerb.msg = ""
+        self.slot2innera.msg = ""
+        self.slot2innerb.msg = ""
+        self.slot3innera.msg = ""
+        self.slot3innerb.msg = ""
+        self.slot4innera.msg = ""
+        self.slot4innerb.msg = ""
+        self.slot5innera.msg = ""
+        self.slot5innerb.msg = ""
+
 class Inventory:
     def __init__(self, rpg):
         self.upArrow = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\Arrow.png', "")#pylint: disable = anomalous-backslash-in-string
