@@ -76,7 +76,6 @@ class Button:
                 self.button_color = (0, 0, 0)
         self.prep()
         self.screen.fill(self.button_color, self.rect)
-<<<<<<< HEAD
         self.screen.blit(self.msg_image, self.msg_image_rect)
     
     def consoleTextDefault(self, rpg, topDif):
@@ -92,8 +91,6 @@ class Button:
         self.left = rpg.settings.screen_width - self.width
         self.top = 0 + topDif
         self.clickable = False
-=======
         if self.msg != "":
             self.screen.blit(self.msg_image, self.msg_image_rect)
     
->>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d

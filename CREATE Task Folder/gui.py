@@ -224,7 +224,6 @@ class profilePic:
     def draw(self):
         self.profilePic.draw()
 
-<<<<<<< HEAD
 class playerConsole:
     def __init__(self, rpg):
         self.newSlot = 0
@@ -330,7 +329,6 @@ class playerConsole:
             self.slot2innera.msg = self.slot1innera.msg
             self.slot2innerb.msg = self.slot1innerb.msg
             self.slot1innera.msg = nextText
-=======
 class Inventory:
     def __init__(self, rpg):
         self.upArrow = image(rpg, 'CREATE Task Folder\Image Assets\GUI_images\Arrow.png', "")#pylint: disable = anomalous-backslash-in-string
@@ -514,4 +512,3 @@ class Inventory:
         self.miscTag.draw()
         self.questTag.draw()
         self.gold.draw()
->>>>>>> f9bfdfb3f337c69365617f539ec9ebd5f4458b2d
