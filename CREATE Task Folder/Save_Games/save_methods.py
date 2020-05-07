@@ -13,6 +13,7 @@ def playerSave(player):
     """
     playerData = {
         'name': player.name,
+        'icon': player.icon,
         'profession': player.profession,
 
         'maxHP': player.maxhp,
@@ -52,6 +53,7 @@ def playerSave(player):
         'weaponInventory': player.weapon_inventory,
         'armorInventory': player.armor_inventory,
         'buffInventory': player.buff_inventory,
+        'miscInventory': player.misc_inventory,
         'questInventory': player.quest_inventory,
         'gold': player.gold
     }

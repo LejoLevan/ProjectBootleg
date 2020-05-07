@@ -4,7 +4,7 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole, Inventory
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole, Inventory, combatGUI
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -36,6 +36,7 @@ class RPG:
         self.playerConsole = playerConsole(self)
         self.Inventory = Inventory(self)
         self.playerConsole.newSlot = 0
+        self.combatGUI = combatGUI(self)
 
     def loadData(self):
         self.player.loadStats(playerLoad())

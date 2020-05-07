@@ -213,6 +213,34 @@ class swapButton:
     def draw(self):
         self.swapButton.draw()
 
+class combatGUI:
+    def __init__(self, rpg):
+        self.profilePic = image(rpg, rpg.player.icon, rpg.player.profession + " EXP: {}/{}".format(rpg.player.exp, rpg.player.exp_cap))#pylint: disable = anomalous-backslash-in-string
+        self.playerIcon.iconDefault(rpg, -280)
+
+        self.playerSquare = square(rpg)
+        self.playerSquare.combatDefault(rpg, -280)
+
+        self.playerAttack = Button(rpg, "Attack")
+        self.playerAttack.combatDefault(rpg, -350, 0)
+
+        self.playerDefend = Button(rpg, "Defend")
+        self.playerDefend.combatDefault(rpg, -350, 205)
+
+        self.playerRest = Button(rpg, "Rest")
+        self.playerRest.combatDefault(rpg, -280, 0)
+
+        self.playerUse = Button(rpg, "Use Item")
+        self.playerUse.combatDefault(rpg, -280, 205)
+    
+    def draw(self):
+        self.playerIcon.draw()
+        self.playerAttack.draw()
+        self.playerDefend.draw()
+        self.playerRest.draw()
+        self.playerUse.draw()
+        self.playerSquare.draw()
+        
 class profilePic:
     def __init__(self, rpg):
         self.profilePic = image(rpg, 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png', rpg.player.profession + " EXP: {}/{}".format(rpg.player.exp, rpg.player.exp_cap))#pylint: disable = anomalous-backslash-in-string

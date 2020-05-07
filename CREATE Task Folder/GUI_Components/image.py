@@ -28,6 +28,13 @@ class image:
         self.border = True
         self.clickable = True
 
+    def iconDefault(self, rpg, topDif):
+        self.width, self.height = 140, 140
+        self.top = (rpg.settings.screen_height - self.height) + topDif
+        self.left = rpg.settings.screen_width - 550
+        self.font.set_bold(True)
+        self.textMidBottom = True
+
     def _prep_msg(self):
         """Turn msg into a rendered image and center text on the button."""
         self.msg_image = self.font.render(self.msg, True, self.text_color)

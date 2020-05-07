@@ -1,5 +1,6 @@
 {
     "name": "",
+    "icon": "CREATE Task Folder\\Image Assets\\Player_Images\\Commoner.png",
     "profession": "Commoner",
     "maxHP": 100,
     "hp": 100,
@@ -27,9 +28,16 @@
     "luck": 10,
     "equippedSkills": [],
     "skills": [],
-    "weaponInventory": [],
+    "weaponInventory": [
+        "a",
+        "f",
+        "f",
+        "f",
+        "t"
+    ],
     "armorInventory": [],
     "buffInventory": [],
+    "miscInventory": [],
     "questInventory": [],
     "gold": 10
 }

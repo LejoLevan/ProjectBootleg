@@ -6,7 +6,8 @@ from Leveling_System.Classes import Classes
 class character:
     def __init__(self):
         #Info stats
-        self.name = ""
+        self.name = "Jack"
+        self.icon = 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png'
         
         #class stats
         self.profession = "Commoner"
@@ -69,6 +70,7 @@ class character:
     def loadStats(self, stats):
         #Info stats
         self.name = stats['name']
+        self.icon = stats['icon']
 
         #class stats
         self.profession = stats['profession']
@@ -126,7 +128,6 @@ class character:
     def update(self):
         self.profession = Classes.updateClass(self)
         self.checkBag()
-
 
     def checkBag(self):
         self.total_inventory = len(self.weapon_inventory) + len(self.armor_inventory) + len(self.buff_inventory)
