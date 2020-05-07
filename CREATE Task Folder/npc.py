@@ -81,3 +81,5 @@ class ally:
 def allyPhillip():
     phillip = ally("Phillip", 150, 150, 5, 1, 5, 100, 100, 30, 30, 3, 3, 5, 5, 1, 0, 15, 10, 5, 1.2, 5)
 
+def allyPhillip():
+    phillip = ["Phillip", 150, 150, 5, 1, 5, 100, 100, 30, 30, 3, 3, 5, 5, 1, 0, 15, 10, 5, 1.2, 5]

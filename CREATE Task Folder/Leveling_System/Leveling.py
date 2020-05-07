@@ -1,5 +1,6 @@
 from npc.py import ally
 from player.py import character
+
 def level(player):
     print("Level:",player.level)
     print("Current Experience:",player.exp+"/"+player.exp_cap)
@@ -9,18 +10,158 @@ def NextLevel(player):
     while (player.exp >= player.exp_cap):
         player.level = player.level + 1
         player.exp = player.exp-player.exp_cap
-        print("You are now level:", player.level)
-        player.exp_cap += 100
-        print("The new exp cap is now:", player.exp_cap)
+        player.exp_cap += 15
         player.previousLevel = player.previousLevel + 1
-        upgradeStats(player)
+        upgradeProfession(player)
     if (player.level == 20):
         player.level = 20
-        print("You are now max level:")
         player.exp_cap = player.exp
 
-def upgradeStats(player):
-    if (player.profession == "Thief"):
+def upgradeProfession(player):
+    if (player.profession == "Thief" and self.level == 1):
+        player.hp =
+        player.maxhp =
+        player.physical_attack =
+        player.magic_attack =
+        player.speed =
+        player.stamina =
+        player.stamina_max =
+        player.mana =
+        player.mana_max =
+        player.physical_defense =
+        player.magic_defense =
+        player.fire_resist =
+        player.poison_resist =
+        player.accuracy =
+        player.crit_percent =
+        player.crit_mult =
+        player.luck =
+        elif (player.exp >= player.exp_cap):
+            player.hp =
+            player.maxhp =
+            player.physical_attack =
+            player.magic_attack =
+            player.speed =
+            player.stamina =
+            player.stamina_max =
+            player.mana =
+            player.mana_max =
+            player.physical_defense =
+            player.magic_defense =
+            player.fire_resist =
+            player.poison_resist =
+            player.accuracy =
+            player.crit_percent =
+            player.crit_mult =
+            player.luck =
+    if (player.profession == "Scoundrel" and self.level == 3):
+        player.hp =
+        player.maxhp =
+        player.physical_attack =
+        player.magic_attack =
+        player.speed =
+        player.stamina =
+        player.stamina_max =
+        player.mana =
+        player.mana_max =
+        player.physical_defense =
+        player.magic_defense =
+        player.fire_resist =
+        player.poison_resist =
+        player.accuracy =
+        player.crit_percent =
+        player.crit_mult =
+        player.luck =
+        elif (player.exp >= player.exp_cap):
+            player.hp =
+            player.maxhp =
+            player.physical_attack =
+            player.magic_attack =
+            player.speed =
+            player.stamina =
+            player.stamina_max =
+            player.mana =
+            player.mana_max =
+            player.physical_defense =
+            player.magic_defense =
+            player.fire_resist =
+            player.poison_resist =
+            player.accuracy =
+            player.crit_percent =
+            player.crit_mult =
+            player.luck =
+    if (player.profession == "Rogue" and self.level == 10):
+        player.hp =
+        player.maxhp =
+        player.physical_attack =
+        player.magic_attack =
+        player.speed =
+        player.stamina =
+        player.stamina_max =
+        player.mana =
+        player.mana_max =
+        player.physical_defense =
+        player.magic_defense =
+        player.fire_resist =
+        player.poison_resist =
+        player.accuracy =
+        player.crit_percent =
+        player.crit_mult =
+        player.luck =
+            elif (player.exp >= player.exp_cap):
+            player.hp =
+            player.maxhp =
+            player.physical_attack =
+            player.magic_attack =
+            player.speed =
+            player.stamina =
+            player.stamina_max =
+            player.mana =
+            player.mana_max =
+            player.physical_defense =
+            player.magic_defense =
+            player.fire_resist =
+            player.poison_resist =
+            player.accuracy =
+            player.crit_percent =
+            player.crit_mult =
+            player.luck =
+    if (player.profession == "Assassin" and self.level == 20):
+        player.hp =
+        player.maxhp =
+        player.physical_attack =
+        player.magic_attack =
+        player.speed =
+        player.stamina =
+        player.stamina_max =
+        player.mana =
+        player.mana_max =
+        player.physical_defense =
+        player.magic_defense =
+        player.fire_resist =
+        player.poison_resist =
+        player.accuracy =   
+        player.crit_percent =
+        player.crit_mult =
+        player.luck =
+        elif (player.exp >= player.exp_cap):
+            player.hp =
+            player.maxhp =
+            player.physical_attack =
+            player.magic_attack =
+            player.speed =
+            player.stamina =
+            player.stamina_max =
+            player.mana =
+            player.mana_max =
+            player.physical_defense =
+            player.magic_defense =
+            player.fire_resist =
+            player.poison_resist =
+            player.accuracy =
+            player.crit_percent =
+            player.crit_mult =
+            player.luck =
 
 def updateAlly(ally, level, player):
     if ():

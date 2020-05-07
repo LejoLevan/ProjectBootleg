@@ -35,6 +35,7 @@ class RPG:
         self.profilePic = profilePic(self)
         self.playerConsole = playerConsole(self)
         self.Inventory = Inventory(self)
+        self.playerConsole.newSlot = 0
 
     def loadData(self):
         self.player.loadStats(playerLoad())
@@ -76,14 +77,10 @@ class RPG:
             sys.exit()
         if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
             self.swapButton.swap()
-        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
-            self.playerConsole.newSlot = 1
-            self.playerConsole.showNextText("", "")
-            self.playerConsole.newSlot = 0
-            self.playerConsole.updateConsole()
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(mous_pos)
+            self.choiceButtons.mouseEvents(self, mous_pos)
         
             
     def _check_keydown_events(self, event):

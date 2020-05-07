@@ -6,7 +6,6 @@ class Button:
     def __init__(self, rpg, msg):
         """Initialize button attributes."""
         self.screen = rpg.screen
-
         #Set the dimensions and properties of the button
         self.border = True
         self.clickable = True
@@ -18,6 +17,8 @@ class Button:
         self.top = (rpg.settings.screen_height*.5) - (self.height/2)
         self.left = (rpg.settings.screen_width*.5) - (self.width/2)
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
+        self.msg2 = ""
+        self.showSecondMessage = False
 
         self._prep_msg()
 
@@ -39,6 +40,7 @@ class Button:
         self.left = 0 + leftDif
         self.clickable = False
 
+    
     def inventoryDefault(self, rpg, topDif, leftDif):
         self.width, self.height = 333.33, 60
         self.font = pygame.font.SysFont('arial', 15)
@@ -52,6 +54,13 @@ class Button:
         self.left = (rpg.settings.screen_width*.5) - (self.height/2) + leftDif
         self.clickable = False
     
+    def consoleTextDefault(self, rpg, topDif):
+        self.width, self.height = 550, 125
+        self.font = pygame.font.SysFont('arial', 20)
+        self.left = rpg.settings.screen_width - self.width
+        self.top = 0 + topDif
+        self.clickable = False
+
     def prep(self):
         self.prepRect()
         self._prep_msg()
@@ -65,7 +74,15 @@ class Button:
         """Turn msg into a rendered image and center text on the button."""
         self.msg_image = self.font.render(self.msg, True, self.text_color)
         self.msg_image_rect = self.msg_image.get_rect()
-        self.msg_image_rect.center = self.rect.center
+        if(self.msg2 != ""):
+            self.msg2_image = self.font.render(self.msg2, True, self.text_color)
+            self.msg2_image_rect = self.msg2_image.get_rect()
+            self.msg_image_rect.top = self.rect.top + 27
+            self.msg_image_rect.left = self.rect.left + self.width/2
+            self.msg2_image_rect.bottom = self.rect.bottom - 27
+            self.msg2_image_rect.left = self.rect.left + self.width/2
+        else:
+            self.msg_image_rect.center = self.rect.center
 
     def draw(self):
         """Draws button"""
@@ -77,20 +94,5 @@ class Button:
         self.prep()
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
-    
-    def consoleTextDefault(self, rpg, topDif):
-        self.width, self.height = 550, 125
-        self.font = pygame.font.SysFont('arial', 20)
-        self.left = rpg.settings.screen_width - self.width
-        self.top = 0 + topDif
-        self.clickable = False
-
-    def innerConsoleTextDefault(self, rpg, topDif):
-        self.width, self.height = 550, 62.5
-        self.font = pygame.font.SysFont('arial', 20)
-        self.left = rpg.settings.screen_width - self.width
-        self.top = 0 + topDif
-        self.clickable = False
-        if self.msg != "":
-            self.screen.blit(self.msg_image, self.msg_image_rect)
-    
+        if (self.msg2 != ""):
+            self.screen.blit(self.msg2_image, self.msg2_image_rect)

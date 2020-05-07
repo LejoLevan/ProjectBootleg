@@ -73,6 +73,12 @@ class choiceButtons():
         self.choice5.msg = choice5Text
         self.choice6.msg = choice6Text
 
+    def mouseEvents(self, rpg, mous_pos):
+        if self.choice1.rect.collidepoint(mous_pos):
+            rpg.playerConsole.newSlot = 1
+            rpg.playerConsole.showNextText("Hi", "No")
+            rpg.playerConsole.newSlot = 0
+
 class statSheet():
     def __init__(self, rpg):
         self.hpStat = Button(rpg, "HP: {}/{}".format(rpg.player.hp, rpg.player.maxhp))
@@ -209,7 +215,7 @@ class swapButton:
 
 class profilePic:
     def __init__(self, rpg):
-        self.profilePic = image(rpg, 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png', rpg.player.profession)#pylint: disable = anomalous-backslash-in-string
+        self.profilePic = image(rpg, 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png', rpg.player.profession + " EXP: {}/{}".format(rpg.player.exp, rpg.player.exp_cap))#pylint: disable = anomalous-backslash-in-string
         self.profilePic.font.set_bold(True)
         self.profilePic.width = (rpg.settings.screen_width - 1600)
         self.profilePic.height = 210
@@ -232,120 +238,65 @@ class playerConsole:
         self.slot3Taken = 0
         self.slot4Taken = 0
         self.slot5Taken = 0
-        self.prevSlot = ""
-        self.prevSlotPart2 = ""
-        self.slot5 = Button(rpg,"")
+        self.slot5 = Button(rpg, "")
         self.slot5.consoleTextDefault(rpg, 0)
-        self.slot5innera = Button(rpg,"")
-        self.slot5innera.innerConsoleTextDefault(rpg, 0)
-        self.slot5innerb = Button(rpg,"")
-        self.slot5innerb.innerConsoleTextDefault(rpg, 62.5)
-        self.slot4 = Button(rpg,"")
+        self.slot4 = Button(rpg, "")
         self.slot4.consoleTextDefault(rpg, 125)
-        self.slot4innera = Button(rpg,"")
-        self.slot4innera.innerConsoleTextDefault(rpg, 125)
-        self.slot4innerb = Button(rpg, "")
-        self.slot4innerb.innerConsoleTextDefault(rpg, 187.5)
-        self.slot3 = Button(rpg,"")
+        self.slot3 = Button(rpg, "")
         self.slot3.consoleTextDefault(rpg, 250)
-        self.slot3innera = Button(rpg, "")
-        self.slot3innera.innerConsoleTextDefault(rpg, 250)
-        self.slot3innerb = Button(rpg, "")
-        self.slot3innerb.innerConsoleTextDefault(rpg, 312.5)
         self.slot2 = Button(rpg, "")
         self.slot2.consoleTextDefault(rpg, 375)
-        self.slot2innera = Button(rpg, "")
-        self.slot2innera.innerConsoleTextDefault(rpg, 375)
-        self.slot2innerb = Button(rpg, "")
-        self.slot2innerb.innerConsoleTextDefault(rpg, 437.5)  
         self.slot1 = Button(rpg, "")
         self.slot1.consoleTextDefault(rpg, 500)
-        self.slot1innera = Button(rpg, "")
-        self.slot1innera.innerConsoleTextDefault(rpg, 500)
-        self.slot1innerb = Button(rpg, "")
-        self.slot1innerb.innerConsoleTextDefault(rpg, 562.5)
 
     def drawConsole(self):
         self.slot1.draw()
-        self.slot1innera.draw()
-        self.slot1innerb.draw()
         self.slot2.draw()
-        self.slot2innera.draw()      
-        self.slot2innerb.draw()
         self.slot3.draw()
-        self.slot3innera.draw()
-        self.slot3innerb.draw()
         self.slot4.draw()
-        self.slot4innera.draw()
-        self.slot4innerb.draw()
         self.slot5.draw()
-        self.slot5innera.draw()
-        self.slot5innerb.draw() 
        
     def showNextText(self, nextText, nextTextPart2):
         if(self.newSlot == 1 and self.slot1Taken == 0):
-            self.slot1innera.msg = nextText
-            self.slot1innerb.msg = nextTextPart2
             self.slot1Taken = 1
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
         elif(self.newSlot == 1 and self.slot1Taken == 1 and self.slot2Taken == 0):
-            self.slot2innera.msg = self.slot1innera.msg
-            self.slot2innerb.msg = self.slot1innerb.msg
             self.slot2Taken = 1
-            self.slot1innera.msg = nextText
-            self.slot1innerb.msg = nextTextPart2
+            self.slot2.msg = self.slot1.msg
+            self.slot2.msg2 = self.slot1.msg2
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
         elif(self.newSlot == 1 and self.slot2Taken == 1 and self.slot3Taken == 0):
-            self.slot3innera.msg = self.slot2innera.msg
-            self.slot3innerb.msg = self.slot2innerb.msg
             self.slot3Taken = 1
-            self.slot2innera.msg = self.slot1innera.msg
-            self.slot2innerb.msg = self.slot1innerb.msg
-            self.slot1innera.msg = nextText
-            self.slot1innerb.msg = nextTextPart2
+            self.slot3.msg = self.slot2.msg
+            self.slot3.msg2 = self.slot2.msg2
+            self.slot2.msg2 = self.slot1.msg2
+            self.slot2.msg = self.slot1.msg
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
         elif(self.newSlot == 1 and self.slot3Taken == 1 and self.slot4Taken == 0):
-            self.slot4innera.msg = self.slot3innera.msg
-            self.slot4innerb.msg = self.slot3innerb.msg
             self.slot4Taken = 1
-            self.slot3innera.msg = self.slot2innera.msg
-            self.slot3innerb.msg = self.slot2innerb.msg
-            self.slot2innera.msg = self.slot1innera.msg
-            self.slot2innerb.msg = self.slot1innerb.msg
-            self.slot1innera.msg = nextText
-            self.slot1innerb.msg = nextTextPart2
-            self.slot4Taken = 1
-        elif(self.newSlot == 1 and self.slot4Taken == 1):
-            self.slot5innera.msg = self.slot4innera.msg
-            self.slot5innerb.msg = self.slot4innerb.msg
+            self.slot4.msg = self.slot3.msg
+            self.slot4.msg2 = self.slot3.msg2
+            self.slot3.msg = self.slot2.msg
+            self.slot3.msg2 = self.slot2.msg2
+            self.slot2.msg = self.slot1.msg
+            self.slot2.msg2 = self.slot1.msg2
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
+        elif(self.newSlot == 1 and self.slot4Taken == 1 and self.slot5Taken == 0):
             self.slot5Taken = 1
-            self.slot4innera.msg = self.slot3innera.msg
-            self.slot4innerb.msg = self.slot3innerb.msg
-            self.slot3innera.msg = self.slot2innera.msg
-            self.slot3innerb.msg = self.slot2innerb.msg
-            self.slot2innera.msg = self.slot1innera.msg
-            self.slot2innerb.msg = self.slot1innerb.msg
-            self.slot1innera.msg = nextText
-            self.slot1innerb.msg = nextTextPart2
-        elif(self.newSlot == 1 and self.slot5Taken == 1):
-            self.slot5innera.msg = self.slot4innera.msg
-            self.slot5innerb.msg = self.slot4innerb.msg
-            self.slot4innera.msg = self.slot3innera.msg
-            self.slot4innerb.msg = self.slot3innerb.msg
-            self.slot3innera.msg = self.slot2innera.msg
-            self.slot3innerb.msg = self.slot2innera.msg
-            self.slot2innera.msg = self.slot1innera.msg
-            self.slot2innerb.msg = self.slot1innerb.msg
-            self.slot1innera.msg = nextText
-
-    def updateConsole(self):
-        self.slot1innera.msg = self.slot1innera.msg
-        self.slot1innerb.msg = self.slot1innerb.msg
-        self.slot2innera.msg = self.slot2innera.msg
-        self.slot2innerb.msg = self.slot2innerb.msg
-        self.slot3innera.msg = self.slot3innera.msg
-        self.slot3innerb.msg = self.slot3innerb.msg
-        self.slot4innera.msg = self.slot4innera.msg
-        self.slot4innerb.msg = self.slot4innerb.msg
-        self.slot5innera.msg = self.slot5innera.msg
-        self.slot5innerb.msg = self.slot5innerb.msg
+            self.slot5.msg = self.slot4.msg
+            self.slot5.msg2 = self.slot4.msg2
+            self.slot4.msg = self.slot3.msg
+            self.slot4.msg2 = self.slot3.msg2
+            self.slot3.msg = self.slot2.msg
+            self.slot3.msg2 = self.slot2.msg2
+            self.slot2.msg = self.slot1.msg
+            self.slot2.msg2 = self.slot1.msg2
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
 
     def resetConsole(self):
         self.newSlot = 0
@@ -354,16 +305,16 @@ class playerConsole:
         self.slot3Taken = 0
         self.slot4Taken = 0
         self.slot5Taken = 0
-        self.slot1innera.msg = ""
-        self.slot1innerb.msg = ""
-        self.slot2innera.msg = ""
-        self.slot2innerb.msg = ""
-        self.slot3innera.msg = ""
-        self.slot3innerb.msg = ""
-        self.slot4innera.msg = ""
-        self.slot4innerb.msg = ""
-        self.slot5innera.msg = ""
-        self.slot5innerb.msg = ""
+        self.slot5.msg = ""
+        self.slot4.msg = ""
+        self.slot3.msg = ""
+        self.slot2.msg = ""
+        self.slot1.msg = ""
+        self.slot5.msg2 = ""
+        self.slot4.msg2 = ""
+        self.slot3.msg2 = ""
+        self.slot2.msg2 = ""
+        self.slot1.msg2 = ""
 
 class Inventory:
     def __init__(self, rpg):
