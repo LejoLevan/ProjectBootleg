@@ -54,6 +54,10 @@ class character:
         self.equipped_skills = []
         self.skills = []
 
+        #ally stats
+        self.equipped_allies = []
+        self.allies = []
+
         #misc stats
         self.total_inventory = 0
         self.weapon_inventory = ["a","f", "f", "f", "t"]
@@ -117,6 +121,10 @@ class character:
         self.equipped_skills = stats['equippedSkills']
         self.skills = stats['skills']
 
+        #ally stats
+        self.equipped_allies = stats['equippedAllies']
+        self.allies = stats['allies']
+
         #misc Stats
         self.gold = stats['gold']
         self.weapon_inventory = stats['weaponInventory']
@@ -129,7 +137,24 @@ class character:
         self.profession = Classes.updateClass(self)
         self.checkBag()
 
+    def appendInventory(self, inventory, item):
+        if self.bagCap == False:
+            if inventory == "Weapon Inventory" or "weapon inventory":
+                self.weapon_inventory.append(item)
+            elif inventory == "Armor Inventory" or "armor inventory":
+                self.armor_inventory.append(item)
+            elif inventory == "Buff Inventory" or "buff inventory":
+                self.buff_inventory.append(item)
+            elif inventory == "Misc Inventory" or "misc inventory":
+                self.misc_inventory.append(item)
+            elif inventory == "Quest Inventory" or "quest inventory":
+                self.quest_inventory.append(item)
+
+    def appendEquippedAlly(self, ally):
+        if len(self.equipped_allies) <= 3:
+            self.equipped_allies.append(ally)
+
     def checkBag(self):
-        self.total_inventory = len(self.weapon_inventory) + len(self.armor_inventory) + len(self.buff_inventory)
+        self.total_inventory = len(self.weapon_inventory) + len(self.armor_inventory) + len(self.buff_inventory) + len(self.misc_inventory)
         if self.total_inventory == 100:
             self.bagCap = True

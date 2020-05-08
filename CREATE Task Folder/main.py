@@ -107,7 +107,7 @@ class RPG:
             self.template.blitme()
             self.swapButton.draw()
             self.profilePic.draw()
-            self.choiceButtons.draw()
+            self.combatGUI.draw()
             self.statSheet.showStats()
             self.playerConsole.drawConsole()
             if self.swapButton.inventoryShow == True:

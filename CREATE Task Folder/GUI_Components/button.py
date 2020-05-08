@@ -23,7 +23,7 @@ class Button:
         self._prep_msg()
 
     def combatDefault(self, rpg, topDif, leftDif):
-        self.width, self.height = 205, 70
+        self.width, self.height = 205, 52.5
         self.font = pygame.font.SysFont('arial', 20)
         self.left = (rpg.settings.screen_width - 410) + leftDif
         self.top = (rpg.settings.screen_height - self.height) + topDif
@@ -46,7 +46,6 @@ class Button:
         self.left = 0 + leftDif
         self.clickable = False
 
-    
     def inventoryDefault(self, rpg, topDif, leftDif):
         self.width, self.height = 333.33, 60
         self.font = pygame.font.SysFont('arial', 15)

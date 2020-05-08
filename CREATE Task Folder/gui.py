@@ -215,23 +215,66 @@ class swapButton:
 
 class combatGUI:
     def __init__(self, rpg):
-        self.profilePic = image(rpg, rpg.player.icon, rpg.player.profession + " EXP: {}/{}".format(rpg.player.exp, rpg.player.exp_cap))#pylint: disable = anomalous-backslash-in-string
-        self.playerIcon.iconDefault(rpg, -280)
 
+        self.playerIcon = image(rpg, rpg.player.icon, rpg.player.name)#pylint: disable = anomalous-backslash-in-string
+        self.playerIcon.iconDefault(rpg, -315)
         self.playerSquare = square(rpg)
-        self.playerSquare.combatDefault(rpg, -280)
-
+        self.playerSquare.combatDefault(rpg, -315)
         self.playerAttack = Button(rpg, "Attack")
-        self.playerAttack.combatDefault(rpg, -350, 0)
-
+        self.playerAttack.combatDefault(rpg, -367.5, 0)
         self.playerDefend = Button(rpg, "Defend")
-        self.playerDefend.combatDefault(rpg, -350, 205)
-
+        self.playerDefend.combatDefault(rpg, -367.5, 205)
         self.playerRest = Button(rpg, "Rest")
-        self.playerRest.combatDefault(rpg, -280, 0)
-
+        self.playerRest.combatDefault(rpg, -315, 0)
         self.playerUse = Button(rpg, "Use Item")
-        self.playerUse.combatDefault(rpg, -280, 205)
+        self.playerUse.combatDefault(rpg, -315, 205)
+
+        self.equipped_allies = rpg.player.equipped_allies
+        
+        try:
+            if self.equipped_allies[0]:
+                #self.ally1Icon = image(rpg, rpg.player.equipped_allies[0].icon, rpg.player.equipped_allies[0].name)
+                #self.ally1Icon.iconDefault(rpg, -210)
+                self.ally1Square = square(rpg)
+                self.ally1Square.combatDefault(rpg, -210)
+                self.ally1Attack = Button(rpg, "Attack")
+                self.ally1Attack.combatDefault(rpg, -262.5, 0)
+                self.ally1Defend = Button(rpg, "Defend")
+                self.ally1Defend.combatDefault(rpg, -262.5, 205)
+                self.ally1Rest = Button(rpg, "Rest")
+                self.ally1Rest.combatDefault(rpg, -210, 0)
+                self.ally1Use = Button(rpg, "Use Item")
+                self.ally1Use.combatDefault(rpg, -210, 205)
+                
+            if self.equipped_allies[1]:
+                #self.ally2Icon = image(rpg, rpg.player.equipped_allies[1].icon, rpg.player.equipped_allies[1].name)
+                #self.ally2Icon.iconDefault(rpg, -105)
+                self.ally2Square = square(rpg)
+                self.ally2Square.combatDefault(rpg, -105)
+                self.ally2Attack = Button(rpg, "Attack")
+                self.ally2Attack.combatDefault(rpg, -157.5, 0)
+                self.ally2Defend = Button(rpg, "Defend")
+                self.ally2Defend.combatDefault(rpg, -157.5, 205)
+                self.ally2Rest = Button(rpg, "Rest")
+                self.ally2Rest.combatDefault(rpg, -105, 0)
+                self.ally2Use = Button(rpg, "Use Item")
+                self.ally2Use.combatDefault(rpg, -105, 205)
+            
+            if self.equipped_allies[2]:
+                #self.ally3Icon = image(rpg, rpg.player.equipped_allies[2].icon, rpg.player.equipped_allies[2].name)
+                #self.ally3Icon.iconDefault(rpg, 0)
+                self.ally3Square = square(rpg)
+                self.ally3Square.combatDefault(rpg, 0)
+                self.ally3Attack = Button(rpg, "Attack")
+                self.ally3Attack.combatDefault(rpg, -52.5, 0)
+                self.ally3Defend = Button(rpg, "Defend")
+                self.ally3Defend.combatDefault(rpg, -52.5, 205)
+                self.ally3Rest = Button(rpg, "Rest")
+                self.ally3Rest.combatDefault(rpg, 0, 0)
+                self.ally3Use = Button(rpg, "Use Item")
+                self.ally3Use.combatDefault(rpg, 0, 205)
+        except:
+            pass
     
     def draw(self):
         self.playerIcon.draw()
@@ -241,6 +284,31 @@ class combatGUI:
         self.playerUse.draw()
         self.playerSquare.draw()
         
+        try:    
+            if self.equipped_allies[0]: 
+                self.ally1Attack.draw()
+                self.ally1Defend.draw()
+                self.ally1Rest.draw()
+                self.ally1Use.draw()
+                self.ally1Square.draw()
+
+            if self.equipped_allies[1]:
+                self.ally2Attack.draw()
+                self.ally2Defend.draw()
+                self.ally2Rest.draw()
+                self.ally2Use.draw()          
+                self.ally2Square.draw()
+
+            if self.equipped_allies[2]:
+                self.ally3Attack.draw()
+                self.ally3Defend.draw()
+                self.ally3Rest.draw()
+                self.ally3Use.draw()          
+                self.ally3Square.draw()
+        except:
+            pass
+        
+
 class profilePic:
     def __init__(self, rpg):
         self.profilePic = image(rpg, 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png', rpg.player.profession + " EXP: {}/{}".format(rpg.player.exp, rpg.player.exp_cap))#pylint: disable = anomalous-backslash-in-string

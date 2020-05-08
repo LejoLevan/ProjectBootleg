@@ -14,7 +14,7 @@ class square:
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
     
     def combatDefault(self, rpg, topDif):
-        self.width, self.height = 550, 140
+        self.width, self.height = 550, 105
         self.top = (rpg.settings.screen_height - self.height) + topDif
         self.left = rpg.settings.screen_width - self.width
 

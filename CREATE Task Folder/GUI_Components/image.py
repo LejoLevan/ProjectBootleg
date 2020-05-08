@@ -29,7 +29,7 @@ class image:
         self.clickable = True
 
     def iconDefault(self, rpg, topDif):
-        self.width, self.height = 140, 140
+        self.width, self.height = 140, 105
         self.top = (rpg.settings.screen_height - self.height) + topDif
         self.left = rpg.settings.screen_width - 550
         self.font.set_bold(True)

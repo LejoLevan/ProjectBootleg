@@ -49,6 +49,8 @@ def playerSave(player):
 
         'equippedSkills': player.equipped_skills,
         'skills': player.skills,
+        'equippedAllies': player.equipped_allies,
+        'allies': player.allies,
 
         'weaponInventory': player.weapon_inventory,
         'armorInventory': player.armor_inventory,
