@@ -5,10 +5,10 @@ class blacksmith:
         self.forge = [] #items he can craft
 
     def craft(self, item, cost):
-        if "" in rpg.player.misc_inventory:
-            craftSword = True
+        if "copper" in rpg.player.misc_inventory:
+            craftCopperSword = True
         else: 
-            craftSword = False
+            craftCopperSword = False
 
         if "" in rpg.player.misc_inventory:
             craft = True
@@ -17,7 +17,7 @@ class blacksmith:
 
 
         if item in self.forge:
-            if craftSword == True:
+            if craftCopperSword == True:
                 rpg.player.misc_inventory.append(item)
                 rpg.player.gold -= cost
 
