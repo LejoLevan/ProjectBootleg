@@ -2,19 +2,33 @@
 """
 
 from Leveling_System.Classes import Classes
+from items import weapon, buffs
+
 
 class character:
     def __init__(self):
+        CopperSword = weapon()
+        CopperSword.copperSword()
+
+        HealthPotion = buffs()
+        HealthPotion.healthPotion()
+
+        self.bareFists = weapon()
+        self.bareFists.bareFists()
+
         #Info stats
         self.name = "Jack"
         self.icon = 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png'
+
+        #equip stats
+        self.weapon_equipped = CopperSword
         
         #class stats
         self.profession = "Commoner"
 
         #hp stats
         self.maxhp = 100
-        self.hp = 100
+        self.hp = 75
 
         #attack stats
         self.physical_attack = 5
@@ -60,10 +74,20 @@ class character:
 
         #misc stats
         self.total_inventory = 0
-        self.weapon_inventory = ["a","f", "f", "f", "t"]
+
+        self.weapons = [CopperSword.name, CopperSword.name]
+        self.weapon_inventory = [CopperSword, CopperSword]
+
+        self.armors = []
         self.armor_inventory = []
-        self.buff_inventory = []
+
+        self.buffs = [HealthPotion.name, HealthPotion.name]
+        self.buff_inventory = [HealthPotion, HealthPotion]
+
+        self.miscs = []
         self.misc_inventory = []
+
+        self.quest_items = []
         self.quest_inventory = []
         self.gold = 10
 
@@ -127,10 +151,20 @@ class character:
 
         #misc Stats
         self.gold = stats['gold']
+
+        self.weapons = stats['weapons']
         self.weapon_inventory = stats['weaponInventory']
+
+        self.armors = stats['armors']
         self.armor_inventory = stats['armorInventory']
+
+        self.buffs = stats['buffs']
         self.buff_inventory = stats['buffInventory']
+
+        self.miscs = ['miscs']
         self.misc_inventory = stats['miscInventory']
+
+        self.quest_items = stats['questItems']
         self.quest_inventory = stats['questInventory']
 
     def update(self):
@@ -139,16 +173,94 @@ class character:
 
     def appendInventory(self, inventory, item):
         if self.bagCap == False:
-            if inventory == "Weapon Inventory" or "weapon inventory":
+            if inventory == "Weapon Inventory":
                 self.weapon_inventory.append(item)
-            elif inventory == "Armor Inventory" or "armor inventory":
+                self.weapons.append(item.name)
+                self.weapon_inventory.sort()
+                self.weapons.sort()
+            elif inventory == "Armor Inventory":
                 self.armor_inventory.append(item)
-            elif inventory == "Buff Inventory" or "buff inventory":
+                self.armors.append(item.name)
+                self.armor_inventory.sort()
+                self.armors.sort()
+            elif inventory == "Buff Inventory":
                 self.buff_inventory.append(item)
-            elif inventory == "Misc Inventory" or "misc inventory":
+                self.buffs.append(item.name)
+                self.buff_inventory.sort()
+                self.buffs.sort()
+            elif inventory == "Misc Inventory":
                 self.misc_inventory.append(item)
-            elif inventory == "Quest Inventory" or "quest inventory":
+                self.miscs.append(item.name)
+                self.misc_inventory.sort()
+                self.miscs.sort()
+            elif inventory == "Quest Inventory":
                 self.quest_inventory.append(item)
+                self.quest_items.append(item.name)
+                self.quest_inventory.sort()
+                self.quest_items.sort()
+    
+    def deleteInventory(self, inventory, item):
+        print(inventory)
+        if inventory == "Weapon Inventory":
+            print("major f")
+            self.weapon_inventory.remove(item)
+            self.weapons.remove(item.name)
+            self.weapon_inventory.sort()
+            self.weapons.sort()
+            if self.weapon_equipped == item and item not in self.weapon_inventory:
+                self.weapon_equipped = self.bareFists
+        if inventory == "Armor Inventory":
+            self.armor_inventory.remove(item)
+            self.armors.remove(item.name)
+            self.armor_inventory.sort()
+            self.armors.sort()
+        if inventory == "Buff Inventory":
+            self.buff_inventory.remove(item)
+            self.buffs.remove(item.name)
+            self.buff_inventory.sort()
+            self.buffs.sort()
+        if inventory == "Misc Inventory":
+            self.misc_inventory.remove(item)
+            self.miscs.remove(item.name)
+            self.misc_inventory.sort()
+            self.miscs.sort()
+        if inventory == "Quest Inventory":
+            self.quest_inventory.remove(item)
+            self.quest_items.remove(item.name)
+            self.quest_inventory.sort()
+            self.quest_items.sort()
+
+    def useBuff(self, item):
+        self.maxhp = self.maxhp + item.maxhp
+        self.physical_attack = self.physical_attack + item.physical_attack
+        self.magic_attack = self.magic_attack + item.magic_attack
+        self.speed = self.speed + item.speed
+        self.stamina_max = self.stamina_max + item.stamina_max 
+        self.mana_max = self.mana_max + item.mana_max
+        self.physical_defense = self.physical_defense + item.physical_defense
+        self.magic_defense = self.magic_defense + item.magic_defense
+        self.fire_resist = self.fire_resist + item.fire_resist
+        self.poison_resist = self.poison_resist + item.poison_resist
+        self.water_resist = self.water_resist + item.water_resist
+        self.earth_resist = self.earth_resist + item.earth_resist
+        self.wind_resist = self.wind_resist + item.wind_resist
+        self.accuracy = self.accuracy + item.accuracy
+        self.evasion = self.evasion + item.evasion
+        self.crit_chance = self.crit_chance + item.crit_chance
+        self.luck = self.luck + item.crit_chance  
+        if self.hp + item.hp < self.maxhp:
+            self.hp = self.hp + item.hp
+        else: 
+            self.hp = self.maxhp
+        if self.mana + item.mana < self.mana_max:
+            self.mana = self.mana + item.mana
+        else:
+            self.mana = self.mana_max
+        if self.stamina + item.stamina < self.stamina_max:
+            self.stamina = self.stamina + item.stamina
+        else:
+            self.stamina = self.stamina_max
+        self.deleteInventory("Buff Inventory", item)
 
     def appendEquippedAlly(self, ally):
         if len(self.equipped_allies) <= 3:

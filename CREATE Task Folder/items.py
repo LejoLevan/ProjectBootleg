@@ -1,61 +1,86 @@
+import random
+
 class weapon:
-    def __init__(self, stats):
-        self.name = stats['name']
-        self.physical_attack = stats['physical_attack']
-        self.magic_attack = stats["magic_attack"]
-        self.speed = stats["speed"]
+    def __init__(self):
+        self.name = ""
+        self.icon = ""
+        self.physical_attack = 0
+        self.magic_attack = 0
+        self.speed = 0
+        self.description = ""
+        self.max_durability = 0
+        self.durability = 0
+        self.destructible = True
 
+    def copperSword(self):
+        self.name = "Copper Sword"
+        self.icon = "CREATE Task Folder\Image Assets\Weapon_Images\CopperSword.png"
+        self.physical_attack = random.choice([2, 3])
+        self.max_durability = 10
+        self.durability = 10
+        self.info = "CREATE Task Folder\Image Assets\Weapon_Images\Copper Sword Info.png"
+    
+    def bareFists(self):
+        self.name = "Bare Fists"
+        self.physical_attack = random.choice([0, 1])
+        self.destructible = False
 
+class misc:
+    def __init__(self):
+        self.name = ""
+        self.description = ""
 class armor:
-    def __init__(self, stats):
-        self.name = stats["name"]
-        self.physical_defense = stats["physical_defense"]
-        self.magic_defense = stats["magic_defense"]
+    def __init__(self):
+        self.name = ""
+        self.physical_defense = 0
+        self.magic_defense = 0
 
-        self.fire_resist = stats["fire_resist"]
-        self.poison_resist = stats["poison_resist"]
-        self.water_resist = stats["water_resist"]
-        self.earth_resist = stats["earth_resist"]
-        self.wind_resist = stats["wind_resist"]
+        self.fire_resist = 0
+        self.poison_resist = 0
+        self.water_resist = 0
+        self.earth_resist = 0
+        self.wind_resist = 0
         
-        self.speed = stats["speed"]
-        self.stamina_max = stats["stamina_max"]
-        self.mana_max = stats["mana_max"]
-
-    def equip():
-        
-
+        self.speed = 0
+        self.stamina_max = 0
+        self.mana_max = 0
 class buffs:
-    def __init__(self, stats):
+    def __init__(self):
         #hp stats
-        self.maxhp = stats["maxhp"]
-        self.hp = stats["hp"]
+        self.maxhp = 0
+        self.hp = 0
 
         #attack stats
-        self.physical_attack = stats["physical_attack"]
-        self.magic_attack = stats["magic_attack"]
-        self.speed = stats["speed"]
+        self.physical_attack = 0
+        self.magic_attack = 0
+        self.speed = 0
 
         #consume stats
-        self.stamina = stats["stamina"]
-        self.stamina_max = stats["stamina_max"]
-        self.mana = stats["mana"]
-        self.mana_max = stats["mana_max"]
+        self.stamina = 0
+        self.stamina_max = 0
+        self.mana = 0
+        self.mana_max = 0
 
         #defense stats
-        self.physical_defense = stats["physical_defense"]
-        self.magic_defense = stats["magic_defense"]
+        self.physical_defense = 0
+        self.magic_defense = 0
 
         #resistance stats
-        self.fire_resist = stats["fire_resist"]
-        self.poison_resist = stats["poison_resist"]
-        self.water_resist = stats["water_resist"]
-        self.earth_resist = stats["earth_resist"]
-        self.wind_resist = stats["wind_resist"]
+        self.fire_resist = 0
+        self.poison_resist = 0
+        self.water_resist = 0
+        self.earth_resist = 0
+        self.wind_resist = 0
 
         #chance stats
-        self.accuracy = stats["accuracy"]
-        self.evasion = stats["evasion"]
-        self.crit_chance = stats["crit_chance"]
-        self.crit_mult = stats["crit_mult"]
-        self.luck = stats["luck"]
+        self.accuracy = 0
+        self.evasion = 0
+        self.crit_chance = 0
+        self.crit_mult = 0
+        self.luck = 0
+    
+    def healthPotion (self):
+        self.name = "Health Potion"
+        self.icon = "CREATE Task Folder\Image Assets\Item_Images\HealthPotion.png"
+        self.info = "CREATE Task Folder\Image Assets\Item_Images\Health Potion Info.png"
+        self.hp = 25
