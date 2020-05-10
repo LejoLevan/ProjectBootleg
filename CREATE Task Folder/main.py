@@ -78,12 +78,16 @@ class RPG:
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
+            print("hi")
+            self.playerConsole.newSlot = 1
+            self.playerConsole.showNextText("", "No")
+            self.playerConsole.newSlot = 0
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(self, mous_pos)
-            self.choiceButtons.mouseEvents(self, mous_pos)
         
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:

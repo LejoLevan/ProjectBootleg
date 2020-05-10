@@ -76,7 +76,8 @@ class choiceButtons():
     def mouseEvents(self, rpg, mous_pos):
         if self.choice1.rect.collidepoint(mous_pos):
             rpg.playerConsole.newSlot = 1
-            rpg.playerConsole.showNextText("Hi", "No")
+            rpg.playerConsole.showNextText("", "No")
+            print("hi")
             rpg.playerConsole.newSlot = 0
 
 class statSheet():
