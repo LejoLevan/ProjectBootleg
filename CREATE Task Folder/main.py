@@ -78,10 +78,10 @@ class RPG:
             sys.exit()
         if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
             self.swapButton.swap()
-        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos):
             print("hi")
             self.playerConsole.newSlot = 1
-            self.playerConsole.showNextText("", "No")
+            self.playerConsole.showNextText("None", "")
             self.playerConsole.newSlot = 0
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)

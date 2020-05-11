@@ -394,6 +394,18 @@ class playerConsole:
             self.slot2.msg2 = self.slot1.msg2
             self.slot1.msg = nextText
             self.slot1.msg2 = nextTextPart2
+        elif(self.newSlot == 1 and self.slot5Taken == 1):
+            self.slot5Taken = 1
+            self.slot5.msg = self.slot4.msg
+            self.slot5.msg2 = self.slot4.msg2
+            self.slot4.msg = self.slot3.msg
+            self.slot4.msg2 = self.slot3.msg2
+            self.slot3.msg = self.slot2.msg
+            self.slot3.msg2 = self.slot2.msg2
+            self.slot2.msg = self.slot1.msg
+            self.slot2.msg2 = self.slot1.msg2
+            self.slot1.msg = nextText
+            self.slot1.msg2 = nextTextPart2
 
     def resetConsole(self):
         self.newSlot = 0
@@ -402,11 +414,11 @@ class playerConsole:
         self.slot3Taken = 0
         self.slot4Taken = 0
         self.slot5Taken = 0
-        self.slot5.msg = ""
-        self.slot4.msg = ""
-        self.slot3.msg = ""
-        self.slot2.msg = ""
-        self.slot1.msg = ""
+        self.slot5.msg = "None"
+        self.slot4.msg = "None"
+        self.slot3.msg = "None"
+        self.slot2.msg = "None"
+        self.slot1.msg = "None"
         self.slot5.msg2 = ""
         self.slot4.msg2 = ""
         self.slot3.msg2 = ""
