@@ -52,10 +52,15 @@ def playerSave(player):
         'equippedAllies': player.equipped_allies,
         'allies': player.allies,
 
+        'weapons': player.weapons,
         'weaponInventory': player.weapon_inventory,
+        'armors': player.armors,
         'armorInventory': player.armor_inventory,
+        'buffs': player.buffs,
         'buffInventory': player.buff_inventory,
+        'miscs': player.miscs,
         'miscInventory': player.misc_inventory,
+        'questItems': player.quest_items,
         'questInventory': player.quest_inventory,
         'gold': player.gold
     }

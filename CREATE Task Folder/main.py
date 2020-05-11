@@ -4,7 +4,8 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole, Inventory, combatGUI
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole, combatGUI
+from inventory import Inventory
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
@@ -39,8 +40,12 @@ class RPG:
         self.combatGUI = combatGUI(self)
 
     def loadData(self):
-        self.player.loadStats(playerLoad())
-        self.quests.loadQuest(questLoad())
+        try:
+            self.player.loadStats(playerLoad())
+            self.quests.loadQuest(questLoad())
+            self.game_active = True
+        except Exception:
+            pass
     
     def saveData(self):
         playerSave(self.player)
@@ -69,25 +74,21 @@ class RPG:
 
     def _check_mouseclick(self, mous_pos):
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
-            self.game_active = True
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-        if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
-            sys.exit()
-        if self.swapButton.swapButton.rect.collidepoint(mous_pos) and self.game_active:
-            self.swapButton.swap()
-        if self.choiceButtons.choice1.rect.collidepoint(mous_pos):
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
             print("hi")
             self.playerConsole.newSlot = 1
             self.playerConsole.showNextText("None", "")
             self.playerConsole.newSlot = 0
+        if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
+            sys.exit()
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)
-            self.Inventory.mouseEvents(mous_pos)
+            self.Inventory.mouseEvents(self, mous_pos)
         
-            
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.template.moving_right = True
@@ -111,13 +112,13 @@ class RPG:
             self.template.blitme()
             self.swapButton.draw()
             self.profilePic.draw()
+            #self.combatGUI.draw()
             self.choiceButtons.draw()
-            self.statSheet.showStats()
             self.playerConsole.drawConsole()
             if self.swapButton.inventoryShow == True:
                 self.Inventory.draw(self)
             else:
-                self.statSheet.showStats()
+                self.statSheet.showStats(self)
             self.borders.draw()
         pygame.display.flip()
 

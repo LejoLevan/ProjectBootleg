@@ -2,8 +2,7 @@ import pygame
 class image:
     def __init__(self, rpg, path, msg):
         self.screen = rpg.screen
-
-        self.image = pygame.image.load(path)
+        self.image = pygame.image.load(path).convert_alpha()
 
         self.width, self.height = self.image.get_width(), self.image.get_height()
         self.left, self.top = 0, 0
@@ -15,6 +14,7 @@ class image:
         self.border = False
         self.clickable = False
         self.textMidBottom = False
+        self.transparent = False
 
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
@@ -34,6 +34,12 @@ class image:
         self.left = rpg.settings.screen_width - 550
         self.font.set_bold(True)
         self.textMidBottom = True
+    
+    def inventoryDefault(self, rpg, topDif, leftDif):
+        self.width, self.height = 100, 60
+        self.top = rpg.settings.screen_height + topDif
+        self.left = 0 + leftDif
+        self.transparent = True
 
     def _prep_msg(self):
         """Turn msg into a rendered image and center text on the button."""
@@ -58,9 +64,10 @@ class image:
                 self.button_color = (200, 200, 200)
             else:
                 self.button_color = (0, 0, 0)
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        self.image = pygame.transform.scale(self.image, (self.width, self.height)).convert_alpha()
         self.prep()
-        self.screen.fill(self.button_color, self.rect)
+        if self.transparent == False:
+            self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.image, self.rect)
         if self.msg != "":
             self.screen.blit(self.msg_image, self.msg_image_rect)
