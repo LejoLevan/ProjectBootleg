@@ -11,6 +11,7 @@ from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
+from locations import place
 
 
 class RPG:
@@ -38,6 +39,7 @@ class RPG:
         self.Inventory = Inventory(self)
         self.playerConsole.newSlot = 0
         self.combatGUI = combatGUI(self)
+        self.place = place(self)
 
     def loadData(self):
         try:
@@ -73,21 +75,22 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
+            self.playerConsole.newSlot = 1
+            self.playerConsole.showNextText("Hello,", "This is some code")
+            self.playerConsole.newSlot = 0
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
-            print("hi")
-            self.playerConsole.newSlot = 1
-            self.playerConsole.showNextText("None", "")
-            self.playerConsole.newSlot = 0
+            self.place.startVillage()
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(self, mous_pos)
+        
         
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:

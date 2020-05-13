@@ -83,9 +83,9 @@ class Button:
             self.msg2_image = self.font.render(self.msg2, True, self.text_color)
             self.msg2_image_rect = self.msg2_image.get_rect()
             self.msg_image_rect.top = self.rect.top + 27
-            self.msg_image_rect.left = self.rect.left + self.width/2
+            self.msg_image_rect.left = self.rect.left
             self.msg2_image_rect.bottom = self.rect.bottom - 27
-            self.msg2_image_rect.left = self.rect.left + self.width/2
+            self.msg2_image_rect.left = self.rect.left
         else:
             self.msg_image_rect.center = self.rect.center
 
