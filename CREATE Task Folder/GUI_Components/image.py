@@ -20,6 +20,12 @@ class image:
         self.rect = pygame.Rect(self.left, self.top, self.width, self.height)
         self._prep_msg()
 
+    def consoleDefault(self, rpg, topDif):
+        self.width, self.height = 170, 132
+        self.left = rpg.settings.screen_width - 870
+        self.top = 0 + topDif
+        self.border = True
+
     def tagDefault(self, rpg, leftDif):
         self.width, self.height = 180, 60
         self.font = pygame.font.SysFont('arial', 15)

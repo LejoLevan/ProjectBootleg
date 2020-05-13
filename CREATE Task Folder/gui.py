@@ -355,90 +355,62 @@ class playerConsole:
         self.slot3Taken = 0
         self.slot4Taken = 0
         self.slot5Taken = 0
+        self.icon5 = image(rpg, "CREATE Task Folder\Image Assets\Weapon_Images\CopperShiv.png", "")
+        self.icon5.consoleDefault(rpg, 0)
         self.slot5 = Button(rpg, "")
         self.slot5.consoleTextDefault(rpg, 0)
+        self.icon4 = image(rpg, "CREATE Task Folder\Image Assets\Weapon_Images\CopperSword.png", "")
+        self.icon4.consoleDefault(rpg, 132)
         self.slot4 = Button(rpg, "")
-        self.slot4.consoleTextDefault(rpg, 125)
+        self.slot4.consoleTextDefault(rpg, 132)
+        self.icon3 = image(rpg, "CREATE Task Folder\Image Assets\Capture (1).png", "")
+        self.icon3.consoleDefault(rpg, 264)
         self.slot3 = Button(rpg, "")
-        self.slot3.consoleTextDefault(rpg, 250)
+        self.slot3.consoleTextDefault(rpg, 264)
+        self.icon2 = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\ArmorTag.png", "")
+        self.icon2.consoleDefault(rpg, 396)
         self.slot2 = Button(rpg, "")
-        self.slot2.consoleTextDefault(rpg, 375)
+        self.slot2.consoleTextDefault(rpg, 396)
+        self.icon1 = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\BuffTag.png", "")
+        self.icon1.consoleDefault(rpg, 528)
         self.slot1 = Button(rpg, "")
-        self.slot1.consoleTextDefault(rpg, 500)
+        self.slot1.consoleTextDefault(rpg, 528)
 
     def drawConsole(self):
         self.slot1.draw()
+        self.icon1.draw()
         self.slot2.draw()
+        self.icon2.draw()
         self.slot3.draw()
+        self.icon3.draw()
         self.slot4.draw()
+        self.icon4.draw()
         self.slot5.draw()
+        self.icon5.draw()
        
-    def showNextText(self, nextText, nextTextPart2):
-        if(self.newSlot == 1 and self.slot1Taken == 0):
-            self.slot1Taken = 1
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
-        elif(self.newSlot == 1 and self.slot1Taken == 1 and self.slot2Taken == 0):
-            self.slot2Taken = 1
-            self.slot2.msg = self.slot1.msg
-            self.slot2.msg2 = self.slot1.msg2
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
-        elif(self.newSlot == 1 and self.slot2Taken == 1 and self.slot3Taken == 0):
-            self.slot3Taken = 1
-            self.slot3.msg = self.slot2.msg
-            self.slot3.msg2 = self.slot2.msg2
-            self.slot2.msg2 = self.slot1.msg2
-            self.slot2.msg = self.slot1.msg
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
-        elif(self.newSlot == 1 and self.slot3Taken == 1 and self.slot4Taken == 0):
-            self.slot4Taken = 1
-            self.slot4.msg = self.slot3.msg
-            self.slot4.msg2 = self.slot3.msg2
-            self.slot3.msg = self.slot2.msg
-            self.slot3.msg2 = self.slot2.msg2
-            self.slot2.msg = self.slot1.msg
-            self.slot2.msg2 = self.slot1.msg2
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
-        elif(self.newSlot == 1 and self.slot4Taken == 1 and self.slot5Taken == 0):
-            self.slot5Taken = 1
-            self.slot5.msg = self.slot4.msg
-            self.slot5.msg2 = self.slot4.msg2
-            self.slot4.msg = self.slot3.msg
-            self.slot4.msg2 = self.slot3.msg2
-            self.slot3.msg = self.slot2.msg
-            self.slot3.msg2 = self.slot2.msg2
-            self.slot2.msg = self.slot1.msg
-            self.slot2.msg2 = self.slot1.msg2
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
-        elif(self.newSlot == 1 and self.slot5Taken == 1):
-            self.slot5Taken = 1
-            self.slot5.msg = self.slot4.msg
-            self.slot5.msg2 = self.slot4.msg2
-            self.slot4.msg = self.slot3.msg
-            self.slot4.msg2 = self.slot3.msg2
-            self.slot3.msg = self.slot2.msg
-            self.slot3.msg2 = self.slot2.msg2
-            self.slot2.msg = self.slot1.msg
-            self.slot2.msg2 = self.slot1.msg2
-            self.slot1.msg = nextText
-            self.slot1.msg2 = nextTextPart2
+    def showNextText(self, nextText, nextTextPart2, nextIcon):
+        self.slot5.msg = self.slot4.msg
+        self.slot5.msg2 = self.slot4.msg2
+        self.icon5.image = self.icon4.image
+        self.slot4.msg = self.slot3.msg
+        self.slot4.msg2 = self.slot3.msg2
+        self.icon4.image = self.icon3.image
+        self.slot3.msg = self.slot2.msg
+        self.slot3.msg2 = self.slot2.msg2
+        self.icon3.image = self.icon2.image
+        self.slot2.msg = self.slot1.msg
+        self.slot2.msg2 = self.slot1.msg2
+        self.icon2.image = self.icon1.image
+        self.slot1.msg = nextText
+        self.slot1.msg2 = nextTextPart2
+        self.icon1.image = nextIcon
 
     def resetConsole(self):
-        self.newSlot = 0
-        self.slot1Taken = 0
-        self.slot2Taken = 0
-        self.slot3Taken = 0
-        self.slot4Taken = 0
-        self.slot5Taken = 0
-        self.slot5.msg = "None"
-        self.slot4.msg = "None"
-        self.slot3.msg = "None"
-        self.slot2.msg = "None"
-        self.slot1.msg = "None"
+        self.slot5.msg = ""
+        self.slot4.msg = ""
+        self.slot3.msg = ""
+        self.slot2.msg = ""
+        self.slot1.msg = ""
         self.slot5.msg2 = ""
         self.slot4.msg2 = ""
         self.slot3.msg2 = ""

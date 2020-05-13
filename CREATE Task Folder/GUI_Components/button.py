@@ -60,7 +60,7 @@ class Button:
         self.clickable = False
     
     def consoleTextDefault(self, rpg, topDif):
-        self.width, self.height = 550, 125
+        self.width, self.height = 700, 132
         self.font = pygame.font.SysFont('arial', 20)
         self.left = rpg.settings.screen_width - self.width
         self.top = 0 + topDif

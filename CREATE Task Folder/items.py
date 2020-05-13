@@ -7,7 +7,7 @@ class weapon:
         self.physical_attack = 0
         self.magic_attack = 0
         self.speed = 0
-        self.description = ""
+        self.info = ""
         self.max_durability = 0
         self.durability = 0
         self.destructible = True
@@ -44,6 +44,14 @@ class armor:
         self.speed = 0
         self.stamina_max = 0
         self.mana_max = 0
+
+        self.destructible = True
+    
+    def naked(self):
+        self.name = "Naked"
+        self.speed = 2
+        self.destructible = False
+
 class buffs:
     def __init__(self):
         #hp stats
