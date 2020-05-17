@@ -191,11 +191,13 @@ class borders:
         self.textSquare = square(rpg)
         self.textSquare.height = self.textSquare.height - 420
         self.textSquare.width = 1050
-   
+        
     def draw(self):
         self.borderSquare.draw()
         self.mapSquare.draw()
         self.textSquare.draw()
+
+
 
 class swapButton:
     def __init__(self, rpg):
