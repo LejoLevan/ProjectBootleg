@@ -6,6 +6,7 @@ class monster:
         self.name = ""
         self.image = ""
         self.icon = ""
+        self.profession = ""
         
         self.hp = 0
         self.maxhp = 0

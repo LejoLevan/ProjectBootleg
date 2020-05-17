@@ -125,6 +125,11 @@ class combatGUI:
         self.enemyManaBar.clickable = False
 
         self.enemyStats = False
+        self.attack = False
+        self.defend = False
+        self.rest = False
+        self.use = False
+        self.battleOver = False
 
     def mouseEvents(self, mous_pos):
         if self.enemyImage.rect.collidepoint(mous_pos):
@@ -132,6 +137,15 @@ class combatGUI:
                 self.enemyStats = True
             else:
                 self.enemyStats = False
+        if self.playerAttack.rect.collidepoint(mous_pos):
+            self.attack = True
+        if self.playerDefend.rect.collidepoint(mous_pos):
+            self.defend = True
+        if self.playerRest.rect.collidepoint(mous_pos):
+            self.rest = True
+        if self.playerUse.rect.collidepoint(mous_pos):
+            self.use = True
+
     
     def update(self):
         self.enemyMana.msg = "Mana: {}/{}".format(self.enemy.mana, self.enemy.mana_max)

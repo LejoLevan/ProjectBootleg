@@ -13,6 +13,7 @@ from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
 from combat import battle
+#from locations import place
 class RPG:
     """Overall class to mangage game assets and behavior."""
     def __init__(self):
@@ -38,8 +39,8 @@ class RPG:
         self.profilePic = profilePic(self)
         self.playerConsole = playerConsole(self)
         self.Inventory = Inventory(self)
-        self.playerConsole.newSlot = 0
         self.combatGUI = combatGUI(self)
+        
 
     def loadData(self):
         try:
@@ -75,20 +76,15 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
-        if self.choiceButtons.choice6.rect.collidepoint(mous_pos) and self.game_active:
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
+            battle(self, "Village")
             self.playerConsole.showNextText("None", "", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
-            battle(self, "Village")
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
-            continueCheck = True
-            while(continueCheck == True):
-                if self.borders.textSquare.rect.collidepoint(mous_pos) and self.game_active:
-                    self.playerConsole.showNextText("Narco: What is your name?","", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
-                    continueCheck = False
+            #self.place.starterVillage()
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:

@@ -207,7 +207,6 @@ class character:
                 self.quest_items.sort()
     
     def deleteInventory(self, inventory, item):
-        print(inventory)
         if inventory == "Weapon Inventory":
             self.weapon_inventory.remove(item)
             self.weapons.remove(item.name)

@@ -4,12 +4,8 @@ class vendor:
         self.occupation = occupation
         self.inventory = []
 
-    def sell(self, item):
+  #  def sell(self, item):
         
-
-
-
-
 
 
 def alchemist1():

@@ -66,6 +66,9 @@ class Button:
         self.left = rpg.settings.screen_width - self.width
         self.top = 0 + topDif
         self.clickable = False
+        if(self.msg2 == ""):
+            self.msg_image_rect.left = self.rect.left
+            self.msg_image_rect.left = self.rect.top + 27
 
     def prep(self):
         self.prepRect()
