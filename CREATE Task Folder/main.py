@@ -4,7 +4,8 @@ import sys
 
 import pygame
 
-from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole, combatGUI
+from gui import mainMenu, choiceButtons, statSheet, borders, swapButton, profilePic, playerConsole
+from combatGUI import combatGUI
 from inventory import Inventory
 from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
@@ -77,18 +78,17 @@ class RPG:
         if self.choiceButtons.choice6.rect.collidepoint(mous_pos) and self.game_active:
             self.playerConsole.showNextText("None", "", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
-            self.battle = battle(self, "Village")
-            self.battle_active = True
+            battle(self, "Village")
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\GUI_images\WeaponTag.png").convert_alpha())
+            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\Citizen_images\Arco.png").convert_alpha())
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
             if self.battle_active == True:
-                self.battle.mouseEvents(mous_pos)
+                self.combatGUI.mouseEvents(mous_pos)
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(self, mous_pos)
         
@@ -122,7 +122,6 @@ class RPG:
                 self.Inventory.draw(self)
             if self.battle_active == True:
                 self.combatGUI.draw()
-                self.battle.draw()
             else:
                 self.choiceButtons.draw()
             self.borders.draw()
