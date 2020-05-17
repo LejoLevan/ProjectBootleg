@@ -2,11 +2,14 @@
 """
 
 from Leveling_System.Classes import Classes
-from items import weapon, buffs
+from items import weapon, buffs, armor
 
 
 class character:
     def __init__(self):
+        CopperArmor = armor()
+        CopperArmor.copperArmor()
+
         CopperSword = weapon()
         CopperSword.copperSword()
 
@@ -16,19 +19,23 @@ class character:
         self.bareFists = weapon()
         self.bareFists.bareFists()
 
+        self.naked = armor()
+        self.naked.naked()
+
         #Info stats
         self.name = "Jack"
         self.icon = 'CREATE Task Folder\Image Assets\Player_Images\Commoner.png'
 
         #equip stats
-        self.weapon_equipped = CopperSword
+        self.weapon = CopperSword
+        self.armor = CopperArmor
         
         #class stats
         self.profession = "Commoner"
 
         #hp stats
         self.maxhp = 100
-        self.hp = 75
+        self.hp = 100
 
         #attack stats
         self.physical_attack = 5
@@ -78,8 +85,8 @@ class character:
         self.weapons = [CopperSword.name, CopperSword.name]
         self.weapon_inventory = [CopperSword, CopperSword]
 
-        self.armors = []
-        self.armor_inventory = []
+        self.armors = [CopperArmor.name]
+        self.armor_inventory = [CopperArmor]
 
         self.buffs = [HealthPotion.name, HealthPotion.name]
         self.buff_inventory = [HealthPotion, HealthPotion]
@@ -202,18 +209,19 @@ class character:
     def deleteInventory(self, inventory, item):
         print(inventory)
         if inventory == "Weapon Inventory":
-            print("major f")
             self.weapon_inventory.remove(item)
             self.weapons.remove(item.name)
             self.weapon_inventory.sort()
             self.weapons.sort()
-            if self.weapon_equipped == item and item not in self.weapon_inventory:
-                self.weapon_equipped = self.bareFists
+            if self.weapon == item and item not in self.weapon_inventory:
+                self.weapon = self.bareFists
         if inventory == "Armor Inventory":
             self.armor_inventory.remove(item)
             self.armors.remove(item.name)
             self.armor_inventory.sort()
             self.armors.sort()
+            if self.armor == item and item not in self.weapon_inventory:
+                self.armor = self.naked
         if inventory == "Buff Inventory":
             self.buff_inventory.remove(item)
             self.buffs.remove(item.name)

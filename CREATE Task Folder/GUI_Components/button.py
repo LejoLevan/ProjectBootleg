@@ -9,6 +9,7 @@ class Button:
         #Set the dimensions and properties of the button
         self.border = True
         self.clickable = True
+        self.transparent = False
         self.width, self.height = 200, 50
         self.button_color = (0, 0, 0)
         self.text_color = (255, 255, 255)
@@ -97,7 +98,8 @@ class Button:
             else:
                 self.button_color = (0, 0, 0)
         self.prep()
-        self.screen.fill(self.button_color, self.rect)
+        if self.transparent == False:
+            self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
         if (self.msg2 != ""):
             self.screen.blit(self.msg2_image, self.msg2_image_rect)

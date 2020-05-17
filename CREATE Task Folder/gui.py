@@ -418,3 +418,4 @@ class playerConsole:
         self.slot3.msg2 = ""
         self.slot2.msg2 = ""
         self.slot1.msg2 = ""
+

@@ -11,9 +11,7 @@ from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-
-
-
+from combat import battle
 class RPG:
     """Overall class to mangage game assets and behavior."""
     def __init__(self):
@@ -26,6 +24,8 @@ class RPG:
 
         self.template = Template(self)
         self.game_active = False
+        self.battle_active = False
+
         self.player = character()
         self.quests = QuestChecker()
         
@@ -50,7 +50,7 @@ class RPG:
     
     def saveData(self):
         playerSave(self.player)
-        questSave (self.quests)
+        questSave(self.quests)
         
     def run_game(self):
         """Start the main loop for the game"""
@@ -75,8 +75,10 @@ class RPG:
 
     def _check_mouseclick(self, mous_pos):
         if self.choiceButtons.choice6.rect.collidepoint(mous_pos) and self.game_active:
-            self.playerConsole.showNextText("None", "", pygame.image.load("CREATE Task Folder\Image Assets\GUI_images\WeaponTag.png").convert_alpha())
+            self.playerConsole.showNextText("None", "", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
+            self.battle = battle(self, "Village")
+            self.battle_active = True
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
@@ -90,9 +92,10 @@ class RPG:
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
+            if self.battle_active == True:
+                self.battle.mouseEvents(mous_pos)
             self.swapButton.mouseEvents(mous_pos)
             self.Inventory.mouseEvents(self, mous_pos)
-        
         
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -117,13 +120,16 @@ class RPG:
             self.template.blitme()
             self.swapButton.draw()
             self.profilePic.draw()
-            #self.combatGUI.draw()
             self.choiceButtons.draw()
             self.playerConsole.drawConsole()
+            self.statSheet.showStats(self)
             if self.swapButton.inventoryShow == True:
                 self.Inventory.draw(self)
+            if self.battle_active == True:
+                self.combatGUI.draw()
+                self.battle.draw()
             else:
-                self.statSheet.showStats(self)
+                self.choiceButtons.draw()
             self.borders.draw()
         pygame.display.flip()
 
