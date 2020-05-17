@@ -4,6 +4,7 @@ class weapon:
     def __init__(self):
         self.name = ""
         self.icon = ""
+        self.tag = "Weapon"
         self.physical_attack = 0
         self.magic_attack = 0
         self.speed = 0
@@ -28,10 +29,21 @@ class weapon:
 class misc:
     def __init__(self):
         self.name = ""
-        self.description = ""
+        self.tag = "Misc"
+        self.icon = ""
+        self.info = ""
+    
+    def copper(self):
+        self.name = "Copper"
+        self.icon = "CREATE Task Folder\Image Assets\Material_Images\CopperOre.png"
+        self.info = "CREATE Task Folder\Image Assets\Material_Images\Copper Ore Info.png"
 class armor:
     def __init__(self):
         self.name = ""
+        self.tag = "Armor"
+        self.info = ""
+        self.icon = ""
+
         self.physical_defense = 0
         self.magic_defense = 0
 
@@ -51,9 +63,23 @@ class armor:
         self.name = "Naked"
         self.speed = 2
         self.destructible = False
+    
+    def copperArmor(self):
+        self.name = "Copper Armor"
+        self.info = "CREATE Task Folder\Image Assets\Armor_Images\Copper Armor Info.png"
+        self.icon = "CREATE Task Folder\Image Assets\Armor_Images\CopperArmor.png"
+        self.physical_defense = 2
+        self.magic_defense = 1
+        self.fire_resist = 1
+        self.destructible = False
 
 class buffs:
     def __init__(self):
+        self.name = ""
+        self.icon = ""
+        self.info = ""
+        self.tag = "Buff"
+
         #hp stats
         self.maxhp = 0
         self.hp = 0
