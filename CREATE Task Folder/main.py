@@ -81,7 +81,12 @@ class RPG:
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\GUI_images\WeaponTag.png").convert_alpha())
+            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+            continueCheck = True
+            while(continueCheck == True):
+                if self.borders.textSquare.rect.collidepoint(mous_pos) and self.game_active:
+                    self.playerConsole.showNextText("Narco: What is your name?","", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+                    continueCheck = False
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
