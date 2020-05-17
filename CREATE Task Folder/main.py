@@ -11,7 +11,7 @@ from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
-from locations import place
+
 
 
 class RPG:
@@ -39,7 +39,6 @@ class RPG:
         self.Inventory = Inventory(self)
         self.playerConsole.newSlot = 0
         self.combatGUI = combatGUI(self)
-        self.place = place(self)
 
     def loadData(self):
         try:
@@ -82,7 +81,7 @@ class RPG:
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            self.place.startVillage()
+            self.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\GUI_images\WeaponTag.png").convert_alpha())
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
