@@ -100,6 +100,7 @@ class Button:
         self.prep()
         if self.transparent == False:
             self.screen.fill(self.button_color, self.rect)
-        self.screen.blit(self.msg_image, self.msg_image_rect)
+        if self.msg != "":
+            self.screen.blit(self.msg_image, self.msg_image_rect)
         if (self.msg2 != ""):
             self.screen.blit(self.msg2_image, self.msg2_image_rect)
