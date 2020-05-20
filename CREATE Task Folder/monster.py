@@ -39,6 +39,7 @@ class monster:
         self.luck = 0
 
         self.gold = 0
+        self.intelligence = "Low"
 
         self.tierIIILoot = []
         self.tierIILoot = []
@@ -112,6 +113,7 @@ class monster:
             self.crit_chance = 8
             self.crit_mult = 1.5
             self.luck = 5
+            self.intelligence = "Medium"
 
             self.gold = 2
             self.tierIILoot = [CopperSword]

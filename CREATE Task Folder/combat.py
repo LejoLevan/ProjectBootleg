@@ -61,12 +61,13 @@ def playerTurn(rpg, enemy):
         rest(rpg, enemy, "Player")
         rpg.combatGUI.rest = False
     elif rpg.combatGUI.use == True:
-        pass 
+        use(rpg, enemy) 
         rpg.combatGUI.use = False
 
 def checkHealths(rpg, enemy):
     if rpg.player.hp <= 0:
-        battleOver = True
+        rpg.combatGUI.battleOver = True
+        rpg.playerConsole.showNextText(rpg, "How Unfortunate, You've Died", "Try again next time :(", pygame.image.load())
         try:
             rpg.player.exp -= (rpg.player.exp*.2)
         except Exception:
@@ -82,12 +83,51 @@ def checkHealths(rpg, enemy):
             else:
                 item = rpg.player.armor
             rpg.player.deleteInventory(inventory, item)
+        rpg.player.hp = rpg.player.maxhp * .1
     if enemy.hp <= 0:
         rpg.combatGUI.battleOver = True
         loot(rpg, enemy)
 
 def monsterTurn(rpg, enemy):
-    pass
+    if enemy.intelligence == "Low":
+        if random.randrange(0, 100) <= 85:
+            attack(rpg, enemy, "Monster")
+        else:
+            if random.randrange(0, 100) <= 85:
+                defend(rpg, enemy, "Monster")
+            else:
+                rest(rpg, enemy, "Monster")
+    if enemy.intelligence == "Medium":
+        if enemy.hp <= enemy.hp *.25:
+            if enemy.hp <= enemy.maxhp * .1:
+                rest(rpg, enemy, "Monster")
+            else:
+                defend(rpg, enemy, "Monster")
+        else:
+            attack(rpg, enemy, "Monster")
+    if enemy.intelligence == "High":
+        if enemy.hp > rpg.player.hp:
+            if random.randrange(0, 100) <= 25:
+                defend(rpg, enemy, "Monster")
+                attack(rpg, enemy, "Monster")
+        else:
+            if enemy.hp <= enemy.hp * .5:
+                if enemy.hp <= enemy.maxhp * .3:
+                    rest(rpg, enemy, "Monster")
+                elif random.randrange(0, 100) <= 10:
+                    rest(rpg, enemy, "Monster")
+                    defend(rpg, enemy, "Monster")
+                else:
+                    defend(rpg, enemy, "Monster")
+                if enemy.hp <= enemy.maxhp * .1:
+                    rpg.combatGUI.battleOver = True
+            else:
+                attack(rpg, enemy, "Monster")
+
+def use(rpg, enemy):
+
+
+
 
 def loot(rpg, enemy):
     if(random.randrange(0,100) <= rpg.player.luck):
@@ -149,11 +189,11 @@ def attack(rpg, enemy, who):
                 rpg.player.hp -= ((rpg.player.maxhp * random.randrange(5, 10))/100)
 
     if who == "Monster":
-        playerPhysicalDefense = rpg.player.physical_defense
-        playerMagicDefense = rpg.player.magic_defense
+        monsterPhysicalDefense = rpg.player.physical_defense
+        monsterMagicDefense = rpg.player.magic_defense
         if rpg.combatGUI.increaseDefend == True:
-            playerPhysicalDefense += rpg.player.physical_defense * 0.1
-            playerMagicDefense += rpg.player.magic_defense * 0.1
+            monsterPhysicalDefense += enemy.physical_defense * 0.1
+            monsterMagicDefense += enemy.magic_defense * 0.1
             
         if enemy.profession == "Mage":
             if enemy.mana >= enemy.magic_attack:

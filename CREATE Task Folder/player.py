@@ -181,61 +181,91 @@ class character:
     def appendInventory(self, inventory, item):
         if self.bagCap == False:
             if inventory == "Weapon Inventory":
-                self.weapon_inventory.append(item)
-                self.weapons.append(item.name)
-                #self.weapon_inventory.sort()
-                self.weapons.sort()
+                try:
+                    self.weapon_inventory.append(item)
+                    self.weapons.append(item.name)
+                    self.weapon_inventory.sort()
+                    self.weapons.sort()
+                except:
+                    pass
             elif inventory == "Armor Inventory":
-                self.armor_inventory.append(item)
-                self.armors.append(item.name)
-                #self.armor_inventory.sort()
-                self.armors.sort()
+                try:
+                    self.armor_inventory.append(item)
+                    self.armors.append(item.name)
+                    self.armor_inventory.sort()
+                    self.armors.sort()
+                except:
+                    pass
             elif inventory == "Buff Inventory":
-                self.buff_inventory.append(item)
-                self.buffs.append(item.name)
-                #self.buff_inventory.sort()
-                self.buffs.sort()
+                try:
+                    self.buff_inventory.append(item)
+                    self.buffs.append(item.name)
+                    self.buff_inventory.sort()
+                    self.buffs.sort()
+                except:
+                    pass
             elif inventory == "Misc Inventory":
-                self.misc_inventory.append(item)
-                self.miscs.append(item.name)
-                #self.misc_inventory.sort()
-                self.miscs.sort()
+                try:
+                    self.misc_inventory.append(item)
+                    self.miscs.append(item.name)
+                    self.misc_inventory.sort()
+                    self.miscs.sort()
+                except:
+                    pass
             elif inventory == "Quest Inventory":
-                self.quest_inventory.append(item)
-                self.quest_items.append(item.name)
-                #self.quest_inventory.sort()
-                self.quest_items.sort()
+                try:
+                    self.quest_inventory.append(item)
+                    self.quest_items.append(item.name)
+                    self.quest_inventory.sort()
+                    self.quest_items.sort()
+                except:
+                    pass
     
     def deleteInventory(self, inventory, item):
         if inventory == "Weapon Inventory":
-            self.weapon_inventory.remove(item)
-            self.weapons.remove(item.name)
-            self.weapon_inventory.sort()
-            self.weapons.sort()
-            if self.weapon == item and item not in self.weapon_inventory:
-                self.weapon = self.bareFists
+            try:
+                self.weapon_inventory.remove(item)
+                self.weapons.remove(item.name)
+                self.weapon_inventory.sort()
+                self.weapons.sort()
+                if self.weapon.name == item.name and item.name not in self.weapons:
+                    self.weapon = self.bareFists
+            except:
+                pass
         if inventory == "Armor Inventory":
-            self.armor_inventory.remove(item)
-            self.armors.remove(item.name)
-            self.armor_inventory.sort()
-            self.armors.sort()
-            if self.armor == item and item not in self.weapon_inventory:
-                self.armor = self.naked
+            try:
+                self.armor_inventory.remove(item)
+                self.armors.remove(item.name)
+                self.armor_inventory.sort()
+                self.armors.sort()
+                if self.armor.name == item.name and item.name not in self.armors:
+                    self.armor = self.naked
+            except:
+                pass
         if inventory == "Buff Inventory":
-            self.buff_inventory.remove(item)
-            self.buffs.remove(item.name)
-            self.buff_inventory.sort()
-            self.buffs.sort()
+            try:
+                self.buff_inventory.remove(item)
+                self.buffs.remove(item.name)
+                self.buff_inventory.sort()
+                self.buffs.sort()
+            except:
+                pass
         if inventory == "Misc Inventory":
-            self.misc_inventory.remove(item)
-            self.miscs.remove(item.name)
-            self.misc_inventory.sort()
-            self.miscs.sort()
+            try:
+                self.misc_inventory.remove(item)
+                self.miscs.remove(item.name)
+                self.misc_inventory.sort()
+                self.miscs.sort()
+            except:
+                pass
         if inventory == "Quest Inventory":
-            self.quest_inventory.remove(item)
-            self.quest_items.remove(item.name)
-            self.quest_inventory.sort()
-            self.quest_items.sort()
+            try:
+                self.quest_inventory.remove(item)
+                self.quest_items.remove(item.name)
+                self.quest_inventory.sort()
+                self.quest_items.sort()
+            except:
+                pass
 
     def useBuff(self, item):
         self.maxhp = self.maxhp + item.maxhp

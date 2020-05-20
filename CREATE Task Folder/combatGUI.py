@@ -124,7 +124,7 @@ class combatGUI:
         self.enemyManaBar.text_color = (0, 0, 200)
         self.enemyManaBar.clickable = False
 
-        self.enemyStats = False
+        self.enemyStats = True
         self.attack = False
         self.defend = False
         self.rest = False
