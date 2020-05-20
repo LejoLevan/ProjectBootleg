@@ -17,8 +17,8 @@ class weapon:
         self.name = "Copper Sword"
         self.icon = "CREATE Task Folder\Image Assets\Weapon_Images\CopperSword.png"
         self.physical_attack = random.choice([2, 3])
-        self.max_durability = 10
-        self.durability = 10
+        self.max_durability = 25
+        self.durability = 25
         self.info = "CREATE Task Folder\Image Assets\Weapon_Images\Copper Sword Info.png"
     
     def bareFists(self):
@@ -56,6 +56,8 @@ class armor:
         self.speed = 0
         self.stamina_max = 0
         self.mana_max = 0
+        self.max_durability = 0
+        self.durability = 0
 
         self.destructible = True
     
@@ -72,6 +74,8 @@ class armor:
         self.magic_defense = 1
         self.fire_resist = 1
         self.destructible = False
+        self.max_durability = 25
+        self.durability = 25
 
 class buffs:
     def __init__(self):

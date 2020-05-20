@@ -152,21 +152,36 @@ class combatGUI:
     def update(self):
         self.enemyMana.msg = "Mana: {}/{}".format(self.enemy.mana, self.enemy.mana_max)
         try:
-            self.enemyManaBar.width = 275 * ((self.enemy.mana/self.enemy.mana_max))
+            if self.enemy.mana > 0:
+                self.enemyManaBar.width = 275 * ((self.enemy.mana/self.enemy.mana_max))
+            else:
+                self.enemyMana.msg = "Mana: 0/{}".format(self.enemy.mana_max)
+                self.enemyManaBar.width = 0
+                self.enemyMana.transparent = False
         except Exception:
             self.enemyManaBar.width = 0
             self.enemyMana.transparent = False
 
         self.enemyStamina.msg = "Stamina: {}/{}".format(self.enemy.stamina, self.enemy.stamina_max)
         try:
-            self.enemyStaminaBar.width = 275 * ((self.enemy.stamina/self.enemy.stamina_max))
+            if self.enemy.stamina > 0:
+                self.enemyStaminaBar.width = 275 * ((self.enemy.stamina/self.enemy.stamina_max))
+            else:
+                self.enemyStamina.msg = "Stamina: 0/{}".format(self.enemy.stamina_max)
+                self.enemyStaminaBar.width = 0
+                self.enemyStamina.transparent = False
         except Exception:
             self.enemyStaminaBar.width = 0
             self.enemyStamina.transparent = False
 
         self.enemyHP.msg = "HP: {}/{}".format(self.enemy.hp, self.enemy.maxhp)
         try:
-            self.enemyHPbar.width = 275 * ((self.enemy.hp/self.enemy.maxhp))
+            if self.enemy.hp > 0:
+                self.enemyHPbar.width = 275 * ((self.enemy.hp/self.enemy.maxhp))
+            else:
+                self.enemyHP.msg = "HP: 0/{}".format(self.enemy.maxhp)
+                self.enemyHPbar.width = 0
+                self.enemyHP.transparent = False
         except Exception:
             self.enemyHPbar.width = 0
             self.enemyHP.transparent = False
