@@ -48,4 +48,8 @@ class place():
             rpg.player.profession = "Warrior"
         if(rpg.choiceButtons.choice1.rect.collidepoint(rpg.mous_pos)):
             rpg.player.profession = "Archer"
+<<<<<<< HEAD
         rpg.playerConsole.showNextText(rpg, "Narco: That's great! I need your help though...", " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+=======
+        rpg.playerConsole.showNextText(rpg, "Narco: That's great! I need your help though...", " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+>>>>>>> 258b9437b75166b958cd4d444fc87bc53549f8d1
