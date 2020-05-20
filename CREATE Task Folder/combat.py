@@ -236,3 +236,14 @@ def rest(rpg, enemy, who):
         else:
             enemy.stamina += Reststamina
        
+def use(rpg):
+    try:
+        if(rpg.player.hp < rpg.player.maxhp * .75 and "Health Potion" in rpg.player.buffs):
+            rpg.player.useBuff("Health Potion")
+            message = "You now have",rpg.player.hp,"health left!"
+            rpg.playerConsole.showNextText(rpg, "You used a health potion!", message, )
+        if(rpg.player.stam < rpg.player.stam * .60 and "Stamina Potion" in rpg.player.buffs):
+            rpg.player.useBuff("Stamina Potion")
+        if(rpg.player.mana < rpg.player.mana * .65 and "Mana Potion" in rpg.rpg.player.buffs):
+            rpg.player.useBuff("Mana Potion")
+        
