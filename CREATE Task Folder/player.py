@@ -65,7 +65,7 @@ class character:
         self.exp_cap = 15
 
         #chance stats
-        self.accuracy = 100
+        self.accuracy = 75
         self.evasion = 15
         self.crit_chance = 10
         self.crit_mult = 1.5
