@@ -322,3 +322,26 @@ def rest(rpg, enemy, who):
             rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "{} Stamina".format(enemy.stamina + Reststamina), pygame.image.load(enemy.icon))
             enemy.stamina += Reststamina
        
+def use(rpg):
+    try:
+        if(rpg.player.hp < rpg.player.maxhp * .75 and "Health Potion" in rpg.player.buffs):
+            rpg.player.useBuff("Health Potion")
+            battleMessage = "You now have",rpg.player.hp,"health left!"
+            rpg.playerConsole.showNextText(rpg, "You used a health potion!", battleMessage, pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+        if(rpg.player.stamina < rpg.player.stamina_max * .60 and "Stamina Potion" in rpg.player.buffs):
+            rpg.player.useBuff("Stamina Potion")
+            battleMessage = "You now have", rpg.player.stamina, "stamina left!"
+            rpg.playerConsole.showNextText(rpg, "You used a Stamina Potion!", battleMessage, pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+        if(rpg.player.mana < rpg.player.mana_max * .65 and "Mana Potion" in rpg.rpg.player.buffs):
+            rpg.player.useBuff("Mana Potion")
+            battleMessage = "You now have", rpg.player.mana, "mana left!"
+            rpg.playerConsole.showNextText(rpg, "You used a mana potion!", battleMessage, pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+        elif(rpg.player.hp > rpg.player.maxhp * .75 and rpg.player.stamina > rpg.player.stamina_max * .60 and rpg.player.mana > rpg.player.mana_max * .65):
+            rpg.playerConsole.showNextText(rpg, "You do not need to use a potion right now!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+        elif("Health Potion" not in rpg.player.buffs or "Stamina Potion" not in rpg.player.buffs or "Mana Potion" not in rpg.player.buffs):
+            if(rpg.player.hp < rpg.player.maxhp * .75 and "Health Potion" not in rpg.player.buffs):
+                rpg.playerConsole.showNextText(rpg, "You do not have a health potion!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+            if(rpg.player.stamina < rpg.player.stamina_max * .60 and "Stamina Potion" not in rpg.player.buffs):
+                rpg.playerConsole.showNextText(rpg, "You do not have a stamina potion!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+            if(rpg.player.mana < rpg.player.mana_max * .65 and "Mana Potion" not in rpg.player.buffs):
+                rpg.playerConsole.showNextText(rpg, "You do not have a mana potion!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))

@@ -13,7 +13,7 @@ from player import character
 from settings import Settings
 from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
 from combat import battle
-#from locations import place
+from locations import place
 class RPG:
     """Overall class to mangage game assets and behavior."""
     def __init__(self):
@@ -40,7 +40,7 @@ class RPG:
         self.playerConsole = playerConsole(self)
         self.Inventory = Inventory(self)
         self.combatGUI = combatGUI(self)
-        #self.place = place("")
+        self.place = place(self)
         
 
     def loadData(self):
@@ -87,7 +87,7 @@ class RPG:
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            #self.place.starterVillage(self)
+            self.place.starterVillage(self)
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
