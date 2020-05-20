@@ -80,6 +80,7 @@ class monster:
             self.evasion = 5
             self.crit_chance = 2.5
             self.crit_mult = 1.25
+            self.luck = 10
 
             self.gold = 5
             self.tierIILoot = [CopperOre, CopperOre]
@@ -110,6 +111,7 @@ class monster:
             self.evasion = 12
             self.crit_chance = 8
             self.crit_mult = 1.5
+            self.luck = 5
 
             self.gold = 2
             self.tierIILoot = [CopperSword]

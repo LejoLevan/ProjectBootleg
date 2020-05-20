@@ -77,7 +77,6 @@ class choiceButtons():
         if self.choice1.rect.collidepoint(mous_pos):
             rpg.playerConsole.newSlot = 1
             rpg.playerConsole.showNextText("", "No")
-            print("hi")
             rpg.playerConsole.newSlot = 0
 
 class statSheet():
@@ -446,6 +445,7 @@ class profilePic:
 
 class playerConsole:
     def __init__(self, rpg):
+        self.clicked = False
         self.newSlot = 0
         self.slot1Taken = 0
         self.slot2Taken = 0
@@ -485,7 +485,7 @@ class playerConsole:
         self.slot5.draw()
         self.icon5.draw()
        
-    def showNextText(self, nextText, nextTextPart2, nextIcon):
+    def showNextText(self, rpg, nextText, nextTextPart2, nextIcon):
         self.slot5.msg = self.slot4.msg
         self.slot5.msg2 = self.slot4.msg2
         self.icon5.image = self.icon4.image
@@ -502,6 +502,18 @@ class playerConsole:
         self.slot1.msg2 = nextTextPart2
         self.icon1.image = nextIcon
 
+        while self.clicked == False:
+            self.mouseEvents(rpg)
+            rpg._update_screen()
+        self.clicked = False
+
+    def mouseEvents(self, rpg):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mous_pos = pygame.mouse.get_pos()
+                if rpg.borders.mapSquare.rect.collidepoint(mous_pos):
+                    self.clicked = True
+
     def resetConsole(self):
         self.slot5.msg = ""
         self.slot4.msg = ""
@@ -513,4 +525,3 @@ class playerConsole:
         self.slot3.msg2 = ""
         self.slot2.msg2 = ""
         self.slot1.msg2 = ""
-

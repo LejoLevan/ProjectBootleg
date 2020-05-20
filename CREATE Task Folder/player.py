@@ -69,7 +69,7 @@ class character:
         self.evasion = 15
         self.crit_chance = 10
         self.crit_mult = 1.5
-        self.luck = 10
+        self.luck = 100
         
         #skills stats
         self.equipped_skills = []
@@ -183,27 +183,27 @@ class character:
             if inventory == "Weapon Inventory":
                 self.weapon_inventory.append(item)
                 self.weapons.append(item.name)
-                self.weapon_inventory.sort()
+                #self.weapon_inventory.sort()
                 self.weapons.sort()
             elif inventory == "Armor Inventory":
                 self.armor_inventory.append(item)
                 self.armors.append(item.name)
-                self.armor_inventory.sort()
+                #self.armor_inventory.sort()
                 self.armors.sort()
             elif inventory == "Buff Inventory":
                 self.buff_inventory.append(item)
                 self.buffs.append(item.name)
-                self.buff_inventory.sort()
+                #self.buff_inventory.sort()
                 self.buffs.sort()
             elif inventory == "Misc Inventory":
                 self.misc_inventory.append(item)
                 self.miscs.append(item.name)
-                self.misc_inventory.sort()
+                #self.misc_inventory.sort()
                 self.miscs.sort()
             elif inventory == "Quest Inventory":
                 self.quest_inventory.append(item)
                 self.quest_items.append(item.name)
-                self.quest_inventory.sort()
+                #self.quest_inventory.sort()
                 self.quest_items.sort()
     
     def deleteInventory(self, inventory, item):

@@ -130,6 +130,8 @@ class combatGUI:
         self.rest = False
         self.use = False
         self.battleOver = False
+        self.increaseDefend = False
+        
 
     def mouseEvents(self, mous_pos):
         if self.enemyImage.rect.collidepoint(mous_pos):

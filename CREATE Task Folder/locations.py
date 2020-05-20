@@ -2,7 +2,7 @@ import pygame
 
 
 class place():
-    def __init__(self, placeName, rpg):
+    def __init__(self, placeName):
         self.name = placeName
         self.checkConstraint = True
         self.monsterList = []
@@ -23,42 +23,33 @@ class place():
             print("You still haven't", self.constraint)
 
     def starterVillage(self, rpg):
-        while(1 == 1):
-            mous_pos = pygame.mouse.get_pos()
         rpg.playerConsole.showNextText("???: Hello! Welcome to the town of Hogsmeade.", "It's a small village but we get by.", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
-        continueCheck = True
-        while(continueCheck == True):
+        if rpg.borders.textSquare.rect.collidepoint(mous_pos):
+            rpg.playerConsole.showNextText("Narco: What is your name?"," ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+            rpg.player.name = input("Enter your name: ")
+            message = "Hello,",rpg.player.name,"!"
+            rpg.playerConsole.showNextText(message, " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
             if rpg.borders.textSquare.rect.collidepoint(mous_pos):
-                rpg.playerConsole.showNextText("Narco: What is your name?"," ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
                 continueCheck = False
-                player.name = input("Enter your name: ")
-                message = "Hello,",player.name,"!"
-                rpg.playerConsole.showNextText(message, " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
-            continueCheck = True
-            while(continueCheck == True):
-                if rpg.borders.textSquare.rect.collidepoint(mous_pos):
-                    continueCheck = False
-                    rpg.playerConsole.showNextText("Narco: What class are you?", " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
-                    rpg.choice6.msg = "Thief"
-                    rpg.choice5.msg = "Commoner"
-                    rpg.choice4.msg = "Squire"
-                    rpg.choice3.msg = "Apprentice"
-                    rpg.choice2.msg = "Warrior"
-                    rpg.choice1.msg = "Archer"
-                    if(rpg.choiceButtons.choice6.rect.collidepoint(mous_pos)):
-                        player.profession = "Thief"
+                rpg.playerConsole.showNextText("Narco: What class are you?", " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
+                rpg.choice6.msg = "Thief"
+                rpg.choice5.msg = "Commoner"
+                rpg.choice4.msg = "Squire"
+                rpg.choice3.msg = "Apprentice"
+                rpg.choice2.msg = "Warrior"
+                rpg.choice1.msg = "Archer"
+                if(rpg.choiceButtons.choice6.rect.collidepoint(mous_pos)):
+                    rpg.player.profession = "Thief"
                     if(rpg.choiceButtons.choice5.rect.collidepoint(mous_pos)):
-                        player.profession = "Commoner"
+                        rpg.player.profession = "Commoner"
                     if(rpg.choiceButtons.choice4.rect.collidepoint(mous_pos)):
-                        player.profession = "Squire"
+                        rpg.player.profession = "Squire"
                     if(rpg.choiceButtons.choice3.rect.collidepoint(mous_pos)):
-                        player.profession = "Apprentice"
+                        rpg.player.profession = "Apprentice"
                     if(rpg.choiceButtons.choice2.rect.collidepoint(mous_pos)):
-                        player.profession = "Warrior"
+                        rpg.player.profession = "Warrior"
                     if(rpg.choiceButtons.choice1.rect.collidepoint(mous_pos)):
-                        player.profession = "Archer"
-                    while(continueCheck == True):
-                        continueCheck = False
+                        rpg.player.profession = "Archer"
                         if(rpg.borders.textSquare.rect.collidepoint(mous_pos)):
                             rpg.playerConsole.showNextText("Narco: That's great! I need your help though...", " ", pygame.image.load("CREATE Task Folder\Image Assets\Images_Npc\mayor.png").convert_alpha())
                             

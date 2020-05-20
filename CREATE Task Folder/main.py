@@ -40,6 +40,7 @@ class RPG:
         self.playerConsole = playerConsole(self)
         self.Inventory = Inventory(self)
         self.combatGUI = combatGUI(self)
+        #self.place = place("")
         
 
     def loadData(self):
@@ -76,21 +77,24 @@ class RPG:
                 self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
-        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active:
+        if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active and self.playerConsole.clicked == False and self.battle_active == False:
             battle(self, "Village")
-            self.playerConsole.showNextText("None", "", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
+            #self.playerConsole.showNextText(self, "None", "", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
+        if self.choiceButtons.choice6.rect.collidepoint(mous_pos) and self.game_active and self.playerConsole.clicked == False and self.battle_active == False:
+            self.playerConsole.showNextText(self, "Hi", "There", pygame.image.load("CREATE Task Folder\Image Assets\Enemy_images\Goblin Miner.png").convert_alpha())
         if self.mainMenu.loadButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.loadData()
         if self.mainMenu.newGameButton.rect.collidepoint(mous_pos) and not self.game_active:
             self.game_active = True
             self.playerConsole.resetConsole()
-            #self.place.starterVillage()
+            #self.place.starterVillage(self)
         if self.mainMenu.quitButton.rect.collidepoint(mous_pos) and not self.game_active:
             sys.exit()
         if self.game_active:
             if self.battle_active == True:
                 self.combatGUI.mouseEvents(mous_pos)
             self.swapButton.mouseEvents(mous_pos)
+            #self.playerConsole.mouseEvents(mous_pos, self)
             self.Inventory.mouseEvents(self, mous_pos)
         
     def _check_keydown_events(self, event):
@@ -116,7 +120,7 @@ class RPG:
             self.template.blitme()
             self.swapButton.draw()
             self.profilePic.draw()
-            self.choiceButtons.draw()
+            #self.choiceButtons.draw()
             self.playerConsole.drawConsole()
             self.statSheet.showStats(self)
             if self.swapButton.inventoryShow == True:

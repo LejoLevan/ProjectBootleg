@@ -292,20 +292,21 @@ class Inventory:
 
     def info(self, number):
         self.infoShow = True
-        if self.list == self.weapon_inventory or self.armor_inventory:
+        if self.list == self.weapon_inventory or self.list == self.armor_inventory:
             self.notificationImage.image = pygame.image.load(self.get(number, "Info"))
             self.equipButton.msg = "Equip"
         elif self.list == self.buff_inventory:
-            self.notificationImage.image = pygame.image.load(self.get(number, "Info"))
             self.equipButton.msg = "Use"
-        elif self.list == self.misc_inventory and self.quest_inventory:
             self.notificationImage.image = pygame.image.load(self.get(number, "Info"))
+        elif self.list == self.misc_inventory or self.list == self.quest_inventory:
             self.equipButton.msg = ""
+            self.notificationImage.image = pygame.image.load(self.get(number, "Info"))
 
     def update(self, rpg):
         self.msgList = []
         self.iconList = []
         self.infoList = []
+        self.gold.msg = ("Gold: {}".format(rpg.player.gold))
         self.box1.msg = self.get(self.set + 1, "Msg")
         self.icon1.image = pygame.image.load(self.get(self.set + 1, "Icon")).convert_alpha()
         self.box2.msg = self.get(self.set + 2, "Msg")
