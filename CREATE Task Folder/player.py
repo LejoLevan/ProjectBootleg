@@ -69,7 +69,7 @@ class character:
         self.evasion = 15
         self.crit_chance = 10
         self.crit_mult = 1.5
-        self.luck = 100
+        self.luck = 00
         
         #skills stats
         self.equipped_skills = []
