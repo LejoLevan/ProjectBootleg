@@ -18,8 +18,8 @@ class combatGUI:
         self.playerDefend.combatDefault(rpg, -367.5, 205)
         self.playerRest = Button(rpg, "Rest")
         self.playerRest.combatDefault(rpg, -315, 0)
-        self.playerUse = Button(rpg, "Use Item")
-        self.playerUse.combatDefault(rpg, -315, 205)
+        self.playerRunAway = Button(rpg, "Run Away")
+        self.playerRunAway.combatDefault(rpg, -315, 205)
 
         self.equipped_allies = rpg.player.equipped_allies
         
@@ -35,8 +35,8 @@ class combatGUI:
                 self.ally1Defend.combatDefault(rpg, -262.5, 205)
                 self.ally1Rest = Button(rpg, "Rest")
                 self.ally1Rest.combatDefault(rpg, -210, 0)
-                self.ally1Use = Button(rpg, "Use Item")
-                self.ally1Use.combatDefault(rpg, -210, 205)
+                self.ally1runAway = Button(rpg, "Run Away")
+                self.ally1runAway.combatDefault(rpg, -210, 205)
                 
             if self.equipped_allies[1]:
                 self.ally2Icon = image(rpg, rpg.player.equipped_allies[1].icon, rpg.player.equipped_allies[1].name)
@@ -49,8 +49,8 @@ class combatGUI:
                 self.ally2Defend.combatDefault(rpg, -157.5, 205)
                 self.ally2Rest = Button(rpg, "Rest")
                 self.ally2Rest.combatDefault(rpg, -105, 0)
-                self.ally2Use = Button(rpg, "Use Item")
-                self.ally2Use.combatDefault(rpg, -105, 205)
+                self.ally2runAway = Button(rpg, "Run Away")
+                self.ally2runAway.combatDefault(rpg, -105, 205)
             
             if self.equipped_allies[2]:
                 self.ally3Icon = image(rpg, rpg.player.equipped_allies[2].icon, rpg.player.equipped_allies[2].name)
@@ -63,8 +63,8 @@ class combatGUI:
                 self.ally3Defend.combatDefault(rpg, -52.5, 205)
                 self.ally3Rest = Button(rpg, "Rest")
                 self.ally3Rest.combatDefault(rpg, 0, 0)
-                self.ally3Use = Button(rpg, "Use Item")
-                self.ally3Use.combatDefault(rpg, 0, 205)
+                self.ally3runAway = Button(rpg, "Run Away")
+                self.ally3runAway.combatDefault(rpg, 0, 205)
         except:
             pass
         
@@ -128,7 +128,7 @@ class combatGUI:
         self.attack = False
         self.defend = False
         self.rest = False
-        self.use = False
+        self.runAway = False
         self.battleOver = False
         self.increaseMonsterDefend = False
         self.increasePlayerDefend = False
@@ -146,8 +146,8 @@ class combatGUI:
             self.defend = True
         if self.playerRest.rect.collidepoint(mous_pos):
             self.rest = True
-        if self.playerUse.rect.collidepoint(mous_pos):
-            self.use = True
+        if self.playerRunAway.rect.collidepoint(mous_pos):
+            self.runAway = True
 
     
     def update(self):
@@ -199,28 +199,28 @@ class combatGUI:
         self.playerAttack.draw()
         self.playerDefend.draw()
         self.playerRest.draw()
-        self.playerUse.draw()
+        self.playerRunAway.draw()
         self.playerSquare.draw()
         try:    
             if self.equipped_allies[0]: 
                 self.ally1Attack.draw()
                 self.ally1Defend.draw()
                 self.ally1Rest.draw()
-                self.ally1Use.draw()
+                self.ally1runAway.draw()
                 self.ally1Square.draw()
 
             if self.equipped_allies[1]:
                 self.ally2Attack.draw()
                 self.ally2Defend.draw()
                 self.ally2Rest.draw()
-                self.ally2Use.draw()          
+                self.ally2runAway.draw()          
                 self.ally2Square.draw()
 
             if self.equipped_allies[2]:
                 self.ally3Attack.draw()
                 self.ally3Defend.draw()
                 self.ally3Rest.draw()
-                self.ally3Use.draw()          
+                self.ally3runAway.draw()          
                 self.ally3Square.draw()
         except:
             pass

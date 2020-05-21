@@ -452,28 +452,28 @@ class playerConsole:
         self.slot3Taken = 0
         self.slot4Taken = 0
         self.slot5Taken = 0
-        self.icon5 = image(rpg, "CREATE Task Folder\Image Assets\Weapon_Images\CopperShiv.png", "")
+        self.icon5 = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.icon5.consoleDefault(rpg, 0)
         self.slot5 = Button(rpg, "")
         self.slot5.consoleTextDefault(rpg, 0)
-        self.icon4 = image(rpg, "CREATE Task Folder\Image Assets\Weapon_Images\CopperSword.png", "")
+        self.icon4 = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.icon4.consoleDefault(rpg, 132)
         self.slot4 = Button(rpg, "")
         self.slot4.consoleTextDefault(rpg, 132)
-        self.icon3 = image(rpg, "CREATE Task Folder\Image Assets\Capture (1).png", "")
+        self.icon3 = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.icon3.consoleDefault(rpg, 264)
         self.slot3 = Button(rpg, "")
         self.slot3.consoleTextDefault(rpg, 264)
-        self.icon2 = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\ArmorTag.png", "")
+        self.icon2 = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.icon2.consoleDefault(rpg, 396)
         self.slot2 = Button(rpg, "")
         self.slot2.consoleTextDefault(rpg, 396)
-        self.icon1 = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\BuffTag.png", "")
+        self.icon1 = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.icon1.consoleDefault(rpg, 528)
         self.slot1 = Button(rpg, "")
         self.slot1.consoleTextDefault(rpg, 528)
 
-        self.arrow = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\AlertArrow.png", "")
+        self.arrow = image(rpg, "CREATE Task Folder\Image Assets\Transparent.png", "")
         self.arrow.width, self.arrow.height = 80, 60
         self.arrow.top, self.arrow.left = 600, 970
         self.arrow.transparent = True

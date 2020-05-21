@@ -7,4 +7,3 @@ class Settings: # pylint: disable=too-few-public-methods
         self.screen_width = 1920
         self.screen_height = 1080
         self.bg_color = (0, 0, 0)
-        self.template_speed = 1.5

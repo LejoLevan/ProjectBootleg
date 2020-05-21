@@ -11,7 +11,6 @@ from Save_Games.save_methods import playerLoad, questLoad, playerSave, questSave
 from Quests.quest_class import QuestChecker
 from player import character
 from settings import Settings
-from image_template import Template #Y'all can probably ignore this entire class (I still need for stuff)
 from combat import battle
 #from locations import place
 class RPG:
@@ -24,7 +23,6 @@ class RPG:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Project Bootleg")
 
-        self.template = Template(self)
         self.game_active = False
         self.battle_active = False
 
@@ -60,7 +58,6 @@ class RPG:
         while True:
             self._check_events()
             if self.game_active:
-                self.template.update()
                 self.player.update()
             self._update_screen()
 
@@ -73,8 +70,6 @@ class RPG:
                 self._check_mouseclick(mous_pos)
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
-            elif event.type == pygame.KEYUP:
-                self._check_keyup_events(event)
 
     def _check_mouseclick(self, mous_pos):
         if self.choiceButtons.choice1.rect.collidepoint(mous_pos) and self.game_active and self.playerConsole.clicked == False and self.battle_active == False:
@@ -98,18 +93,8 @@ class RPG:
             self.Inventory.mouseEvents(self, mous_pos)
         
     def _check_keydown_events(self, event):
-        if event.key == pygame.K_RIGHT:
-            self.template.moving_right = True
-        elif event.key == pygame.K_LEFT:
-            self.template.moving_left = True
-        elif event.key == pygame.K_q:
+        if event.key == pygame.K_q:
             sys.exit()
-
-    def _check_keyup_events(self, event):
-        if event.key == pygame.K_RIGHT:
-            self.template.moving_right = False
-        elif event.key == pygame.K_LEFT:
-            self.template.moving_left = False
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
@@ -117,7 +102,6 @@ class RPG:
             self.mainMenu.draw()
             self.borders.borderSquare.draw()
         else:
-            self.template.blitme()
             self.swapButton.draw()
             self.profilePic.draw()
             #self.choiceButtons.draw()
