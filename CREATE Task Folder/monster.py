@@ -82,6 +82,7 @@ class monster:
             self.crit_chance = 2.5
             self.crit_mult = 1.25
             self.luck = 10
+            self.exp = 10
 
             self.gold = 5
             self.tierIILoot = [CopperOre, CopperOre]
@@ -115,7 +116,8 @@ class monster:
             self.luck = 5
             self.intelligence = "Medium"
 
-            self.gold = 2
+            self.exp = 20
+            self.gold = 3
             self.tierIILoot = [CopperSword]
             self.tierIIILoot = [CopperArmor]
 
