@@ -172,6 +172,8 @@ def loot(rpg, enemy):
                     rpg.player.appendInventory("Misc Inventory", item)
                 if(item.tag == "Buff"):
                     rpg.player.appendInventory("Buff Inventory", item)
+    else:
+        rpg.playerConsole.showNextText(rpg, "You didn't get anything!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
     if(random.randrange(0,100) <= rpg.player.luck):
         rpg.player.gold += enemy.gold * 1.5
         rpg.playerConsole.showNextText(rpg, "Congrats!", "You've gained {} Gold!".format(enemy.gold * 1.5), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
