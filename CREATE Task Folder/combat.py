@@ -48,25 +48,26 @@ def whoFirst(rpg, enemy):
                 return("Monster")
 
 def playerTurn(rpg, enemy):
-    rpg.playerConsole.showNextText(rpg, "It's now your turn", "Please a select an option", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
-    while rpg.combatGUI.attack == False and rpg.combatGUI.defend == False and rpg.combatGUI.rest == False and rpg.combatGUI.use == False:
-        rpg._check_events()
-        if rpg.game_active:
-            rpg.template.update()
-            rpg.player.update()
-        rpg._update_screen()
-    if rpg.combatGUI.attack == True:
-        attack(rpg, enemy, "Player")
-        rpg.combatGUI.attack = False
-    elif rpg.combatGUI.defend == True:
-        defend(rpg, enemy, "Player")
-        rpg.combatGUI.defend = False
-    elif rpg.combatGUI.rest == True:
-        rest(rpg, enemy, "Player")
-        rpg.combatGUI.rest = False
-    elif rpg.combatGUI.use == True:
-        use(rpg, enemy) 
-        rpg.combatGUI.use = False
+    if rpg.player.hp > 0:
+        rpg.playerConsole.showNextText(rpg, "It's now your turn", "Please a select an option", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+        while rpg.combatGUI.attack == False and rpg.combatGUI.defend == False and rpg.combatGUI.rest == False and rpg.combatGUI.use == False:
+            rpg._check_events()
+            if rpg.game_active:
+                rpg.template.update()
+                rpg.player.update()
+            rpg._update_screen()
+        if rpg.combatGUI.attack == True:
+            attack(rpg, enemy, "Player")
+            rpg.combatGUI.attack = False
+        elif rpg.combatGUI.defend == True:
+            defend(rpg, enemy, "Player")
+            rpg.combatGUI.defend = False
+        elif rpg.combatGUI.rest == True:
+            rest(rpg, enemy, "Player")
+            rpg.combatGUI.rest = False
+        elif rpg.combatGUI.use == True:
+            use(rpg) 
+            rpg.combatGUI.use = False
 
 def checkHealths(rpg, enemy):
     if rpg.player.hp <= 0:
@@ -98,45 +99,42 @@ def checkHealths(rpg, enemy):
         loot(rpg, enemy)
 
 def monsterTurn(rpg, enemy):
-    if enemy.intelligence == "Low":
-        if random.randrange(0, 100) <= 85:
-            attack(rpg, enemy, "Monster")
-        else:
+    if enemy.hp > 0:
+        if enemy.intelligence == "Low":
             if random.randrange(0, 100) <= 85:
-                defend(rpg, enemy, "Monster")
-            else:
-                rest(rpg, enemy, "Monster")
-    elif enemy.intelligence == "Medium":
-        if enemy.hp <= enemy.hp *.25:
-            if enemy.hp <= enemy.maxhp * .1:
-                rest(rpg, enemy, "Monster")
-            else:
-                defend(rpg, enemy, "Monster")
-        else:
-            attack(rpg, enemy, "Monster")
-    elif enemy.intelligence == "High":
-        if enemy.hp > rpg.player.hp:
-            if random.randrange(0, 100) <= 25:
-                defend(rpg, enemy, "Monster")
                 attack(rpg, enemy, "Monster")
-        else:
-            if enemy.hp <= enemy.hp * .5:
-                if enemy.hp <= enemy.maxhp * .3:
-                    rest(rpg, enemy, "Monster")
-                elif random.randrange(0, 100) <= 10:
-                    rest(rpg, enemy, "Monster")
+            else:
+                if random.randrange(0, 100) <= 85:
                     defend(rpg, enemy, "Monster")
                 else:
-                    defend(rpg, enemy, "Monster")
+                    rest(rpg, enemy, "Monster")
+        elif enemy.intelligence == "Medium":
+            if enemy.hp <= enemy.hp *.25:
                 if enemy.hp <= enemy.maxhp * .1:
-                    rpg.combatGUI.battleOver = True
+                    rest(rpg, enemy, "Monster")
+                else:
+                    defend(rpg, enemy, "Monster")
             else:
                 attack(rpg, enemy, "Monster")
-
-#def use(rpg, enemy):
-
-
-
+        elif enemy.intelligence == "High":
+            if enemy.hp > rpg.player.hp:
+                if random.randrange(0, 100) <= 25:
+                    defend(rpg, enemy, "Monster")
+                    attack(rpg, enemy, "Monster")
+            else:
+                if enemy.hp <= enemy.hp * .5:
+                    if enemy.hp <= enemy.maxhp * .3:
+                        rest(rpg, enemy, "Monster")
+                    elif random.randrange(0, 100) <= 10:
+                        rest(rpg, enemy, "Monster")
+                        defend(rpg, enemy, "Monster")
+                    else:
+                        defend(rpg, enemy, "Monster")
+                    if enemy.hp <= enemy.maxhp * .1:
+                        rpg.combatGUI.battleOver = True
+                else:
+                    attack(rpg, enemy, "Monster")
+    
 
 def loot(rpg, enemy):
     if(random.randrange(0,100) <= rpg.player.luck):
@@ -176,90 +174,132 @@ def loot(rpg, enemy):
 
 def attack(rpg, enemy, who):
     if who == "Player":
+        monsterPhysicalDefense = enemy.physical_defense
+        monsterMagicDefense = enemy.magic_defense
+        if rpg.combatGUI.increasePlayerDefend == True:
+            monsterPhysicalDefense += round(enemy.physical_defense * 0.1)
+            monsterMagicDefense += round(enemy.magic_defense * 0.1)
+
         if rpg.player.profession == "Apprentice" or rpg.player.profession == "Warlock" or rpg.player.profession == "Wizard":
             if rpg.player.mana >= rpg.player.magic_attack:
                 if random.randrange(0, 100) <= rpg.player.accuracy:
                     if random.randrange(0, 100) <= rpg.player.crit_chance:
-                        enemy.hp -= (rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult + enemy.magic_defense
+                        if ((rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult) - monsterMagicDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "You crit and dealt", "0 damage", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "You crit and dealt", "{} damage".format(((rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult) - monsterMagicDefense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                            enemy.hp -= ((rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult) - monsterMagicDefense
                         rpg.player.mana -= rpg.player.magic_attack
-                        rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format((rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult + enemy.magic_defense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        rpg.player.weapon.durability -= ((rpg.player.magic_attack + rpg.player.weapon.magic_attack) * rpg.player.crit_mult) - monsterMagicDefense
                     else:
-                        enemy.hp -= rpg.player.magic_attack + rpg.player.weapon.magic_attack + enemy.magic_defense
+                        if rpg.player.magic_attack + rpg.player.weapon.magic_attack - monsterMagicDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "You dealt", "0 damage", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format((rpg.player.magic_attack + rpg.player.weapon.magic_attack) - monsterMagicDefense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                            enemy.hp -= rpg.player.magic_attack + rpg.player.weapon.magic_attack - monsterMagicDefense
                         rpg.player.mana -= rpg.player.magic_attack
-                        rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format(rpg.player.magic_attack + rpg.player.weapon.magic_attack + enemy.magic_defense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        rpg.player.weapon.durability -= rpg.player.magic_attack + rpg.player.weapon.magic_attack - monsterMagicDefense
                 else:
                     rpg.playerConsole.showNextText(rpg, "You", "missed", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             else:
-                rpg.player.hp -= ((rpg.player.maxhp * random.randrange(5, 10))/100)
+                damageTaken = (round((rpg.player.maxhp * random.randrange(5, 10))/100))
+                rpg.playerConsole.showNextText(rpg, "You don't enough stamina", "You've taken {} damage :(".format(damageTaken), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                rpg.player.hp -= damageTaken
         else:
             if rpg.player.stamina >= rpg.player.physical_attack:
                 if random.randrange(0, 100) <= rpg.player.accuracy:
                     if random.randrange(0, 100) <= rpg.player.crit_chance:
-                        enemy.hp -= (rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult + enemy.physical_defense
+                        if ((rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult) - monsterPhysicalDefense <0:
+                            rpg.playerConsole.showNextText(rpg, "You crit and dealt", "0 damage", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "You crit and dealt", "{} damage".format(((rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult) - monsterPhysicalDefense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                            enemy.hp -= ((rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult) - monsterPhysicalDefense
                         rpg.player.stamina -= rpg.player.physical_attack
-                        rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format((rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult + enemy.physical_defense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        rpg.player.weapon.durability -= ((rpg.player.physical_attack + rpg.player.weapon.physical_attack) * rpg.player.crit_mult) - monsterPhysicalDefense
                     else:
-                        enemy.hp -= rpg.player.physical_attack + rpg.player.weapon.physical_attack + enemy.physical_defense
+                        if rpg.player.physical_attack + rpg.player.weapon.physical_attack - monsterPhysicalDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "You dealt", "0 damage", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format(rpg.player.physical_attack + rpg.player.weapon.physical_attack - monsterPhysicalDefense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                            enemy.hp -= rpg.player.physical_attack + rpg.player.weapon.physical_attack - monsterPhysicalDefense
                         rpg.player.stamina -= rpg.player.physical_attack
-                        rpg.playerConsole.showNextText(rpg, "You dealt", "{} damage".format(rpg.player.weapon.physical_attack + enemy.physical_defense), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                        rpg.player.weapon.durability -= rpg.player.physical_attack + rpg.player.weapon.physical_attack - monsterPhysicalDefense
                 else:
                     rpg.playerConsole.showNextText(rpg, "You", "missed", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             else:
-                rpg.player.hp -= ((rpg.player.maxhp * random.randrange(5, 10))/100)
+                damageTaken = (round((rpg.player.maxhp * random.randrange(5, 10))/100))
+                rpg.playerConsole.showNextText(rpg, "You don't enough stamina", "You've taken {} damage :(".format(damageTaken), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+                rpg.player.hp -= damageTaken
 
     if who == "Monster":
         playerPhysicalDefense = rpg.player.physical_defense
         playerMagicDefense = rpg.player.magic_defense
-        if rpg.combatGUI.increaseDefend == True:
-            playerPhysicalDefense += enemy.physical_defense * 0.1
-            playerMagicDefense += enemy.magic_defense * 0.1
+        if rpg.combatGUI.increasePlayerDefend == True:
+            playerPhysicalDefense += round(rpg.player.physical_defense * 0.1)
+            playerMagicDefense += round(rpg.player.magic_defense * 0.1)
             
         if enemy.profession == "Mage":
             if enemy.mana >= enemy.magic_attack:
                 if random.randrange(0, 100) <= enemy.accuracy:
                     if random.randrange(0, 100) <= enemy.crit_chance:
-                        rpg.player.hp -= enemy.magic_attack * enemy.crit_mult + playerMagicDefense
+                        if (enemy.magic_attack * enemy.crit_mult) - playerMagicDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "0 damage", pygame.image.load(enemy.icon))
+                        else:
+                            rpg.player.hp -= (enemy.magic_attack * enemy.crit_mult) - playerMagicDefense
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "{} damage".format(enemy.magic_attack * enemy.crit_mult - playerMagicDefense), pygame.image.load(enemy.icon))
                         enemy.mana -= enemy.magic_attack
-                        rpg.player.armor.durability -= enemy.magic_attack * enemy.crit_mult + playerMagicDefense
-                        rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "{} damage".format(enemy.magic_attack * enemy.crit_mult + playerMagicDefense), pygame.image.load(enemy.icon))
+                        rpg.player.armor.durability -= enemy.magic_attack * enemy.crit_mult
                     else:
-                        rpg.player.hp -= enemy.magic_attack + playerMagicDefense
+                        if enemy.magic_attack - playerMagicDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "0 damage", pygame.image.load(enemy.icon))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "{} damage".format(enemy.magic_attack * enemy.crit_mult - playerMagicDefense), pygame.image.load(enemy.icon))
+                            rpg.player.hp -= enemy.magic_attack - playerMagicDefense
                         enemy.mana -= enemy.magic_attack
                         rpg.player.armor.durability -= enemy.magic_attack
-                        rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "{} damage".format(enemy.magic_attack), pygame.image.load(enemy.icon))
                 else:
                     rpg.playerConsole.showNextText(rpg, "{}".format(enemy.name), "missed", pygame.image.load(enemy.icon))
             else:
-                enemy.hp -= ((enemy.maxhp * random.randrange(5, 10))/100)
+                damageTaken = (round((enemy.maxhp * random.randrange(5, 10))/100))
+                rpg.playerConsole.showNextText(rpg, "{} didn't have enough stamina".format(enemy.name), "{} has taken {} damage :(".format(enemy.name, damageTaken), pygame.image.load(enemy.icon))
+                enemy.hp -= damageTaken
         else:
             if enemy.stamina >= enemy.physical_attack:
                 if random.randrange(0, 100) <= enemy.accuracy:
                     if random.randrange(0, 100) <= enemy.crit_chance:
-                        rpg.player.hp -= enemy.physical_attack * enemy.crit_mult + playerPhysicalDefense
+                        if (enemy.physical_attack * enemy.crit_mult) - playerPhysicalDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "0 damage", pygame.image.load(enemy.icon))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "{} has crit and dealt".format(enemy.name), "{} damage".format(enemy.physical_attack * enemy.crit_mult - playerPhysicalDefense), pygame.image.load(enemy.icon))
+                            rpg.player.hp -= (enemy.physical_attack * enemy.crit_mult) - playerPhysicalDefense
                         enemy.stamina -= enemy.physical_attack
-                        rpg.player.armor.durability -= enemy.physical_attack * enemy.crit_mult + playerPhysicalDefense
-                        rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "{} damage".format(enemy.physical_attack * enemy.crit_mult + playerPhysicalDefense), pygame.image.load(enemy.icon))
+                        rpg.player.armor.durability -= (enemy.physical_attack * enemy.crit_mult)
                     else:
-                        rpg.player.hp -= enemy.physical_attack + playerPhysicalDefense
+                        if enemy.physical_attack - playerPhysicalDefense < 0:
+                            rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "0 damage", pygame.image.load(enemy.icon))
+                        else:
+                            rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "{} damage".format(enemy.physical_attack), pygame.image.load(enemy.icon))
+                            rpg.player.hp -= enemy.physical_attack - playerPhysicalDefense
                         enemy.stamina -= enemy.physical_attack
                         rpg.player.armor.durability -= enemy.physical_attack
-                        rpg.playerConsole.showNextText(rpg, "{} dealt".format(enemy.name), "{} damage".format(enemy.physical_attack), pygame.image.load(enemy.icon))
                 else:
                     rpg.playerConsole.showNextText(rpg, "{}".format(enemy.name), "missed", pygame.image.load(enemy.icon))
             else:
-                enemy.hp -= ((enemy.maxhp * random.randrange(5, 10))/100)
+                damageTaken = (round((enemy.maxhp * random.randrange(5, 10))/100))
+                rpg.playerConsole.showNextText(rpg, "{} didn't have enough stamina".format(enemy.name), "{} has taken {} damage :(".format(enemy.name, damageTaken), pygame.image.load(enemy.icon))
+                enemy.hp -= damageTaken
 
 def defend(rpg, enemy, who):
     if who == "Player":
         if rpg.player.stamina >= 0:
             if rpg.player.stamina - (rpg.player.speed - rpg.player.weapon.speed - rpg.player.armor.speed) != -1:
-                rpg.combatGUI.increaseDefend = True
+                rpg.combatGUI.increasePlayerDefend = True
                 rpg.playerConsole.showNextText(rpg, "You have", "Successfully Defended", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
                 rpg.player.stamina -= (rpg.player.speed - rpg.player.weapon.speed - rpg.player.armor.speed)
                 if random.randrange(0, 100) <= rpg.player.luck:
                     enemy.hp -= (rpg.player.speed - rpg.player.weapon.speed - rpg.player.armor.speed)
         else: 
-            rpg.combatGUI.increaseDefend = False
+            rpg.combatGUI.increasePlayerDefend = False
             rpg.playerConsole.showNextText(rpg, "You have", "Failed to Defend", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             rpg.player.hp -= (rpg.player.speed - rpg.player.weapon.speed - rpg.player.armor.speed)
             if random.randrange(0, 100) <= rpg.player.luck:
@@ -272,32 +312,32 @@ def defend(rpg, enemy, who):
     if who == "Monster":
         if enemy.stamina >= 0:
             if enemy.stamina - enemy.speed != -1:
-                rpg.combatGUI.increaseDefend = True
-                rpg.playerConsole.showNextText(rpg, "Monster have", "Successfully Defended", pygame.image.load(enemy.icon))
+                rpg.combatGUI.increaseMonsterDefend = True
+                rpg.playerConsole.showNextText(rpg, "{} has".format(enemy.name), "Successfully Defended", pygame.image.load(enemy.icon))
                 enemy.stamina - enemy.speed 
                 if random.randrange(0, 100) <= enemy.luck:
                     rpg.player.hp -= enemy.speed 
         else:
-            rpg.combatGUI.increaseDefend = False
-            rpg.playerConsole.showNextText(rpg, "Monster have", "Failed to Defend", pygame.image.load(enemy.icon))
+            rpg.combatGUI.increaseMonsterDefend = False
+            rpg.playerConsole.showNextText(rpg, "{} has".format(enemy.name), "Failed to Defend", pygame.image.load(enemy.icon))
             enemy.hp -= enemy.speed
             if random.randrange(0, 100) <= enemy.luck:
                 if random.randrange(0, 100) <= enemy.crit_chance:
                     enemy.hp -= rpg.player.physical_attack * rpg.player.crit_mult
                 else: 
                     enemy.hp -= rpg.player.physical_attack
-                    rpg.playerConsole.showNextText(rpg, "Monster have", "Taken Damage", pygame.image.load(enemy.icon))
+                    rpg.playerConsole.showNextText(rpg, "{} has".format(enemy.name), "Taken Damage", pygame.image.load(enemy.icon))
 
 
 def rest(rpg, enemy, who):
     if who == "Player":
-        Resthp = ((rpg.player.maxhp * random.randrange(10, 25))/100)
-        Reststamina = ((rpg.player.stamina_max * random.randrange(10, 25))/100)
+        Resthp = (round((rpg.player.maxhp * random.randrange(10, 25))/100))
+        Reststamina = (round((rpg.player.stamina_max * random.randrange(10, 25))/100))
         if rpg.player.hp + Resthp > rpg.player.maxhp:
             rpg.playerConsole.showNextText(rpg, "You have gained", "Max health", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             rpg.player.hp = rpg.player.maxhp
         else:
-            rpg.playerConsole.showNextText(rpg, "You have gained", "{} HP".format(rpg.player.hp + Resthp), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+            rpg.playerConsole.showNextText(rpg, "You have gained", "{} HP".format(Resthp), pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             rpg.player.hp += Resthp
         if rpg.player.stamina + Reststamina > rpg.player.stamina_max:
             rpg.playerConsole.showNextText(rpg, "You have gained", "Max Stamina", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
@@ -307,19 +347,19 @@ def rest(rpg, enemy, who):
             rpg.player.stamina += Reststamina
 
     if who == "Monster":
-        Resthp = ((enemy.maxhp * random.randrange(10, 25))/100)
-        Reststamina = ((enemy.stamina_max * random.randrange(10, 25))/100)
+        Resthp = (round((enemy.maxhp * random.randrange(10, 25))/100))
+        Reststamina = (round((enemy.stamina_max * random.randrange(10, 25))/100))
         if enemy.hp + Resthp > enemy.maxhp:
             rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "Max health", pygame.image.load(enemy.icon))
             enemy.hp = enemy.maxhp
         else:
-            rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "{} HP".format(enemy.hp + Resthp), pygame.image.load(enemy.icon))
+            rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "{} HP".format(Resthp), pygame.image.load(enemy.icon))
             enemy.hp += Resthp
         if enemy.stamina + Reststamina > enemy.stamina_max:
             rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "Max Stamina", pygame.image.load(enemy.icon))
             enemy.stamina = enemy.stamina_max
         else:
-            rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "{} Stamina".format(enemy.stamina + Reststamina), pygame.image.load(enemy.icon))
+            rpg.playerConsole.showNextText(rpg, "{} has gained".format(enemy.name), "{} Stamina".format(Reststamina), pygame.image.load(enemy.icon))
             enemy.stamina += Reststamina
        
 def use(rpg):
@@ -345,3 +385,5 @@ def use(rpg):
                 rpg.playerConsole.showNextText(rpg, "You do not have a stamina potion!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
             if(rpg.player.mana < rpg.player.mana_max * .65 and "Mana Potion" not in rpg.player.buffs):
                 rpg.playerConsole.showNextText(rpg, "You do not have a mana potion!", " ", pygame.image.load("CREATE Task Folder\Image Assets\Battle_Images\Battle Icon.png"))
+    except:
+        pass

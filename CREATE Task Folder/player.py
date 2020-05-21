@@ -177,7 +177,7 @@ class character:
     def update(self):
         self.profession = Classes.updateClass(self)
         self.checkBag()
-
+    
     def appendInventory(self, inventory, item):
         if self.bagCap == False:
             if inventory == "Weapon Inventory":

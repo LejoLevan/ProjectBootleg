@@ -67,10 +67,10 @@ class monster:
             self.physical_attack = 8
             self.speed = 7
 
-            self.stamina = 15
-            self.stamina_max = 15
+            self.stamina = 30
+            self.stamina_max = 30
 
-            self.physical_defense = 4
+            self.physical_defense = 2
             self.magic_defense  = 2
 
             self.fire_resist = 1
@@ -97,11 +97,11 @@ class monster:
             self.physical_attack = 10
             self.speed = 10
 
-            self.stamina = 30
-            self.stamina_max = 30
+            self.stamina = 65
+            self.stamina_max = 65
 
-            self.physical_defense = 8
-            self.magic_defense = 5
+            self.physical_defense = 4
+            self.magic_defense = 3
 
             self.poison_resist = 1
             self.water_resist = 2

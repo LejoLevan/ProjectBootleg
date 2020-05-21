@@ -17,8 +17,8 @@ class weapon:
         self.name = "Copper Sword"
         self.icon = "CREATE Task Folder\Image Assets\Weapon_Images\CopperSword.png"
         self.physical_attack = random.choice([2, 3])
-        self.max_durability = 25
-        self.durability = 25
+        self.max_durability = 5
+        self.durability = 5
         self.info = "CREATE Task Folder\Image Assets\Weapon_Images\Copper Sword Info.png"
     
     def bareFists(self):

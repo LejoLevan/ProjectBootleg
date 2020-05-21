@@ -130,7 +130,8 @@ class combatGUI:
         self.rest = False
         self.use = False
         self.battleOver = False
-        self.increaseDefend = False
+        self.increaseMonsterDefend = False
+        self.increasePlayerDefend = False
         
 
     def mouseEvents(self, mous_pos):

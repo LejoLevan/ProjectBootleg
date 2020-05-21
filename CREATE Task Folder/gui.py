@@ -473,6 +473,11 @@ class playerConsole:
         self.slot1 = Button(rpg, "")
         self.slot1.consoleTextDefault(rpg, 528)
 
+        self.arrow = image(rpg, "CREATE Task Folder\Image Assets\GUI_images\AlertArrow.png", "")
+        self.arrow.width, self.arrow.height = 80, 60
+        self.arrow.top, self.arrow.left = 600, 970
+        self.arrow.transparent = True
+
     def drawConsole(self):
         self.slot1.draw()
         self.icon1.draw()
@@ -484,6 +489,8 @@ class playerConsole:
         self.icon4.draw()
         self.slot5.draw()
         self.icon5.draw()
+        if self.clicked == False:
+            self.arrow.draw()
        
     def showNextText(self, rpg, nextText, nextTextPart2, nextIcon):
         self.slot5.msg = self.slot4.msg
